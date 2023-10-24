@@ -1,0 +1,27 @@
+/* Estilos para los botones en el HBox */
+Button {
+    -fx-background-color: #4CAF50; /* Color de fondo de los botones */
+    -fx-text-fill: white; /* Color del texto en los botones */
+
+    -fx-font-size: 14px; /* Tamaño de fuente de los botones */
+    -fx-max-width: Infinity; /* Establece el ancho máximo a "Infinity" */
+    -fx-hgrow: ALWAYS; /* Permite que los botones crezcan horizontalmente */
+}
+
+/* Estilos para el GridPane */
+GridPane {
+    -fx-hgap: 5px; /* Espacio horizontal entre celdas del GridPane */
+    -fx-vgap: 2px; /* Espacio vertical entre celdas del GridPane */
+}
+
+/* Estilos para las imágenes en el GridPane */
+ImageView {
+    -fx-fit-width: 150px; /* Ancho de las imágenes en el GridPane */
+    -fx-fit-height: 150px; /* Alto de las imágenes en el GridPane */
+    -fx-preserve-ratio: true; /* Conservar la proporción de las imágenes */
+}
+
+/* Estilos para el ScrollPane */
+ScrollPane {
+    -fx-background: #fff; /* Color de fondo del ScrollPane */
+}
