@@ -10,7 +10,7 @@ import javafx.scene.control.TreeView;
 public class PrimaryController {
 
     @FXML
-    private TreeView<String> treeV;
+    public TreeView<String> treeV;
 
     @FXML
     private void switchToSecondary() throws IOException {
@@ -18,7 +18,7 @@ public class PrimaryController {
     }
 
     public void initialize() {
-        create(new File("C:\\Users\\Jose\\"));
+        treeV.setRoot(create(new File(System.getProperty("user.dir"))));
     }
 
 
@@ -28,11 +28,13 @@ public class PrimaryController {
         for (File file : dirs) {
             if (file.isDirectory())
                 treeItem.getChildren().add(create(file));
-            else
-                treeItem.getChildren().add(treeItem);
+            else {
+                TreeItem<String> treeIt = new TreeItem<String>(file.getName());
+                treeItem.getChildren().add(treeIt);
+            }
         }
 
         return treeItem;
     }
-    
+
 }
