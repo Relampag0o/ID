@@ -3,17 +3,18 @@ package org.example;
 import java.io.*;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 
 public class PrimaryController {
 
+    @FXML
+    public TabPane tabP;
     @FXML
     public TreeView<String> treeV;
 
     @FXML
     public TextArea textArea;
+
 
     @FXML
     private void switchToSecondary() throws IOException {
@@ -29,9 +30,12 @@ public class PrimaryController {
                     CustomTreeItem cti = (CustomTreeItem) newValue;
                     BufferedReader bfr = new BufferedReader(new FileReader(cti.getFile()));
                     String line = "";
+                    String p = "";
                     while ((line = bfr.readLine()) != null) {
                         textArea.appendText(line + '\n');
+                        p += line + '\n';
                     }
+                    tabP.getTabs().add(tabP.getTabs().size() - 1, new CustomTab(cti.getFile(), new TextArea(p)));
                     bfr.close();
                 } catch (Exception e) {
 
