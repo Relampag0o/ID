@@ -16,6 +16,8 @@ public class PrimaryController {
     public TextArea textArea;
 
 
+
+
     @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
@@ -36,6 +38,7 @@ public class PrimaryController {
                         p += line + '\n';
                     }
                     tabP.getTabs().add(tabP.getTabs().size() - 1, new CustomTab(cti.getFile(), new TextArea(p)));
+                    saveData(cti.getFile());
                     bfr.close();
                 } catch (Exception e) {
 
@@ -64,4 +67,17 @@ public class PrimaryController {
         return treeItem;
     }
 
+    public void saveData(File f) {
+        BufferedWriter bfw = null;
+        try {
+            bfw = new BufferedWriter(new FileWriter(f));
+            bfw.write(textArea.getText());
+            bfw.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }
 }
