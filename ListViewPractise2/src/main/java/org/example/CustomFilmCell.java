@@ -1,25 +1,30 @@
 package org.example;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class CustomFilmCell extends ListCell<Film> {
 
-    protected void updateItem(Film item, boolean empty) {
-        super.updateItem(item, empty);
+    protected void updateItem(Film f, boolean empty) {
+        super.updateItem(f, empty);
 
-        if (item != null && !empty) {
-            ImageView imageView = new ImageView(new Image(item.getUrl()));
-            imageView.setFitWidth(100);
-            imageView.setPreserveRatio(true);
-
-            setText(item.getTitle() + " - " + item.getDirector());
-            setGraphic(imageView);
-        } else {
-            setText(null);
+        if (empty || f == null) {
             setGraphic(null);
-        }
+        } else
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("customxml.fxml"));
+                Parent root = loader.load();
+                CustomCellController controller = loader.getController();
+                controller.setData(f);
+                setGraphic(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
     }
+
 }
 

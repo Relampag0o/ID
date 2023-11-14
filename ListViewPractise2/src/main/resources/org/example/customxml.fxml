@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+        <?import javafx.scene.image.ImageView?>
+        <?import javafx.scene.control.Label?>
+        <?import javafx.scene.layout.HBox?>
+        <?import javafx.scene.layout.VBox?>
+        <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.CustomCellController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.CustomCellController">
+<children>
+    <HBox spacing="5">
+        <ImageView>
+        </ImageView>
+    </HBox>
+    <HBox spacing="5" alignment="CENTER">
+        <ImageView fx:id="imgV" fitWidth="100" fitHeight="150">
+        </ImageView>
+        <VBox spacing="5" alignment="CENTER">
+            <Label fx:id="movieName"/>
+            <Label fx:id="year"/>
+            <Label fx:id="name"/>
+            <Label fx:id="author"/>
+        </VBox>
+    </HBox>
+</children>
+</StackPane>
