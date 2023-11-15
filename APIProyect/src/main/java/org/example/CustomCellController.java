@@ -12,11 +12,10 @@ public class CustomCellController {
     public Label name;
 
     @FXML
-    public Label description;
+        public Label description;
 
     @FXML
     public Label details;
-
     @FXML
     public ImageView imgV;
 
