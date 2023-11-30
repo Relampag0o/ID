@@ -10,6 +10,7 @@ module org.example {
     requires MaterialFX;
 
     opens org.example to com.google.gson, javafx.fxml;
+    opens org.example.api to com.google.gson, javafx.fxml;
     exports org.example;
 
 

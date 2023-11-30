@@ -18,13 +18,13 @@
          </font>
       </Label>
       <Label text="Email" />
-      <TextField />
+      <TextField fx:id="emailField" />
       <Label text="Password" />
-      <TextField />
+      <TextField fx:id="passwordField" />
       <Label text="Name" />
-      <TextField />
+      <TextField fx:id="nameField" />
       <Label text="Adress" />
-      <TextField />
-      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="96.0" text="Submit" />
+      <TextField fx:id="addressField" />
+      <Button mnemonicParsing="false" onAction="#registerUser" onMouseClicked="#switchToPrimary" prefHeight="40.0" prefWidth="96.0" text="Submit" />
    </children>
 </VBox>
