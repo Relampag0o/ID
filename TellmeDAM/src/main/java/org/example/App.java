@@ -13,6 +13,10 @@ import java.io.IOException;
  */
 public class App extends Application {
 
+
+    public static User userLogged;
+
+
     private static Scene scene;
 
     @Override

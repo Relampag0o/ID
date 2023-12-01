@@ -18,6 +18,12 @@ public class PrimaryController {
 
     }
 
+    @FXML
+    private void switchToLogged() throws IOException {
+        App.setRoot("logged");
+
+    }
+
     public void login() {
         UserAPIClient user = new UserAPIClient();
         try {
@@ -26,6 +32,9 @@ public class PrimaryController {
                     @Override
                     public void onSuccess(Object response) throws IOException {
                         System.out.println("Success logging.");
+                        App.userLogged = (User) response;
+                        switchToLogged();
+
                     }
 
                     @Override
