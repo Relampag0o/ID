@@ -6,19 +6,38 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ScrollPane?>
 
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="400.0" prefWidth="183.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="63.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                  <StackPane>
+                     <Circle fx:id="profilePic" fill="WHITE" radius="30"/>
+                     <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <clip>
+                           <Circle radius="30"/>
+                        </clip>
+                     </ImageView>
+                  </StackPane>
+                  <MFXButton text="Add chat" />
                </children>
             </HBox>
-            <TextField fx:id="searchField" />
-            <ListView fx:id="listView" prefHeight="317.0" prefWidth="183.0" />
+            <MFXTextField fx:id="searchField" />
+            <MFXListView fx:id="listView" prefHeight="317.0" prefWidth="183.0" />
          </children>
       </VBox>
+      <ScrollPane fx:id="chatScrollPane" fitToWidth="true" fitToHeight="true">
+         <content>
+            <VBox fx:id="chatBox" />
+         </content>
+      </ScrollPane>
    </children>
 </HBox>
