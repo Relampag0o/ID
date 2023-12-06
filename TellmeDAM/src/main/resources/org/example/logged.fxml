@@ -7,28 +7,35 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
    <children>
       <VBox prefHeight="400.0" prefWidth="183.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <StackPane>
-                     <Circle fx:id="profilePic" fill="WHITE" radius="30" />
-                     <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                        <clip>
-                           <Circle radius="30" />
-                        </clip>
-                     </ImageView>
-                  </StackPane>
-                  <MFXButton text="Add chat">
-                     <HBox.margin>
-                        <Insets left="10.0" top="20.0" />
-                     </HBox.margin></MFXButton>
-               </children>
+            <HBox prefHeight="50.0">
+               <Label text="Chats" />
+               <MFXButton fx:id="chatButton" alignment="TOP_LEFT" contentDisplay="RIGHT" onAction="#showChat" text="New Chat">
+                  <HBox.margin>
+                     <Insets left="3.0" top="5.0" />
+                  </HBox.margin>
+               </MFXButton>
             </HBox>
-            <MFXTextField fx:id="searchField" maxHeight="5.0" maxWidth="1.7976931348623157E308" prefHeight="30.0" borderGap="2.0" floatMode="ABOVE"  />
+            <MFXTextField fx:id="searchField" borderGap="2.0" floatMode="ABOVE" maxHeight="5.0" maxWidth="1.7976931348623157E308" prefHeight="30.0">
+               <VBox.margin>
+                  <Insets top="4.0" />
+               </VBox.margin></MFXTextField>
             <MFXListView fx:id="listView" prefHeight="317.0" prefWidth="183.0" />
+            <HBox>
+               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                  <clip>
+                     <Circle radius="30" />
+                  </clip>
+               </ImageView>
+               <MFXButton text="Settings">
+                  <HBox.margin>
+                     <Insets left="3.0" top="15.0" />
+                  </HBox.margin>
+               </MFXButton>
+            </HBox>
          </children>
       </VBox>
       <VBox>
@@ -38,13 +45,13 @@
             </content>
          </ScrollPane>
          <HBox>
-            <MFXTextField  borderGap="2.0" floatMode="ABOVE"   fx:id="messageField" prefHeight="5.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
+            <MFXTextField fx:id="messageField" borderGap="2.0" floatMode="ABOVE" prefHeight="5.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets left="70.0" />
                </HBox.margin></MFXTextField>
             <MFXButton text="Send">
                <HBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="2.0" />
                </HBox.margin></MFXButton>
          </HBox>
       </VBox>
