@@ -12,15 +12,14 @@ public class Chat {
     public Chat() {
     }
 
-    // Constructor con parámetros
-    public Chat( int id, int user1Id, String user1Username, int user2Id, String user2Username) {
+
+    public Chat(int id, int user1Id, String user1Username, int user2Id, String user2Username) {
         this.id = id;
         this.user1_id = user1Id;
         this.user1_username = user1Username;
         this.user2_id = user2Id;
         this.user2_username = user2Username;
     }
-
 
 
     public int getId() {
@@ -30,7 +29,6 @@ public class Chat {
     public void setId(int id) {
         this.id = id;
     }
-
 
 
     public int getUser1_id() {

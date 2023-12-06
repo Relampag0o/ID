@@ -13,7 +13,7 @@
          <children>
             <HBox prefHeight="50.0">
                <Label text="Chats" />
-               <MFXButton fx:id="chatButton" alignment="TOP_LEFT" contentDisplay="RIGHT" onAction="#showChat" text="New Chat">
+               <MFXButton fx:id="chatButton" alignment="TOP_LEFT" contentDisplay="RIGHT" onAction="#showUsers" text="New Chat">
                   <HBox.margin>
                      <Insets left="3.0" top="5.0" />
                   </HBox.margin>

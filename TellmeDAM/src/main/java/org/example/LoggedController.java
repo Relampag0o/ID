@@ -4,6 +4,9 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,9 +20,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.api.APICallback;
+import org.example.api.ChatAPIClient;
+import org.example.api.MessageAPIClient;
 import org.example.api.UserAPIClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LoggedController extends Application {
@@ -32,7 +39,14 @@ public class LoggedController extends Application {
 
     public MFXButton chatButton;
 
+    // all the users:
     private List<User> userList;
+
+    // all the chats:
+
+    private ArrayList<Chat> chats = new ArrayList<>();
+
+    private Stage chatWindow;
 
 
     public static void main(String[] args) {
@@ -46,37 +60,38 @@ public class LoggedController extends Application {
     }
 
     public void initialize() {
-
         loadUsers();
+        loadChat(App.userLogged);
 
     }
 
-    public void showChat() {
-        Stage chatWindow = new Stage();
+    public void showUsers() {
+        chatWindow = new Stage();
         chatWindow.setTitle("Chat");
 
         ListView<User> userListView = new ListView<>();
-        userListView.setCellFactory(param -> new ListCell<User>() {
-            private ImageView imageView = new ImageView();
-            private Label usernameLabel = new Label();
-
-            @Override
-            protected void updateItem(User user, boolean empty) {
-                super.updateItem(user, empty);
-                if (empty || user == null) {
-                    setGraphic(null);
-                    setText(null);
-                } else {
-                    Image img = new Image("https://via.placeholder.com/50"); // Asume que User tiene un método getProfilePictureUrl
-                    imageView.setImage(img);
-                    imageView.setFitHeight(50); // Ajusta el tamaño de la imagen como necesites
-                    imageView.setFitWidth(50);
-                    usernameLabel.setText(user.getUsername());
-                    HBox hBox = new HBox(10, imageView, usernameLabel);
-                    hBox.setAlignment(Pos.CENTER); // Alinea los elementos a la izquierda
-                    setGraphic(hBox);
-                }
+        userListView.setCellFactory(param -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("users.fxml"));
+            try {
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            UserCellController controller = fxmlLoader.getController();
+
+            return new ListCell<User>() {
+                @Override
+                protected void updateItem(User user, boolean empty) {
+                    super.updateItem(user, empty);
+                    if (empty || user == null) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        controller.setUser(user);
+                        setGraphic(fxmlLoader.getRoot());
+                    }
+                }
+            };
         });
 
         userListView.getItems().addAll(userList);
@@ -87,6 +102,105 @@ public class LoggedController extends Application {
         Scene scene = new Scene(vbox);
         chatWindow.setScene(scene);
         chatWindow.show();
+
+        userListView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                createChat(newSelection);
+                chatWindow.close();
+            }
+        });
+    }
+
+    private void loadChat(User user) {
+        ChatAPIClient chatAPIClient = new ChatAPIClient();
+        chatAPIClient.getAllChatsFromUser(user.getId(), new APICallback() {
+            @Override
+            public void onSuccess(Object response) {
+                chats = new ArrayList<>((List<Chat>) response);
+                List<Message> messages = new ArrayList<>();
+
+                // Extract the last message from each chat and add it to the messages list
+                for (Chat chat : chats) {
+                    // Use the MessageAPIClient to get the messages for each chat
+                    MessageAPIClient messageAPIClient = new MessageAPIClient();
+                    try {
+                        messageAPIClient.getMessagesFromChat(chat.getId(), new APICallback() {
+                            @Override
+                            public void onSuccess(Object response) {
+                                List<Message> chatMessages = (List<Message>) response;
+                                if (!chatMessages.isEmpty()) {
+                                    Message lastMessage = chatMessages.get(chatMessages.size() - 1);
+                                    messages.add(lastMessage);
+                                }
+                            }
+
+                            @Override
+                            public void onError(Object error) {
+                                // Handle error
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                listView.setCellFactory(param -> {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("userchats.fxml"));
+                    try {
+                        fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    UserChatsController controller = fxmlLoader.getController();
+
+                    return new ListCell<Message>() {
+                        @Override
+                        protected void updateItem(Message message, boolean empty) {
+                            super.updateItem(message, empty);
+                            if (empty || message == null) {
+                                setGraphic(null);
+                                setText(null);
+                            } else {
+                                //User user = getUserFromMessage(message); // Necesitarás implementar este método
+                                controller.setChat(user, message);
+                                setGraphic(fxmlLoader.getRoot());
+                            }
+                        }
+                    };
+                });
+
+                listView.getItems().addAll(messages);
+                listView.setItems(FXCollections.observableArrayList(messages));
+
+
+
+            }
+
+            @Override
+            public void onError(Object error) {
+                // Handle error
+            }
+        });
+    }
+
+    private void createChat(User user) {
+        ChatAPIClient chatAPIClient = new ChatAPIClient();
+        chatAPIClient.createChat(App.userLogged.getId(), user.getId(), new APICallback() {
+            @Override
+            public void onSuccess(Object response) {
+                Chat chat = (Chat) response;
+                System.out.println("Creating chat..");
+                chats.add(chat);
+                loadChat(App.userLogged);
+                System.out.println(chats.size() + "  " + chat.getId());
+
+
+            }
+
+            @Override
+            public void onError(Object error) {
+                System.out.println("The chat was not created successfully for the user " + user.getUsername());
+            }
+        });
     }
 
     private void loadUsers() {
