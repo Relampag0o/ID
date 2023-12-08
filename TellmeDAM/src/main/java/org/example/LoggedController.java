@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.api.APICallback;
 import org.example.api.ChatAPIClient;
@@ -42,7 +43,7 @@ public class LoggedController extends Application {
     public MFXButton chatButton;
 
     // all the users:
-    public static List<User> userList;
+    public List<User> userList;
 
     // all the chats:
 
@@ -63,8 +64,7 @@ public class LoggedController extends Application {
 
     public void initialize() {
         loadUsers();
-
-        loadChat(App.userLogged);
+        loadChats();
 
     }
 
@@ -94,9 +94,9 @@ public class LoggedController extends Application {
     }
 
 
-    private void loadChat(User user) {
+    private void loadChats() {
         ChatAPIClient chatAPIClient = new ChatAPIClient();
-        chatAPIClient.getAllChatsFromUser(user.getId(), new APICallback() {
+        chatAPIClient.getAllChatsFromUser(App.userLogged.getId(), new APICallback() {
             @Override
             public void onSuccess(Object response) {
                 chats = new ArrayList<>((List<Chat>) response);
@@ -108,15 +108,48 @@ public class LoggedController extends Application {
                     System.out.println("User 1: " + chat.getUser1_username());
                     System.out.println("User 2: " + chat.getUser2_username());
                     System.out.println("------------------------");
+                }
+
+                listView.setCellFactory(param -> new ListCell<Chat>() {
+                    private ImageView imageView = new ImageView();
+                    private Text name = new Text();
+                    private Text message = new Text();
+                    private VBox vBox = new VBox(name, message);
+
+                    {
+                        vBox.setAlignment(Pos.CENTER_LEFT);
+                        imageView.setFitHeight(50);
+                        imageView.setFitWidth(50);
+                        setPrefWidth(USE_PREF_SIZE);
+                    }
+
+                    @Override
+                    protected void updateItem(Chat chat, boolean empty) {
+                        super.updateItem(chat, empty);
+
+                        if (empty || chat == null) {
+                            setGraphic(null);
+                        } else {
+
+                            for (User user : userList) {
+                                if (user.getId() == chat.getUser2_id()) {
+                                    if (user.getPhotourl() == null) {
+                                        Image img = new Image("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+                                        imageView.setImage(img);
+                                    } else {
+                                        Image img = new Image(user.getPhotourl());
+                                        imageView.setImage(img);
+                                    }
+                                }
+                            }
 
 
-                }
-                try {
-                    Thread.sleep(4000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                listView.setCellFactory(param -> new UserChatsController());
+                            name.setText(chat.getUser2_username());
+                            message.setText("RANDOM TEST");
+                            setGraphic(new HBox(imageView, vBox));
+                        }
+                    }
+                });
 
                 ObservableList<Chat> observableUserList = FXCollections.observableArrayList(chats);
                 listView.setItems(observableUserList);
@@ -138,7 +171,7 @@ public class LoggedController extends Application {
                 Chat chat = (Chat) response;
                 System.out.println("Creating chat..");
                 chats.add(chat);
-                loadChat(App.userLogged);
+                loadChats();
                 System.out.println(chats.size() + "  " + chat.getId());
 
 
@@ -159,7 +192,6 @@ public class LoggedController extends Application {
                 public void onSuccess(Object response) throws IOException {
                     userList = (List<User>) response;
 
-                    System.out.println("Users loaded: " + userList.size());
                 }
 
                 @Override
