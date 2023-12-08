@@ -5,6 +5,8 @@ public class Chat {
     private int id;
     //private Date updatedat;
     private int user1_id;
+
+    
     private String user1_username;
     private int user2_id;
     private String user2_username;

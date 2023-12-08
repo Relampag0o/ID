@@ -107,6 +107,9 @@ public class LoggedController extends Application {
                     System.out.println("Chat id: " + chat.getId());
                     System.out.println("User 1: " + chat.getUser1_username());
                     System.out.println("User 2: " + chat.getUser2_username());
+                    System.out.println("------------------------");
+
+
                 }
                 listView.setCellFactory(param -> new UserChatsController());
 
@@ -121,27 +124,6 @@ public class LoggedController extends Application {
         });
     }
 
-    private void addCustomCell(User user) {
-        try {
-            // Carga el archivo FXML para la celda personalizada
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("userchats.fxml"));
-
-            // Crea una nueva instancia de UserChatsController
-            Parent root = fxmlLoader.load();
-
-            // Configura la celda con los datos del usuario
-            UserChatsController controller = fxmlLoader.getController();
-            controller.setChat(user);
-
-            // Agrega la celda personalizada a la ListView
-            Platform.runLater(() -> {
-                listView.getItems().add(controller);
-            });
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void createChat(User user) {
         ChatAPIClient chatAPIClient = new ChatAPIClient();
