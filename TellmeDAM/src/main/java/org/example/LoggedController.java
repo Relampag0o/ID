@@ -100,28 +100,18 @@ public class LoggedController extends Application {
             @Override
             public void onSuccess(Object response) {
                 chats = new ArrayList<>((List<Chat>) response);
-                List<Message> messages = new ArrayList<>();
+
                 System.out.println("Chats loaded: " + chats.size());
 
                 for (Chat chat : chats) {
                     System.out.println("Chat id: " + chat.getId());
                     System.out.println("User 1: " + chat.getUser1_username());
                     System.out.println("User 2: " + chat.getUser2_username());
-                    MessageAPIClient messageAPIClient = new MessageAPIClient();
-
                 }
-                listView.setCellFactory(param -> {
-                    try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("userchats.fxml"));
-                        Parent root = fxmlLoader.load();
-                        UserChatsController controller = fxmlLoader.getController();
-                        controller.setChat(user);
-                        return controller;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        return null;
-                    }
-                });
+                listView.setCellFactory(param -> new UserChatsController());
+
+                ObservableList<Chat> observableUserList = FXCollections.observableArrayList(chats);
+                listView.setItems(observableUserList);
             }
 
             @Override
