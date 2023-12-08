@@ -73,31 +73,10 @@ public class LoggedController extends Application {
         chatWindow.setTitle("Chat");
 
         ListView<User> userListView = new ListView<>();
-        userListView.setCellFactory(param -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("users.fxml"));
-            try {
-                fxmlLoader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            UserCellController controller = fxmlLoader.getController();
+        userListView.setCellFactory(param -> new UserCellController());
 
-            return new ListCell<User>() {
-                @Override
-                protected void updateItem(User user, boolean empty) {
-                    super.updateItem(user, empty);
-                    if (empty || user == null) {
-                        setGraphic(null);
-                        setText(null);
-                    } else {
-                        controller.setUser(user);
-                        setGraphic(fxmlLoader.getRoot());
-                    }
-                }
-            };
-        });
-
-        userListView.getItems().addAll(userList);
+        ObservableList<User> observableUserList = FXCollections.observableArrayList(userList);
+        userListView.setItems(observableUserList);
 
         VBox vbox = new VBox(userListView);
         vbox.setPadding(new Insets(10));
@@ -113,6 +92,7 @@ public class LoggedController extends Application {
             }
         });
     }
+
 
     private void loadChat(User user) {
         ChatAPIClient chatAPIClient = new ChatAPIClient();
