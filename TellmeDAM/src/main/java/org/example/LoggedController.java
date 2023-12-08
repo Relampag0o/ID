@@ -109,47 +109,8 @@ public class LoggedController extends Application {
                     System.out.println("User 2: " + chat.getUser2_username());
                     System.out.println("------------------------");
                 }
-
-                listView.setCellFactory(param -> new ListCell<Chat>() {
-                    private ImageView imageView = new ImageView();
-                    private Text name = new Text();
-                    private Text message = new Text();
-                    private VBox vBox = new VBox(name, message);
-
-                    {
-                        vBox.setAlignment(Pos.CENTER_LEFT);
-                        imageView.setFitHeight(50);
-                        imageView.setFitWidth(50);
-                        setPrefWidth(USE_PREF_SIZE);
-                    }
-
-                    @Override
-                    protected void updateItem(Chat chat, boolean empty) {
-                        super.updateItem(chat, empty);
-
-                        if (empty || chat == null) {
-                            setGraphic(null);
-                        } else {
-
-                            for (User user : userList) {
-                                if (user.getId() == chat.getUser2_id()) {
-                                    if (user.getPhotourl() == null) {
-                                        Image img = new Image("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
-                                        imageView.setImage(img);
-                                    } else {
-                                        Image img = new Image(user.getPhotourl());
-                                        imageView.setImage(img);
-                                    }
-                                }
-                            }
-
-
-                            name.setText(chat.getUser2_username());
-                            message.setText("RANDOM TEST");
-                            setGraphic(new HBox(imageView, vBox));
-                        }
-                    }
-                });
+                loadUsers();
+                listView.setCellFactory(param -> new UserChatsController(userList));
 
                 ObservableList<Chat> observableUserList = FXCollections.observableArrayList(chats);
                 listView.setItems(observableUserList);
