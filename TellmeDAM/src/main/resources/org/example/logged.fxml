@@ -41,7 +41,10 @@
       <VBox>
          <ScrollPane fx:id="chatScrollPane" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
             <content>
-               <VBox fx:id="chatBox" maxWidth="1.7976931348623157E308" prefHeight="398.0" prefWidth="470.0" />
+               <VBox fx:id="chatBox" maxWidth="1.7976931348623157E308" prefHeight="398.0" prefWidth="470.0">
+                  <children>
+                     <ListView fx:id="msgList" prefHeight="372.0" prefWidth="443.0" />
+                  </children></VBox>
             </content>
          </ScrollPane>
          <HBox>

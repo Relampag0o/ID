@@ -44,6 +44,9 @@ public class LoggedController extends Application {
 
     // all the users:
     public List<User> userList;
+    public ListView msgList;
+    private ObservableList<Message> observableMessageList = FXCollections.observableArrayList();
+
 
     // all the chats:
 
@@ -117,8 +120,8 @@ public class LoggedController extends Application {
 
                 listView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
                     if (newSelection != null) {
-                        //open(newSelection);
-                        System.out.println(" Chat selected: " );
+                        showConversation((Chat) newSelection);
+                        System.out.println(" Chat selected: ");
                     }
                 });
             }
@@ -174,5 +177,57 @@ public class LoggedController extends Application {
         }
     }
 
+    private void showConversation(Chat chat) {
+        MessageAPIClient messageAPIClient = new MessageAPIClient();
+        try {
+            messageAPIClient.getMessagesFromChat(chat.getId(), new APICallback() {
 
+                @Override
+                public void onSuccess(Object response) {
+                    LinkedList<Message> messages = new LinkedList<>((List<Message>) response);
+                    System.out.println("Messages loaded: " + messages.size());
+
+                    // Agregar mensajes a la ObservableList
+                    observableMessageList.clear(); // Limpiar la lista antes de agregar nuevos mensajes
+                    observableMessageList.addAll(messages);
+
+                    // Actualizar el ListView
+                   msgList.setItems(observableMessageList);
+                }
+
+                @Override
+                public void onError(Object error) {
+                    // Manejar el error si es necesario
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void sendMessage(Chat chat) {
+
+        MessageAPIClient messageAPIClient = new MessageAPIClient();
+        try {
+            messageAPIClient.sendMessageToChat(chat.getId(), messageField.getText(), chat.getUser1_id(), new APICallback() {
+                @Override
+                public void onSuccess(Object response) {
+
+                    Message message = (Message) response;
+                    System.out.println("Message sent: " + message.getId());
+                    showConversation(chat);
+
+                }
+
+                @Override
+                public void onError(Object error) {
+
+                }
+
+
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
