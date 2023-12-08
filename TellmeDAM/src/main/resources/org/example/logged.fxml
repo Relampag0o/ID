@@ -52,7 +52,7 @@
                <HBox.margin>
                   <Insets left="70.0" />
                </HBox.margin></MFXTextField>
-            <MFXButton text="Send">
+            <MFXButton text="Send" onAction="#sendMessage">
                <HBox.margin>
                   <Insets top="2.0" />
                </HBox.margin></MFXButton>

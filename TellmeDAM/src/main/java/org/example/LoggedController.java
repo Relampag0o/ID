@@ -42,6 +42,9 @@ public class LoggedController extends Application {
 
     public MFXButton chatButton;
 
+    private Chat currentChat;
+
+
     // all the users:
     public List<User> userList;
     public ListView msgList;
@@ -120,8 +123,9 @@ public class LoggedController extends Application {
 
                 listView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
                     if (newSelection != null) {
-                        showConversation((Chat) newSelection);
-                        System.out.println(" Chat selected: ");
+                        currentChat = (Chat) newSelection;
+                        showConversation();
+                        System.out.println(" Chat selected: " + currentChat.getId() + "with users: " + currentChat.getUser1_username() + " and " + currentChat.getUser2_username());
                     }
                 });
             }
@@ -177,27 +181,25 @@ public class LoggedController extends Application {
         }
     }
 
-    private void showConversation(Chat chat) {
+    private void showConversation() {
         MessageAPIClient messageAPIClient = new MessageAPIClient();
         try {
-            messageAPIClient.getMessagesFromChat(chat.getId(), new APICallback() {
+            messageAPIClient.getMessagesFromChat(currentChat.getId(), new APICallback() {
 
                 @Override
                 public void onSuccess(Object response) {
                     LinkedList<Message> messages = new LinkedList<>((List<Message>) response);
                     System.out.println("Messages loaded: " + messages.size());
 
-                    // Agregar mensajes a la ObservableList
-                    observableMessageList.clear(); // Limpiar la lista antes de agregar nuevos mensajes
+                    observableMessageList.clear();
                     observableMessageList.addAll(messages);
 
-                    // Actualizar el ListView
-                   msgList.setItems(observableMessageList);
+                    msgList.setItems(observableMessageList);
                 }
 
                 @Override
                 public void onError(Object error) {
-                    // Manejar el error si es necesario
+
                 }
             });
         } catch (IOException e) {
@@ -205,29 +207,32 @@ public class LoggedController extends Application {
         }
     }
 
-    public void sendMessage(Chat chat) {
-
+    public void sendMessage() {
         MessageAPIClient messageAPIClient = new MessageAPIClient();
         try {
-            messageAPIClient.sendMessageToChat(chat.getId(), messageField.getText(), chat.getUser1_id(), new APICallback() {
+            messageAPIClient.sendMessageToChat(currentChat.getId(), messageField.getText(), currentChat.getUser1_id(), new APICallback() {
                 @Override
                 public void onSuccess(Object response) {
-
                     Message message = (Message) response;
                     System.out.println("Message sent: " + message.getId());
-                    showConversation(chat);
 
+                    observableMessageList.add(message);
+
+                    updateListView();
                 }
 
                 @Override
                 public void onError(Object error) {
-
                 }
-
-
             });
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void updateListView() {
+        msgList.setItems(observableMessageList);
+        msgList.scrollTo(observableMessageList.size() - 1);
+        messageField.clear();
     }
 }
