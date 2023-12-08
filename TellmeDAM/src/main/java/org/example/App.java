@@ -5,8 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.api.APICallback;
+import org.example.api.UserAPIClient;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * JavaFX App
@@ -15,6 +18,8 @@ public class App extends Application {
 
 
     public static User userLogged;
+
+    public static List<User> userList;
 
 
     private static Scene scene;
@@ -37,6 +42,29 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private void loadUsers() {
+        UserAPIClient userAPIClient = new UserAPIClient();
+        try {
+            userAPIClient.getAllUsers(new APICallback() {
+                @Override
+                public void onSuccess(Object response) throws IOException {
+                    userList = (List<User>) response;
+
+                    System.out.println("Users loaded: " + userList.size());
+                }
+
+                @Override
+                public void onError(Object error) {
+                    System.out.println("No users found");
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

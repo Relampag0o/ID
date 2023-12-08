@@ -42,7 +42,7 @@ public class LoggedController extends Application {
     public MFXButton chatButton;
 
     // all the users:
-    private List<User> userList;
+    public static List<User> userList;
 
     // all the chats:
 
@@ -63,7 +63,7 @@ public class LoggedController extends Application {
 
     public void initialize() {
         loadUsers();
-        //addCustomCell(App.userLogged);
+
         loadChat(App.userLogged);
 
     }
@@ -111,6 +111,11 @@ public class LoggedController extends Application {
 
 
                 }
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 listView.setCellFactory(param -> new UserChatsController());
 
                 ObservableList<Chat> observableUserList = FXCollections.observableArrayList(chats);
@@ -153,6 +158,8 @@ public class LoggedController extends Application {
                 @Override
                 public void onSuccess(Object response) throws IOException {
                     userList = (List<User>) response;
+
+                    System.out.println("Users loaded: " + userList.size());
                 }
 
                 @Override
