@@ -23,7 +23,7 @@
                <VBox.margin>
                   <Insets top="4.0" />
                </VBox.margin></MFXTextField>
-            <MFXListView fx:id="listView" prefHeight="317.0" prefWidth="183.0" />
+            <ListView fx:id="listView" prefHeight="317.0" prefWidth="183.0" />
             <HBox>
                <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                   <clip>
