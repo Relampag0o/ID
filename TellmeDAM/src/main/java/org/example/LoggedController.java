@@ -69,6 +69,7 @@ public class LoggedController extends Application {
     }
 
     public void initialize() {
+        System.out.println(App.allUsers.size());
         loadUsers();
         loadChats();
 
