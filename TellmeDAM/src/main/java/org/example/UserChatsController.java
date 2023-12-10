@@ -48,7 +48,7 @@ public class UserChatsController extends ListCell<Chat> {
     }
 
     private void setUserImage(int userId) {
-        for (User user : userList) {
+        for (User user : App.allUsers) {
             if (user.getId() == userId) {
                 if (user.getPhotourl() == null) {
                     Image img = new Image("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");

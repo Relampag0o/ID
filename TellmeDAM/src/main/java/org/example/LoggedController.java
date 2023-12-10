@@ -48,7 +48,7 @@ public class LoggedController extends Application {
     // all the users:
     public List<User> userList;
     public ListView msgList;
-    private ObservableList<Message> observableMessageList = FXCollections.observableArrayList();
+    private ObservableList<String> observableMessageList = FXCollections.observableArrayList();
 
 
     // all the chats:
@@ -126,7 +126,7 @@ public class LoggedController extends Application {
                     if (newSelection != null) {
                         currentChat = (Chat) newSelection;
                         showConversation();
-                        System.out.println(" Chat selected: " + currentChat.getId() + "with users: " + currentChat.getUser1_username() + " and " + currentChat.getUser2_username());
+                        System.out.println(" Chat selected: " + currentChat.getId() + " with users: " + currentChat.getUser1_username() + " and " + currentChat.getUser2_username());
                     }
                 });
             }
@@ -191,10 +191,13 @@ public class LoggedController extends Application {
                 public void onSuccess(Object response) {
                     LinkedList<Message> messages = new LinkedList<>((List<Message>) response);
                     System.out.println("Messages loaded: " + messages.size());
-
                     observableMessageList.clear();
-                    observableMessageList.addAll(messages);
+                    for (Message msg : messages) {
+                        observableMessageList.add(msg.getContent());
 
+                    }
+
+                    updateListView();
                     msgList.setItems(observableMessageList);
                 }
 
@@ -217,7 +220,7 @@ public class LoggedController extends Application {
                     Message message = (Message) response;
                     System.out.println("Message sent: " + message.getId());
 
-                    observableMessageList.add(message);
+                    observableMessageList.add(message.getContent());
 
                     updateListView();
                 }

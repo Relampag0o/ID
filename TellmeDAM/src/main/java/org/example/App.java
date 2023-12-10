@@ -58,7 +58,7 @@ public class App extends Application {
                 @Override
                 public void onSuccess(Object response) throws IOException {
                     listUsers.addAll((List<User>) response);
-                    future.complete(null);  // Indica que la operación ha tenido éxito
+                    future.complete(null);
                 }
 
                 @Override
@@ -68,7 +68,7 @@ public class App extends Application {
                 }
             });
 
-            // Espera a que la llamada asíncrona se complete
+
             future.get();
         } catch (IOException | InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
