@@ -39,11 +39,15 @@
          </children>
       </VBox>
       <VBox>
-         <ScrollPane fx:id="chatScrollPane" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+         <ScrollPane fx:id="chatScrollPane" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
             <content>
-               <VBox fx:id="chatBox" maxWidth="1.7976931348623157E308" prefHeight="398.0" prefWidth="470.0">
+               <VBox fx:id="chatBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                   <children>
-                     <ListView fx:id="msgList" prefHeight="372.0" prefWidth="443.0" />
+                     <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                        <children>
+                           <ListView fx:id="msgList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="416.0" />
+                        </children>
+                     </HBox>
                   </children></VBox>
             </content>
          </ScrollPane>
@@ -52,7 +56,7 @@
                <HBox.margin>
                   <Insets left="70.0" />
                </HBox.margin></MFXTextField>
-            <MFXButton text="Send" onAction="#sendMessage">
+            <MFXButton onAction="#sendMessage" text="Send">
                <HBox.margin>
                   <Insets top="2.0" />
                </HBox.margin></MFXButton>

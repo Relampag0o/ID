@@ -48,7 +48,7 @@ public class LoggedController extends Application {
     // all the users:
     public List<User> userList;
     public ListView msgList;
-    private ObservableList<String> observableMessageList = FXCollections.observableArrayList();
+    private ObservableList<Message> observableMessageList = FXCollections.observableArrayList();
 
 
     // all the chats:
@@ -192,13 +192,12 @@ public class LoggedController extends Application {
                     LinkedList<Message> messages = new LinkedList<>((List<Message>) response);
                     System.out.println("Messages loaded: " + messages.size());
                     observableMessageList.clear();
-                    for (Message msg : messages) {
-                        observableMessageList.add(msg.getContent());
-
-                    }
+                    observableMessageList.addAll(messages);
 
                     updateListView();
                     msgList.setItems(observableMessageList);
+                    msgList.setCellFactory(param -> new MessageCell());
+
                 }
 
                 @Override
@@ -220,7 +219,7 @@ public class LoggedController extends Application {
                     Message message = (Message) response;
                     System.out.println("Message sent: " + message.getId());
 
-                    observableMessageList.add(message.getContent());
+                    observableMessageList.add(message);
 
                     updateListView();
                 }
