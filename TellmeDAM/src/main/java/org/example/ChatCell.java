@@ -2,6 +2,9 @@ package org.example;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
@@ -13,7 +16,7 @@ import java.awt.*;
 
 public class ChatCell extends ListCell<Chat> {
     HBox hbox = new HBox();
-    Button btn = new Button("Delete");
+
     Label label = new Label("");
     Pane pane = new Pane();
     ImageView image = new ImageView();
@@ -29,13 +32,10 @@ public class ChatCell extends ListCell<Chat> {
         hbox.setAlignment(Pos.CENTER_LEFT);
         hbox.setSpacing(10);
 
-        // Agrega elementos al contenedor
-        hbox.getChildren().addAll(image, label, btn, pane);
 
-        btn.setOnAction(event -> {
-            // Lógica para manejar el clic en el botón
-            System.out.println("Delete Chat: " + getItem().getId());
-        });
+        hbox.getChildren().addAll(image, label, pane);
+
+
     }
 
     @Override
@@ -46,6 +46,21 @@ public class ChatCell extends ListCell<Chat> {
         } else {
             setGraphic(hbox);
             setData(chat);
+            setStyle("-fx-background-color:  #202124;");
+
+            Label label1 = new Label(chat.getUser2_username());
+            label1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14; -fx-text-fill: white;");
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem deleteMenuItem = new MenuItem("Delete chat");
+            contextMenu.getItems().add(deleteMenuItem);
+
+            setOnContextMenuRequested(event -> {
+                contextMenu.show(this, event.getScreenX(), event.getScreenY());
+            });
+
+            deleteMenuItem.setOnAction(event -> {
+                System.out.println("Delete Chat: " + getItem().getId());
+            });
         }
     }
 

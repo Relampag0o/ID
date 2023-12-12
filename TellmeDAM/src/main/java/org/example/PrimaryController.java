@@ -22,6 +22,7 @@ public class PrimaryController {
     private void switchToLogged() throws IOException {
         App.setRoot("logged");
 
+
     }
 
     public void login() {

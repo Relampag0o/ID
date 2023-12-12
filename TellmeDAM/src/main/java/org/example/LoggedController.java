@@ -10,11 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import com.jfoenix.controls.JFXListView;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -24,12 +27,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import org.example.api.APICallback;
 import org.example.api.ChatAPIClient;
 import org.example.api.MessageAPIClient;
 import org.example.api.UserAPIClient;
 
+import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -41,13 +47,16 @@ public class LoggedController extends Application {
     public ScrollPane chatScrollPane;
     public VBox chatBox;
     public MFXTextField messageField;
-    public ListView listView;
-    public MFXTextField searchField;
 
-    public MFXButton chatButton;
+    public MFXTextField searchField;
+    public Button chatsButton;
+
+
     private Chat currentChat;
     @FXML
     private JFXListView<Chat> chatsView;
+    private JFXListView<User> userListView;
+
 
 
     public ListView msgList;
@@ -58,6 +67,8 @@ public class LoggedController extends Application {
 
     private ArrayList<Chat> chats = new ArrayList<>();
     private Stage chatWindow;
+    private Node sourceNode;
+
 
 
     public static void main(String[] args) {
@@ -72,15 +83,17 @@ public class LoggedController extends Application {
 
     public void initialize() {
         System.out.println(App.allUsers.size());
+
         loadChats();
 
     }
+
 
     public void showUsers() {
         chatWindow = new Stage();
         chatWindow.setTitle("Chat");
 
-        ListView<User> userListView = new ListView<>();
+        JFXListView<User> userListView = new JFXListView<User>();
         userListView.setCellFactory(param -> new UserCellController());
 
         ObservableList<User> observableUserList = FXCollections.observableArrayList(App.allUsers);
@@ -92,14 +105,16 @@ public class LoggedController extends Application {
         Scene scene = new Scene(vbox);
         chatWindow.setScene(scene);
         chatWindow.show();
-
+/*
         userListView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 createChat(newSelection);
                 chatWindow.close();
             }
         });
+        */
     }
+
 
 
     private void loadChats() {
