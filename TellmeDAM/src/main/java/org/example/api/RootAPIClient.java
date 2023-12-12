@@ -10,7 +10,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class RootAPIClient {
-    //protected final String BASE_URL = "https://dam2-discord-server.vercel.app/api";
     protected final String BASE_URL = "https://discord-server-flask.vercel.app";
     //protected final String BASE_URL = "http://localhost:5000";
 
@@ -39,6 +38,30 @@ public class RootAPIClient {
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
                 .GET()
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    protected HttpResponse<String> doPUTRequest(String url, String requestBody) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    protected HttpResponse<String> doDELETERequest(String url) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "application/json")
+                .DELETE()
                 .build();
 
         return client.send(request, HttpResponse.BodyHandlers.ofString());

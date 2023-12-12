@@ -38,6 +38,57 @@ public class ChatAPIClient extends RootAPIClient {
 
     }
 
+    public void deleteChat(Integer chatId, APICallback callback) {
+        new Thread(() -> {
+            try {
+                doDeleteChat(chatId, callback);
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
+    public void cleanChat(Integer chatId, APICallback callback) {
+        new Thread(() -> {
+            try {
+                doCleanChat(chatId, callback);
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
+    private void doCleanChat(Integer chatId, APICallback callback) throws IOException, InterruptedException {
+        String url = BASE_URL + "/chats/" + chatId + "/clean";
+        HttpResponse<String> response = doDELETERequest(url);
+
+        if (response.statusCode() == 200) {
+            Gson gson = new Gson();
+            Chat chat = gson.fromJson(response.body(), Chat.class);
+            onSuccess(callback, chat);
+        } else {
+            Gson gson = new Gson();
+            Error error = gson.fromJson(response.body(), Error.class);
+            onError(callback, error);
+        }
+    }
+
+    private void doDeleteChat(Integer chatId, APICallback callback) throws IOException, InterruptedException {
+        String url = BASE_URL + "/chats/" + chatId;
+        HttpResponse<String> response = doDELETERequest(url);
+
+        if (response.statusCode() == 200) {
+            Gson gson = new Gson();
+            Chat chat = gson.fromJson(response.body(), Chat.class);
+            onSuccess(callback, chat);
+        } else {
+            Gson gson = new Gson();
+            Error error = gson.fromJson(response.body(), Error.class);
+            onError(callback, error);
+        }
+    }
+
+
     private void doCreateChat(Integer userId, Integer otherUserId, APICallback callback) throws IOException, InterruptedException {
         String url = BASE_URL + "/chats";
         String requestBody = "{\"user1_id\":" + userId + ",\"user2_id\":" + otherUserId + "}";

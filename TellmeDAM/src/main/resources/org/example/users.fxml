@@ -5,6 +5,6 @@
 <?import javafx.scene.layout.HBox?>
 
 <HBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.UserCellController">
-    <ImageView fx:id="imageView" fitHeight="50" fitWidth="50" />
+    <ImageView fx:id="imageView" fitHeight="50" fitWidth="50" style="border-radius: 50" />
     <Label fx:id="usernameLabel" />
 </HBox>

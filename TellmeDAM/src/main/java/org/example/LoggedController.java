@@ -4,6 +4,10 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 
+import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
+import io.github.palexdev.materialfx.dialogs.MFXGenericDialogBuilder;
+import io.github.palexdev.materialfx.dialogs.MFXStageDialog;
+import io.github.palexdev.materialfx.enums.ScrimPriority;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -27,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import org.example.api.APICallback;
@@ -40,6 +45,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
+import static org.example.App.stage;
 
 public class LoggedController extends Application {
 
@@ -58,7 +66,6 @@ public class LoggedController extends Application {
     private JFXListView<User> userListView;
 
 
-
     public ListView msgList;
     private ObservableList<Message> observableMessageList = FXCollections.observableArrayList();
 
@@ -69,6 +76,8 @@ public class LoggedController extends Application {
     private Stage chatWindow;
     private Node sourceNode;
 
+    private MFXGenericDialog dialogContent;
+    private MFXStageDialog dialog;
 
 
     public static void main(String[] args) {
@@ -90,12 +99,35 @@ public class LoggedController extends Application {
 
 
     public void showUsers() {
-        chatWindow = new Stage();
-        chatWindow.setTitle("Chat");
+
 
         JFXListView<User> userListView = new JFXListView<User>();
+        userListView.setItems(FXCollections.observableList(App.allUsers));
         userListView.setCellFactory(param -> new UserCellController());
 
+
+        this.dialogContent = MFXGenericDialogBuilder.build()
+                .setContent(userListView)
+                .makeScrollable(true)
+                .get();
+        this.dialog = MFXGenericDialogBuilder.build(dialogContent)
+                .toStageDialogBuilder()
+                .initOwner(stage)
+                .initModality(Modality.APPLICATION_MODAL)
+                .setDraggable(true)
+                .setTitle("Dialogs Preview")
+                //.setOwnerNode(grid)
+                .setScrimPriority(ScrimPriority.WINDOW)
+                .setScrimOwner(true)
+                .get();
+
+        dialogContent.addActions(
+                Map.entry(new MFXButton("Confirm"), event -> {
+                }),
+                Map.entry(new MFXButton("Cancel"), event -> dialog.close())
+        );
+
+        dialogContent.setMaxSize(700, 450);
         ObservableList<User> observableUserList = FXCollections.observableArrayList(App.allUsers);
         userListView.setItems(observableUserList);
 
@@ -103,18 +135,10 @@ public class LoggedController extends Application {
         vbox.setPadding(new Insets(10));
 
         Scene scene = new Scene(vbox);
-        chatWindow.setScene(scene);
-        chatWindow.show();
-/*
-        userListView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                createChat(newSelection);
-                chatWindow.close();
-            }
-        });
-        */
-    }
+        this.dialogContent.setContent(vbox);
+        dialog.show();
 
+    }
 
 
     private void loadChats() {
@@ -234,4 +258,33 @@ public class LoggedController extends Application {
         msgList.scrollTo(observableMessageList.size() - 1);
         messageField.clear();
     }
+
+    /*
+    @FXML
+    private void openUserDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dialog.fxml"));
+            Parent root = loader.load();
+
+            DialogsController dialogController = loader.getController();
+
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setTitle("Título del Diálogo");
+            dialogStage.setScene(new Scene(root));
+
+            // Pasar el stage del diálogo al controlador del diálogo
+            dialogController.setDialog(dialogStage);
+
+            // Mostrar el diálogo
+            dialogStage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+     */
+
+
 }
