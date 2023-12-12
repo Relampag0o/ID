@@ -27,8 +27,6 @@ public class ChatCell extends ListCell<Chat> {
         image.setFitWidth(30);
         image.setFitHeight(30);
         image.setPreserveRatio(true);
-
-
         hbox.setAlignment(Pos.CENTER_LEFT);
         hbox.setSpacing(10);
 
@@ -47,8 +45,10 @@ public class ChatCell extends ListCell<Chat> {
             setGraphic(hbox);
             setData(chat);
             setStyle("-fx-background-color:  #202124;");
+            String name = "";
 
-            Label label1 = new Label(chat.getUser2_username());
+
+            Label label1 = new Label(name);
             label1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14; -fx-text-fill: white;");
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deleteMenuItem = new MenuItem("Delete chat");
@@ -59,7 +59,8 @@ public class ChatCell extends ListCell<Chat> {
             });
 
             deleteMenuItem.setOnAction(event -> {
-                System.out.println("Delete Chat: " + getItem().getId());
+                System.out.println("Delete Chat: " + getItem().getId()
+                );
             });
         }
     }
@@ -78,7 +79,16 @@ public class ChatCell extends ListCell<Chat> {
                 }
             }
         }
-        label.setText(chat.getUser2_username());
+        String name="";
+        if (chat.getUser2_id() == App.userLogged.getId()) {
+            System.out.println( chat.getUser2_username());
+            System.out.println( chat.getUser1_username());
+
+            name = chat.getUser1_username();
+        } else {
+            name = chat.getUser2_username();
+        }
+        label.setText(name);
     }
 }
 

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXListView?>
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1100.0" prefWidth="1000.0" style="-fx-background-color: #202124;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1100.0" prefWidth="1000.0" style="-fx-background-color: #202124;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
     <children>
         <Label layoutX="22.0" layoutY="23.0" prefHeight="17.0" prefWidth="129.0" text="Chats" textFill="WHITE">
             <font>
@@ -18,12 +16,13 @@
         </Label>
       <MFXTextField fx:id="searchField" floatMode="BORDER" layoutX="22.0" layoutY="84.0" prefHeight="35.0" prefWidth="197.0" promptText="Find a chat or start a new one." />
       <JFXListView fx:id="chatsView" layoutX="21.0" layoutY="142.0" prefHeight="450.0" prefWidth="200.0" style="-fx-background-color: #202124;" />
-          <ImageView fitHeight="26.0" fitWidth="22.0" layoutX="190.0" layoutY="28.0" onMouseClicked="#showUsers">
-              <Image url="@../../chatpink.png" />
-          </ImageView>
       <ImageView fitHeight="38.0" fitWidth="57.0" layoutX="14.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXListView fx:id="conversationView" layoutX="254.0" layoutY="84.0" maxWidth="1.7976931348623157E308" prefHeight="498.0" prefWidth="570.0" />
-      <MFXTextField floatMode="ABOVE" layoutX="387.0" layoutY="617.0" prefHeight="30.0" prefWidth="214.0" promptText="Your message" />
-      <MFXButton layoutX="625.0" layoutY="620.0" text="Send" />
+      <JFXListView fx:id="msgList" layoutX="254.0" layoutY="84.0" maxWidth="1.7976931348623157E308" prefHeight="498.0" prefWidth="570.0" />
+      <MFXTextField fx:id="messageField" floatMode="ABOVE" layoutX="387.0" layoutY="617.0" prefHeight="30.0" prefWidth="214.0" promptText="Your message" />
+      <MFXButton layoutX="625.0" layoutY="620.0" onAction="#sendMessage" text="Send" />
+        <MFXButton fx:id="chatsButton" buttonType="RAISED" layoutX="188.0" layoutY="31.0" onAction="#showUsers" prefHeight="27.0" prefWidth="27.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/chatpink.png'); -fx-background-color: transparent; -fx-background-size: 27;" text="" />
+
+
+
     </children>
 </AnchorPane>

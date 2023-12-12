@@ -87,6 +87,8 @@ public class LoggedController extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        chatsButton.setPadding(Insets.EMPTY);
+
         initialize();
     }
 
@@ -123,6 +125,10 @@ public class LoggedController extends Application {
 
         dialogContent.addActions(
                 Map.entry(new MFXButton("Confirm"), event -> {
+
+
+                    dialog.close();
+
                 }),
                 Map.entry(new MFXButton("Cancel"), event -> dialog.close())
         );
@@ -182,6 +188,8 @@ public class LoggedController extends Application {
 
     private void createChat(User user) {
         ChatAPIClient chatAPIClient = new ChatAPIClient();
+
+
         chatAPIClient.createChat(App.userLogged.getId(), user.getId(), new APICallback() {
             @Override
             public void onSuccess(Object response) {
@@ -190,7 +198,6 @@ public class LoggedController extends Application {
                 chats.add(chat);
                 loadChats();
                 System.out.println(chats.size() + "  " + chat.getId());
-
 
             }
 
@@ -232,8 +239,11 @@ public class LoggedController extends Application {
 
     public void sendMessage() {
         MessageAPIClient messageAPIClient = new MessageAPIClient();
+
         try {
-            messageAPIClient.sendMessageToChat(currentChat.getId(), messageField.getText(), currentChat.getUser1_id(), new APICallback() {
+
+
+            messageAPIClient.sendMessageToChat(currentChat.getId(), messageField.getText(), App.userLogged.getId(), new APICallback() {
                 @Override
                 public void onSuccess(Object response) {
                     Message message = (Message) response;
@@ -246,6 +256,7 @@ public class LoggedController extends Application {
 
                 @Override
                 public void onError(Object error) {
+                    // Manejar el error según sea necesario
                 }
             });
         } catch (IOException e) {
@@ -256,35 +267,9 @@ public class LoggedController extends Application {
     private void updateListView() {
         msgList.setItems(observableMessageList);
         msgList.scrollTo(observableMessageList.size() - 1);
-        messageField.clear();
+        if (messageField != null)
+            messageField.clear();
     }
-
-    /*
-    @FXML
-    private void openUserDialog() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dialog.fxml"));
-            Parent root = loader.load();
-
-            DialogsController dialogController = loader.getController();
-
-            Stage dialogStage = new Stage();
-            dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.setTitle("Título del Diálogo");
-            dialogStage.setScene(new Scene(root));
-
-            // Pasar el stage del diálogo al controlador del diálogo
-            dialogController.setDialog(dialogStage);
-
-            // Mostrar el diálogo
-            dialogStage.showAndWait();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-     */
 
 
 }
