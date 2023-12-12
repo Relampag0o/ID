@@ -28,10 +28,10 @@
       </Label>
       <MFXTextField fx:id="emailField" floatMode="BORDER" floatingText="EMAIL ADDRESS" layoutX="384.0" layoutY="100.0" prefHeight="49.0" prefWidth="189.0" />
       <MFXPasswordField fx:id="passwordField" allowCopy="true" allowPaste="true" floatingText="PASSWORD" layoutX="384.0" layoutY="179.0" prefHeight="49.0" prefWidth="189.0" />
-      <MFXButton layoutX="383.0" layoutY="311.0" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #e8defa;" text="Dont have an account? Sign up" />
+      <MFXButton layoutX="383.0" layoutY="311.0" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #e8defa;" text="Dont have an account? Sign up" onAction="#switchToSecondary" />
       <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="340.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/user-rounded-svgrepo-com.png" />
+            <Image url="@/pinkuser.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="315.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="340.0">

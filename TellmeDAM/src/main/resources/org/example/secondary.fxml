@@ -3,44 +3,84 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import io.github.palexdev.mfxcore.controls.Label?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label alignment="CENTER" layoutX="160.0" layoutY="51.0" prefHeight="38.0" prefWidth="271.0" text="CREATE NEW ACCOUNT" textAlignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <MFXTextField floatMode="BORDER" layoutX="148.0" layoutY="129.0" prefHeight="49.0" prefWidth="295.0" style="-fx-background-color: #570c69; -fx-font-style: white;" text="Full Name">
-         <textFill>
-            <Color red="1.0" green="1.0" blue="1.0" opacity="0.8700000047683716" />
-         </textFill>
-      </MFXTextField>
-      <MFXTextField floatMode="BORDER" layoutX="148.0" layoutY="200.0" prefHeight="49.0" prefWidth="295.0" style="-fx-background-color: #570c69; -fx-font-style: white;" text="Email">
-         <textFill>
-            <Color red="1.0" green="1.0" blue="1.0" opacity="0.8700000047683716" />
-         </textFill>
-      </MFXTextField>
-      <MFXPasswordField floatMode="BORDER" floatingText="PASSWORD" layoutX="148.0" layoutY="271.0" prefHeight="49.0" prefWidth="295.0" style="-fx-background-color: #570c69; -fx-font-style: white;">
-         <textFill>
-            <Color red="1.0" green="1.0" blue="1.0" opacity="0.8700000047683716" />
-         </textFill>
-      </MFXPasswordField>
-      <MFXPasswordField floatMode="BORDER" floatingText="CONFIRM PASSWORD" layoutX="148.0" layoutY="339.0" prefHeight="49.0" prefWidth="295.0" style="-fx-background-color: #570c69; -fx-font-style: white;">
-         <textFill>
-            <Color red="1.0" green="1.0" blue="1.0" opacity="0.8700000047683716" />
-         </textFill>
-      </MFXPasswordField>
-      <MFXButton layoutX="146.0" layoutY="420.0" prefHeight="49.0" prefWidth="295.0" style="-fx-background-color: #922791;" text="REGISTER" textFill="WHITE" />
-      <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="93.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="93.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="93.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="93.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0"
+            prefWidth="590.0" xmlns="http://javafx.com/javafx/21" fx:controller="org.example.SecondaryController" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label alignment="CENTER" layoutX="160.0" layoutY="51.0" prefHeight="38.0" prefWidth="271.0"
+               text="CREATE NEW ACCOUNT" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <MFXTextField floatMode="BORDER" layoutX="148.0" layoutY="129.0" prefHeight="49.0" prefWidth="295.0"
+                      style="-fx-background-color: white; -fx-background-radius: 20;" text="              Full Name"
+                      textLimit="30">
+            <textFill>
+                <Color red="0.31578946113586426" green="0.2967836260795593" blue="0.2967836260795593"
+                       opacity="0.8700000047683716"/>
+            </textFill>
+            <effect>
+                <Blend/>
+            </effect>
+        </MFXTextField>
+        <MFXTextField floatMode="BORDER" layoutX="148.0" layoutY="200.0" prefHeight="49.0" prefWidth="295.0"
+                      style="-fx-background-color: white; -fx-background-radius: 20;" text="           Email">
+            <textFill>
+                <Color red="0.42105263471603394" green="0.3957115113735199" blue="0.3957115113735199"
+                       opacity="0.8700000047683716"/>
+            </textFill>
+        </MFXTextField>
+        <MFXPasswordField floatMode="BORDER" floatingText="           Pasword" layoutX="148.0" layoutY="271.0"
+                          prefHeight="49.0" prefWidth="295.0"
+                          style="-fx-background-color: white; -fx-background-radius: 20;">
+            <textFill>
+                <Color red="1.0" green="1.0" blue="1.0" opacity="0.8700000047683716"/>
+            </textFill>
+        </MFXPasswordField>
+        <MFXButton id="registerButton" buttonType="RAISED" depthLevel="LEVEL3" layoutX="148.0" layoutY="354.0"
+                   prefHeight="49.0" prefWidth="295.0" style="-fx-background-radius: 20;"
+                   text="REGISTER" textFill="WHITE">
+            <effect>
+                <Blend/>
+            </effect>
+            <rippleColor>
+                <RadialGradient centerX="0.5441988950276243" centerY="0.5" radius="0.5">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color/>
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.6000000238418579" green="0.16200000047683716" blue="0.5927000045776367"/>
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </rippleColor>
+        </MFXButton>
+        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="148.0" layoutY="129.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@/pinkuser.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="38.0" fitWidth="31.0" layoutX="156.0" layoutY="206.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fitHeight="38.0" fitWidth="31.0" layoutX="156.0" layoutY="277.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="93.0" layoutY="339.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+    </children>
 </AnchorPane>
