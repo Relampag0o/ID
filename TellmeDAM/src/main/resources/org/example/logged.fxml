@@ -1,66 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
-   <children>
-      <VBox prefHeight="400.0" prefWidth="183.0">
-         <children>
-            <HBox prefHeight="50.0">
-               <Label text="Chats" />
-               <MFXButton fx:id="chatButton" alignment="TOP_LEFT" contentDisplay="RIGHT" onAction="#showUsers" text="New Chat">
-                  <HBox.margin>
-                     <Insets left="3.0" top="5.0" />
-                  </HBox.margin>
-               </MFXButton>
-            </HBox>
-            <MFXTextField fx:id="searchField" borderGap="2.0" floatMode="ABOVE" maxHeight="5.0" maxWidth="1.7976931348623157E308" prefHeight="30.0">
-               <VBox.margin>
-                  <Insets top="4.0" />
-               </VBox.margin></MFXTextField>
-            <ListView fx:id="listView" prefHeight="317.0" prefWidth="183.0" />
-            <HBox>
-               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                  <clip>
-                     <Circle radius="30" />
-                  </clip>
-               </ImageView>
-               <MFXButton text="Settings">
-                  <HBox.margin>
-                     <Insets left="3.0" top="15.0" />
-                  </HBox.margin>
-               </MFXButton>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox>
-         <ScrollPane fx:id="chatScrollPane" fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
-            <content>
-               <VBox fx:id="chatBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-                  <children>
-                     <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-                        <children>
-                           <ListView fx:id="msgList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="603.0" prefWidth="416.0" />
-                        </children>
-                     </HBox>
-                  </children></VBox>
-            </content>
-         </ScrollPane>
-         <HBox>
-            <MFXTextField fx:id="messageField" borderGap="2.0" floatMode="ABOVE" prefHeight="5.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets left="70.0" />
-               </HBox.margin></MFXTextField>
-            <MFXButton onAction="#sendMessage" text="Send">
-               <HBox.margin>
-                  <Insets top="2.0" />
-               </HBox.margin></MFXButton>
-         </HBox>
-      </VBox>
-   </children>
-</HBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="866.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
+    <children>
+        <Label layoutX="22.0" layoutY="23.0" prefHeight="17.0" prefWidth="129.0" text="Chats" textFill="WHITE">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Button layoutX="151.0" layoutY="28.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+            <graphic>
+                <ImageView>
+                    <Image url="@/chaticon.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+      <MFXTextField fx:id="searchField" floatMode="BORDER" layoutX="22.0" layoutY="84.0" prefHeight="35.0" prefWidth="197.0" promptText="Find a chat or start a new one." />
+      <JFXListView fx:id="chatsView" layoutX="21.0" layoutY="141.0" prefHeight="337.0" prefWidth="200.0" />
+    </children>
+</AnchorPane>

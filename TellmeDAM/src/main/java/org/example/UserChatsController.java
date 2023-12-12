@@ -53,9 +53,7 @@ public class UserChatsController extends ListCell<Chat> {
                 if (user.getPhotourl() == null) {
                     Image img = new Image("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
                     imageView.setImage(img);
-                } else {
-                    Image img = new Image(user.getPhotourl());
-                    imageView.setImage(img);
+
                 }
             }
         }

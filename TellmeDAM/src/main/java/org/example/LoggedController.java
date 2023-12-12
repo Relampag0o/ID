@@ -3,14 +3,17 @@ package org.example;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import com.jfoenix.controls.JFXListView;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -34,6 +37,7 @@ import java.util.List;
 
 public class LoggedController extends Application {
 
+
     public ScrollPane chatScrollPane;
     public VBox chatBox;
     public MFXTextField messageField;
@@ -41,12 +45,11 @@ public class LoggedController extends Application {
     public MFXTextField searchField;
 
     public MFXButton chatButton;
-
     private Chat currentChat;
+    @FXML
+    private JFXListView<Chat> chatsView;
 
 
-    // all the users:
-    public List<User> userList;
     public ListView msgList;
     private ObservableList<Message> observableMessageList = FXCollections.observableArrayList();
 
@@ -54,7 +57,6 @@ public class LoggedController extends Application {
     // all the chats:
 
     private ArrayList<Chat> chats = new ArrayList<>();
-
     private Stage chatWindow;
 
 
@@ -65,12 +67,11 @@ public class LoggedController extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-
+        initialize();
     }
 
     public void initialize() {
         System.out.println(App.allUsers.size());
-        loadUsers();
         loadChats();
 
     }
@@ -82,7 +83,7 @@ public class LoggedController extends Application {
         ListView<User> userListView = new ListView<>();
         userListView.setCellFactory(param -> new UserCellController());
 
-        ObservableList<User> observableUserList = FXCollections.observableArrayList(userList);
+        ObservableList<User> observableUserList = FXCollections.observableArrayList(App.allUsers);
         userListView.setItems(observableUserList);
 
         VBox vbox = new VBox(userListView);
@@ -102,6 +103,7 @@ public class LoggedController extends Application {
 
 
     private void loadChats() {
+        System.out.println("Loading chats...");
         ChatAPIClient chatAPIClient = new ChatAPIClient();
         chatAPIClient.getAllChatsFromUser(App.userLogged.getId(), new APICallback() {
             @Override
@@ -116,13 +118,13 @@ public class LoggedController extends Application {
                     System.out.println("User 2: " + chat.getUser2_username());
                     System.out.println("------------------------");
                 }
-                loadUsers();
-                listView.setCellFactory(param -> new UserChatsController(userList));
+
+                chatsView.setCellFactory(param -> new ChatCell());
 
                 ObservableList<Chat> observableUserList = FXCollections.observableArrayList(chats);
-                listView.setItems(observableUserList);
+                chatsView.setItems(observableUserList);
 
-                listView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+                chatsView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
                     if (newSelection != null) {
                         currentChat = (Chat) newSelection;
                         showConversation();
@@ -160,27 +162,6 @@ public class LoggedController extends Application {
         });
     }
 
-    private void loadUsers() {
-        UserAPIClient userAPIClient = new UserAPIClient();
-        try {
-            userAPIClient.getAllUsers(new APICallback() {
-                @Override
-                public void onSuccess(Object response) throws IOException {
-                    userList = (List<User>) response;
-
-                }
-
-                @Override
-                public void onError(Object error) {
-                    System.out.println("No users found");
-                }
-            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private void showConversation() {
         MessageAPIClient messageAPIClient = new MessageAPIClient();
