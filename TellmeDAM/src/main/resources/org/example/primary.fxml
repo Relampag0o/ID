@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PrimaryController">
-   <children>
-      <AnchorPane layoutY="-4.0" prefHeight="408.0" prefWidth="307.0" style="-fx-background-color: #653fb6;">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="89.0" layoutY="177.0" prefHeight="35.0" prefWidth="130.0" text="TellmeDam" textAlignment="CENTER" textFill="#f2f2f2">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="96.0" layoutY="212.0" prefHeight="17.0" prefWidth="115.0" text="Social media chat" textFill="#f8f8f8" />
-         </children>
-      </AnchorPane>
-      <Label alignment="TOP_LEFT" layoutX="384.0" layoutY="47.0" prefHeight="17.0" prefWidth="93.0" style="-fx-font-weight: bold;" text="Sign in">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <MFXTextField fx:id="emailField" floatMode="BORDER" floatingText="EMAIL ADDRESS" layoutX="384.0" layoutY="100.0" prefHeight="49.0" prefWidth="189.0" />
-      <MFXPasswordField fx:id="passwordField" allowCopy="true" allowPaste="true" floatingText="PASSWORD" layoutX="384.0" layoutY="179.0" prefHeight="49.0" prefWidth="189.0" />
-      <MFXButton layoutX="383.0" layoutY="311.0" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #e8defa;" text="Dont have an account? Sign up" onAction="#switchToSecondary" />
-      <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="340.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/pinkuser.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="315.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="340.0">
-         <image>
-            <Image url="@/icons8-password-64.png" />
-         </image>
-      </ImageView>
-      <MFXButton layoutX="438.0" layoutY="264.0" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: green;" text="Log in" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PrimaryController">
+    <children>
+        <AnchorPane layoutX="287.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="370.0" style="-fx-background-color: linear-gradient(to bottom right, #8a2ae3, #8126e2, #3c01f3);">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="200.0" prefHeight="35.0" prefWidth="130.0" text="TellmeDam" textAlignment="CENTER" textFill="#f2f2f2">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="101.0" layoutY="235.0" prefHeight="17.0" prefWidth="115.0" text="Social media chat" textFill="#f8f8f8" />
+            </children>
+        </AnchorPane>
+        <Label alignment="TOP_LEFT" layoutX="65.0" layoutY="37.0" prefHeight="17.0" prefWidth="93.0" style="-fx-font-weight: bold;" text="Sign in">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <MFXTextField fx:id="emailField" floatMode="BORDER" floatingText="EMAIL ADDRESS" layoutX="65.0" layoutY="90.0" prefHeight="50.0" prefWidth="200.0" />
+        <MFXPasswordField fx:id="passwordField" allowCopy="true" allowPaste="true" floatingText="PASSWORD" layoutX="65.0" layoutY="169.0" prefHeight="49.0" prefWidth="189.0" />
+        <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="24.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/pinkuser.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="24.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="24.0">
+            <image>
+                <Image url="@../../pinkpassword.png" />
+            </image>
+        </ImageView>
+        <MFXButton layoutX="119.0" layoutY="254.0" onAction="#login" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: linear-gradient(to right, #8a2ae3, #8126e2, #3c01f3);" text="Log in" />
+        <Label layoutX="65.0" layoutY="306.0" prefHeight="17.0" prefWidth="150.0" text="Dont have an account?" />
+        <Hyperlink layoutX="191.0" layoutY="303.0" onAction="#switchToSecondary" text="Sign up" textFill="#8126e2" />
+    </children>
 </AnchorPane>
