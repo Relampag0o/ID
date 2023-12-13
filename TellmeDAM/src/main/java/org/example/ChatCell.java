@@ -44,12 +44,12 @@ public class ChatCell extends ListCell<Chat> {
         } else {
             setGraphic(hbox);
             setData(chat);
-            setStyle("-fx-background-color:  #202124;");
+            setStyle("-fx-background-color:  #653fb6;");
             String name = "";
 
 
             Label label1 = new Label(name);
-            label1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14; -fx-text-fill: white;");
+            label1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 18; -fx-text-fill: white; -fx-font-weight: bold;");
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deleteMenuItem = new MenuItem("Delete chat");
             contextMenu.getItems().add(deleteMenuItem);
