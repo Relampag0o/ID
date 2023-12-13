@@ -2,25 +2,61 @@
 
 <?import com.jfoenix.controls.*?>
 <?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1100.0" prefWidth="1000.0" style="-fx-background-color: #202124;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1001.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
     <children>
-        <Label layoutX="22.0" layoutY="23.0" prefHeight="17.0" prefWidth="129.0" text="Chats" textFill="WHITE">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-      <MFXTextField fx:id="searchField" floatMode="BORDER" layoutX="22.0" layoutY="84.0" prefHeight="35.0" prefWidth="197.0" promptText="Find a chat or start a new one." />
-      <JFXListView fx:id="chatsView" layoutX="21.0" layoutY="142.0" prefHeight="450.0" prefWidth="200.0" style="-fx-background-color: #202124;" />
-      <ImageView fitHeight="38.0" fitWidth="57.0" layoutX="14.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXListView fx:id="msgList" layoutX="254.0" layoutY="84.0" maxWidth="1.7976931348623157E308" prefHeight="498.0" prefWidth="570.0" />
-      <MFXTextField fx:id="messageField" floatMode="ABOVE" layoutX="387.0" layoutY="617.0" prefHeight="30.0" prefWidth="214.0" promptText="Your message" />
-      <MFXButton layoutX="625.0" layoutY="620.0" onAction="#sendMessage" text="Send" />
-        <MFXButton fx:id="chatsButton" buttonType="RAISED" layoutX="188.0" layoutY="31.0" onAction="#showUsers" prefHeight="27.0" prefWidth="27.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/chatpink.png'); -fx-background-color: transparent; -fx-background-size: 27;" text="" />
+      <VBox layoutX="49.0" layoutY="-5.0" prefHeight="758.0" prefWidth="291.0" style="-fx-background-color: #653fb6;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Chats" textAlignment="CENTER" textFill="#f7f7f7">
+               <VBox.margin>
+                  <Insets left="115.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <HBox>
+               <children>
+                  <MFXTextField fx:id="searchField" floatMode="BORDER" prefHeight="35.0" prefWidth="197.0" promptText="Find a chat or start a new one." style="-fx-border-radius: 20; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </MFXTextField>
+                    <MFXButton fx:id="chatsButton" buttonType="RAISED" onAction="#showUsers" prefHeight="27.0" prefWidth="27.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/chatpink.png'); -fx-background-color: transparent; -fx-background-size: 27;" text="">
+                     <HBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </HBox.margin>
+                  </MFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets top="45.0" />
+               </VBox.margin>
+            </HBox>
+            <JFXListView fx:id="chatsView" prefHeight="633.0" prefWidth="230.0" style="-fx-background-color: #653fb6;">
+               <VBox.margin>
+                  <Insets left="15.0" top="20.0" />
+               </VBox.margin></JFXListView>
+         </children>
+      </VBox>
+      <JFXListView fx:id="msgList" layoutX="373.0" layoutY="89.0" maxWidth="1.7976931348623157E308" prefHeight="498.0" prefWidth="570.0" />
+      <MFXTextField fx:id="messageField" floatMode="ABOVE" layoutX="506.0" layoutY="622.0" prefHeight="30.0" prefWidth="214.0" promptText="Your message" />
+      <MFXButton layoutX="744.0" layoutY="625.0" onAction="#sendMessage" text="Send" />
+      <VBox prefHeight="750.0" prefWidth="25.0" style="-fx-background-color: #402e58;">
+         <children>
+            <ImageView fitHeight="38.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true" />
+              <MFXButton fx:id="settingsButton" buttonType="RAISED" prefHeight="27.0" prefWidth="27.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/settingspink.png'); -fx-background-color: transparent; -fx-background-size: 27;" text="">
+               <VBox.margin>
+                  <Insets left="20.0" top="100.0" />
+               </VBox.margin>
+            </MFXButton>
+         </children></VBox>
+      <ImageView fitHeight="53.0" fitWidth="58.0" layoutX="402.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="466.0" layoutY="40.0" prefHeight="18.0" prefWidth="104.0" text="Label" />
 
 
 

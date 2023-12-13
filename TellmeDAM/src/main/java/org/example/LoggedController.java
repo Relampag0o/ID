@@ -58,6 +58,7 @@ public class LoggedController extends Application {
 
     public MFXTextField searchField;
     public Button chatsButton;
+    public MFXButton settingsButton;
 
 
     private Chat currentChat;
