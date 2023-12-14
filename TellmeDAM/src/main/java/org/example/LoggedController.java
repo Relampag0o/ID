@@ -62,13 +62,14 @@ public class LoggedController extends Application {
 
 
     private Chat currentChat;
+
     @FXML
     private JFXListView<Chat> chatsView;
+
     private JFXListView<User> userListView;
 
 
     public ListView msgList;
-    private FilteredList<Chat> filteredChats;
 
 
     private ObservableList<Message> observableMessageList = FXCollections.observableArrayList();
@@ -77,8 +78,9 @@ public class LoggedController extends Application {
     // all the chats:
 
     private ArrayList<Chat> chats = new ArrayList<>();
-    private Stage chatWindow;
-    private Node sourceNode;
+
+    private FilteredList<Chat> filteredChats;
+
 
     private MFXGenericDialog dialogContent;
     private MFXStageDialog dialog;
@@ -98,15 +100,7 @@ public class LoggedController extends Application {
 
     public void initialize() {
         loadChats();
-        filteredChats = new FilteredList<>(chats, p -> true);
 
-        // Configurar el TextField para la búsqueda
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredChats(newValue);
-        });
-
-        // Vincular la FilteredList a la ListView
-        chatsView.setItems(filteredChats);
 
     }
 
@@ -282,18 +276,13 @@ public class LoggedController extends Application {
     }
 
 
-    public void search(String newValue) {
-        filteredChats.setPredicate(chat -> {
-            if (newValue == null || newValue.isEmpty()) {
-                return true;
-            }
+    public void search() {
+        String pattern = searchField.getText();
+        ObservableList<Chat> observableUserList = FXCollections.observableArrayList();
+        observableUserList.addAll(chats);
+        ObservableList<Chat> filteredUsers = observableUserList.filtered(chat -> chat.containsName(pattern));
 
-            String lowerCaseFilter = newValue.toLowerCase();
-
-            return chat.getUser1_username().toLowerCase().contains(lowerCaseFilter) ||
-                    chat.getUser2_username().toLowerCase().contains(lowerCaseFilter);
-        });
-
+        chatsView.setItems(filteredUsers);
 
     }
 

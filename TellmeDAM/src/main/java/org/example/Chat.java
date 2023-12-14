@@ -62,4 +62,8 @@ public class Chat {
     public void setUser2_username(String user2_username) {
         this.user2_username = user2_username;
     }
+
+    public boolean containsName(String pattern) {
+        return this.user1_username.toLowerCase().contains(pattern.toLowerCase()) || this.user2_username.toLowerCase().contains(pattern.toLowerCase());
+    }
 }
