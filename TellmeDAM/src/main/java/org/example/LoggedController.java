@@ -171,6 +171,8 @@ public class LoggedController extends Application {
                 ObservableList<Chat> observableUserList = FXCollections.observableArrayList(chats);
                 chatsView.setItems(observableUserList);
 
+
+
                 chatsView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
                     if (newSelection != null) {
                         currentChat = (Chat) newSelection;
