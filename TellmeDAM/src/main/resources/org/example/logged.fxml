@@ -38,7 +38,7 @@
             </AnchorPane>
             <AnchorPane layoutX="61.0" layoutY="87.0" prefHeight="609.0" prefWidth="301.0" style="-fx-background-color: #402e58;">
                <children>
-                  <JFXListView fx:id="chatsView" layoutX="13.0" layoutY="21.0" prefHeight="543.0" prefWidth="300.0" style="-fx-background-color: #402e58;" />
+                  <JFXListView fx:id="chatsView" layoutX="13.0" layoutY="21.0" opacity="0.91" prefHeight="543.0" prefWidth="300.0" scaleShape="false" style="-fx-background-color: #402e58;" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="61.0" layoutY="696.0" prefHeight="47.0" prefWidth="313.0" style="-fx-background-color: #402e58;" />
@@ -50,7 +50,7 @@
                      </image>
                   </ImageView>
                    <MFXButton fx:id="settingsButton" buttonType="RAISED" layoutX="20.0" layoutY="77.0" onAction="#showUsers" prefHeight="26.0" prefWidth="26.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/settings.png'); -fx-background-color: transparent; -fx-background-size: 26.0;" text="" />
-                   <MFXButton fx:id="leaveButton" buttonType="RAISED" layoutX="22.0" layoutY="697.0" onAction="#showUsers" prefHeight="22.0" prefWidth="22.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/leave.png'); -fx-background-color: transparent; -fx-background-size: 22.0;" text="" />
+                   <MFXButton fx:id="leaveButton" buttonType="RAISED" layoutX="22.0" layoutY="697.0" onAction="#showUsers" prefHeight="20.0" prefWidth="20.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/leave.png'); -fx-background-color: transparent; -fx-background-size: 20.0;" text="" />
                </children>
             </AnchorPane>
          </children>

@@ -27,18 +27,17 @@ public class ChatCell extends ListCell<Chat> {
         super();
 
 
-        image.setFitWidth(50);
-        image.setFitHeight(50);
+        image.setFitWidth(40);
+        image.setFitHeight(40);
         image.setPreserveRatio(true);
 
-        // Crear un recorte circular para la imagen
-        Circle clip = new Circle(25, 25, 25); // Ajusta el radio del círculo
+        Circle clip = new Circle(20, 20, 20);
         image.setClip(clip);
 
         hbox.setAlignment(Pos.CENTER_LEFT);
         hbox.setSpacing(10);
 
-        // Agregar un poco de espacio alrededor de la caja HBox
+
         hbox.setPadding(new Insets(10, 10, 10, 10));
 
         hbox.getChildren().addAll(image, label, pane);
@@ -59,8 +58,7 @@ public class ChatCell extends ListCell<Chat> {
 
 
             Label label1 = new Label(name);
-            label1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 20; -fx-text-fill: red; -fx-font-weight: bold;");
-            label1.setTextFill(javafx.scene.paint.Color.WHITE); // Establece el color del texto en blanco
+
 
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deleteMenuItem = new MenuItem("Delete chat");
