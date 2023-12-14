@@ -21,7 +21,7 @@ public class PrimaryController {
     @FXML
     private void switchToLogged() throws IOException {
         App.setRoot("logged");
-        App.stage.setWidth(1025);
+        App.stage.setWidth(1065);
         App.stage.setHeight(780);
 
 

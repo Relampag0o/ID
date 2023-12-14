@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.geometry.Insets;
 
 import java.awt.*;
 
@@ -24,12 +26,20 @@ public class ChatCell extends ListCell<Chat> {
     public ChatCell() {
         super();
 
-        image.setFitWidth(30);
-        image.setFitHeight(30);
+
+        image.setFitWidth(50);
+        image.setFitHeight(50);
         image.setPreserveRatio(true);
+
+        // Crear un recorte circular para la imagen
+        Circle clip = new Circle(25, 25, 25); // Ajusta el radio del círculo
+        image.setClip(clip);
+
         hbox.setAlignment(Pos.CENTER_LEFT);
         hbox.setSpacing(10);
 
+        // Agregar un poco de espacio alrededor de la caja HBox
+        hbox.setPadding(new Insets(10, 10, 10, 10));
 
         hbox.getChildren().addAll(image, label, pane);
 
@@ -44,12 +54,14 @@ public class ChatCell extends ListCell<Chat> {
         } else {
             setGraphic(hbox);
             setData(chat);
-            setStyle("-fx-background-color:   #3e3c61;");
+            setStyle("-fx-background-color:   #402e58;");
             String name = "";
 
 
             Label label1 = new Label(name);
-            label1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 18; -fx-text-fill: white; -fx-font-weight: bold;");
+            label1.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 20; -fx-text-fill: red; -fx-font-weight: bold;");
+            label1.setTextFill(javafx.scene.paint.Color.WHITE); // Establece el color del texto en blanco
+
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deleteMenuItem = new MenuItem("Delete chat");
             contextMenu.getItems().add(deleteMenuItem);
@@ -89,6 +101,8 @@ public class ChatCell extends ListCell<Chat> {
             name = chat.getUser2_username();
         }
         label.setText(name);
+        label.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 18; -fx-text-fill: white; ");
+
     }
 }
 
