@@ -181,7 +181,7 @@ public class LoggedController extends Application {
 
             @Override
             public void onError(Object error) {
-                // Handle error
+
             }
         });
     }
@@ -257,7 +257,6 @@ public class LoggedController extends Application {
 
                 @Override
                 public void onError(Object error) {
-                    // Manejar el error según sea necesario
                 }
             });
         } catch (IOException e) {
