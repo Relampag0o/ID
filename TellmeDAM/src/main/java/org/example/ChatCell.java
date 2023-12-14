@@ -44,7 +44,7 @@ public class ChatCell extends ListCell<Chat> {
         } else {
             setGraphic(hbox);
             setData(chat);
-            setStyle("-fx-background-color:  #653fb6;");
+            setStyle("-fx-background-color:   #3e3c61;");
             String name = "";
 
 

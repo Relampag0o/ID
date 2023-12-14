@@ -22,7 +22,7 @@ public class PrimaryController {
     private void switchToLogged() throws IOException {
         App.setRoot("logged");
         App.stage.setWidth(1000);
-        App.stage.setHeight(750);
+        App.stage.setHeight(800);
 
 
 

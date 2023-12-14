@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1001.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1001.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoggedController">
     <children>
-      <AnchorPane layoutX="-1.0" layoutY="-4.0">
+      <AnchorPane layoutX="-1.0" layoutY="-4.0" />
+      <JFXListView fx:id="msgList" layoutX="332.0" layoutY="85.0" maxWidth="1.7976931348623157E308" prefHeight="598.0" prefWidth="669.0" />
+      <MFXTextField fx:id="messageField" floatMode="ABOVE" layoutX="331.0" layoutY="683.0" prefHeight="58.0" prefWidth="589.0" promptText="Your message" />
+      <MFXButton layoutX="946.0" layoutY="708.0" onAction="#sendMessage" text="Send" />
+      <ImageView fitHeight="38.0" fitWidth="57.0" layoutX="394.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane layoutX="-1.0" prefHeight="750.0" prefWidth="334.0">
          <children>
-            <VBox maxHeight="1.7976931348623157E308" prefWidth="360.0" style="-fx-background-color: #3e3c61;">
+            <AnchorPane layoutX="-1.0" prefHeight="86.0" prefWidth="334.0" style="-fx-background-color: #2f2d52;">
                <children>
-                  <HBox prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #2f2d52;">
-                     <children>
-                        <Label prefHeight="50.0" prefWidth="142.0" text="Jose`s chats" textFill="#fcfcfc">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" top="18.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <MFXTextField fx:id="searchField" floatMode="BORDER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="300.0" promptText="Find a chat or start a new one." style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Search">
+                  <Label layoutX="25.0" layoutY="28.0" prefHeight="50.0" prefWidth="142.0" text="Jose`s chats" textFill="#fcfcfc">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                    <MFXButton fx:id="chatsButton" buttonType="RAISED" layoutX="270.0" layoutY="37.0" onAction="#showUsers" prefHeight="27.0" prefWidth="27.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/chatpink.png'); -fx-background-color: transparent; -fx-background-size: 27;" text="" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-1.0" layoutY="86.0" prefHeight="598.0" prefWidth="334.0" style="-fx-background-color: #3e3c61;">
+               <children>
+                  <JFXListView fx:id="chatsView" layoutX="17.0" layoutY="105.0" prefHeight="405.0" prefWidth="300.0" style="-fx-background-color: #3e3c61;" />
+                  <MFXTextField fx:id="searchField" floatMode="BORDER" layoutX="63.0" layoutY="17.0" maxHeight="-Infinity" prefHeight="38.0" prefWidth="226.0" promptText="Find a chat or start a new one." style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Search">
                      <textFill>
                         <Color red="0.9473684430122375" green="0.9473684430122375" blue="0.9473684430122375" opacity="0.8700000047683716" />
                      </textFill>
@@ -35,34 +40,29 @@
                         <Font size="14.0" />
                      </font>
                   </MFXTextField>
-                  <HBox prefHeight="567.0" prefWidth="370.0">
-                     <children>
-                          <MFXButton fx:id="chatsButton" buttonType="RAISED" onAction="#showUsers" prefHeight="27.0" prefWidth="27.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/chatpink.png'); -fx-background-color: transparent; -fx-background-size: 27;" text="">
-                           <HBox.margin>
-                              <Insets left="20.0" top="5.0" />
-                           </HBox.margin>
-                        </MFXButton>
-                        <JFXListView fx:id="chatsView" prefHeight="567.0" prefWidth="178.0" style="-fx-background-color: #3e3c61;" />
-                     </children>
-                     <VBox.margin>
-                        <Insets top="45.0" />
-                     </VBox.margin>
-                  </HBox>
+                  <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="24.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../busqueda.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </VBox>
+            </AnchorPane>
+            <AnchorPane layoutX="-1.0" layoutY="684.0" prefHeight="58.0" prefWidth="334.0" style="-fx-background-color: #474b7b;">
+               <children>
+                  <ImageView fitHeight="38.0" fitWidth="36.0" layoutX="31.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" style="fx-background-radius: 50;">
+                     <image>
+                        <Image url="@../../me.jpeg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <JFXListView fx:id="msgList" layoutX="373.0" layoutY="89.0" maxWidth="1.7976931348623157E308" prefHeight="498.0" prefWidth="570.0" />
-      <MFXTextField fx:id="messageField" floatMode="ABOVE" layoutX="359.0" layoutY="688.0" prefHeight="64.0" prefWidth="587.0" promptText="Your message" />
-      <MFXButton layoutX="946.0" layoutY="708.0" onAction="#sendMessage" text="Send" />
-      <Label layoutX="466.0" layoutY="40.0" prefHeight="18.0" prefWidth="104.0" text="Label" />
-      <ImageView fitHeight="38.0" fitWidth="57.0" layoutX="394.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="38.0" fitWidth="36.0" layoutX="595.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../me.jpeg" />
-         </image>
-      </ImageView>
-      <HBox layoutY="688.0" prefHeight="64.0" prefWidth="360.0" style="-fx-background-color: #474b7b;" />
+      <AnchorPane layoutX="331.0" prefHeight="86.0" prefWidth="669.0">
+         <children>
+            <Label layoutX="44.0" layoutY="44.0" prefHeight="18.0" prefWidth="104.0" text="Label" />
+         </children>
+      </AnchorPane>
 
 
 
