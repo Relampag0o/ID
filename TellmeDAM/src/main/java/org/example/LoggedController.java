@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
@@ -67,6 +68,9 @@ public class LoggedController extends Application {
 
 
     public ListView msgList;
+    private FilteredList<Chat> filteredChats;
+
+
     private ObservableList<Message> observableMessageList = FXCollections.observableArrayList();
 
 
@@ -93,9 +97,16 @@ public class LoggedController extends Application {
     }
 
     public void initialize() {
-        System.out.println(App.allUsers.size());
-
         loadChats();
+        filteredChats = new FilteredList<>(chats, p -> true);
+
+        // Configurar el TextField para la búsqueda
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredChats(newValue);
+        });
+
+        // Vincular la FilteredList a la ListView
+        chatsView.setItems(filteredChats);
 
     }
 
@@ -268,6 +279,33 @@ public class LoggedController extends Application {
         msgList.scrollTo(observableMessageList.size() - 1);
         if (messageField != null)
             messageField.clear();
+    }
+
+
+    public void search(String newValue) {
+        filteredChats.setPredicate(chat -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+
+            String lowerCaseFilter = newValue.toLowerCase();
+
+            return chat.getUser1_username().toLowerCase().contains(lowerCaseFilter) ||
+                    chat.getUser2_username().toLowerCase().contains(lowerCaseFilter);
+        });
+
+
+    }
+
+    public void logout() {
+        try {
+            App.userLogged = null;
+            App.stage.setWidth(600);
+            App.stage.setHeight(460);
+            App.setRoot("primary");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
