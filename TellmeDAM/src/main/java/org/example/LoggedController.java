@@ -250,9 +250,7 @@ public class LoggedController extends Application {
                 public void onSuccess(Object response) {
                     Message message = (Message) response;
                     System.out.println("Message sent: " + message.getId());
-
                     observableMessageList.add(message);
-
                     updateListView();
                 }
 
