@@ -42,10 +42,8 @@ import org.example.api.UserAPIClient;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 import static org.example.App.stage;
 
@@ -166,11 +164,11 @@ public class LoggedController extends Application {
                     System.out.println("------------------------");
                 }
 
+
                 chatsView.setCellFactory(param -> new ChatCell());
 
                 ObservableList<Chat> observableUserList = FXCollections.observableArrayList(chats);
                 chatsView.setItems(observableUserList);
-
 
 
                 chatsView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -222,8 +220,10 @@ public class LoggedController extends Application {
                 public void onSuccess(Object response) {
                     LinkedList<Message> messages = new LinkedList<>((List<Message>) response);
                     System.out.println("Messages loaded: " + messages.size());
+                    messages.sort(Comparator.comparingInt(Message::getId));
                     observableMessageList.clear();
                     observableMessageList.addAll(messages);
+
 
                     updateListView();
                     msgList.setItems(observableMessageList);
@@ -245,8 +245,6 @@ public class LoggedController extends Application {
         MessageAPIClient messageAPIClient = new MessageAPIClient();
 
         try {
-
-
             messageAPIClient.sendMessageToChat(currentChat.getId(), messageField.getText(), App.userLogged.getId(), new APICallback() {
                 @Override
                 public void onSuccess(Object response) {
@@ -254,7 +252,7 @@ public class LoggedController extends Application {
                     System.out.println("Message sent: " + message.getId());
 
                     observableMessageList.add(message);
-
+                    
                     updateListView();
                 }
 
