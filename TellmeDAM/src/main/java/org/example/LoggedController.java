@@ -77,7 +77,7 @@ public class LoggedController extends Application {
 
     // all the chats:
 
-    private ArrayList<Chat> chats = new ArrayList<>();
+    public static ArrayList<Chat> chats = new ArrayList<>();
 
     private FilteredList<Chat> filteredChats;
 

@@ -70,6 +70,7 @@ public class ChatCell extends ListCell<Chat> {
 
             deleteMenuItem.setOnAction(event -> {
                 System.out.println("Delete Chat: " + getItem().getId()
+
                 );
             });
         }
@@ -78,7 +79,7 @@ public class ChatCell extends ListCell<Chat> {
     private void setData(Chat chat) {
         System.out.println("Setting data for chat: " + chat.getId());
         for (User u : App.allUsers) {
-            if (u.getId() == chat.getUser2_id()) {
+            if (u.getId() == chat.getUser1_id()) {
                 System.out.println("Setting image for user: " + u.getUsername());
 
                 String imageUrl = u.getPhotourl();
