@@ -252,7 +252,7 @@ public class LoggedController extends Application {
                     System.out.println("Message sent: " + message.getId());
 
                     observableMessageList.add(message);
-                    
+
                     updateListView();
                 }
 
