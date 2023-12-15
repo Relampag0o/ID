@@ -200,6 +200,7 @@ public class LoggedController extends Application {
                                     System.out.println("Chat deleted: " + selectedChat.getId());
                                     chats.remove(selectedChat);
                                     chatsView.getItems().remove(selectedChat);
+
                                 }
 
                                 @Override
