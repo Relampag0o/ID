@@ -30,8 +30,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -40,7 +39,7 @@ import javafx.stage.Stage;
 import org.example.api.*;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-
+import javafx.scene.paint.Color;
 import java.awt.*;
 
 import java.awt.event.MouseEvent;
@@ -458,7 +457,7 @@ public class LoggedController extends Application {
                 uploadButton
         );
         vbox.setSpacing(10);
-
+        vbox.setBackground(new Background(new BackgroundFill(Color.web("#840cc5"), CornerRadii.EMPTY, Insets.EMPTY)));
         dialogContent = MFXGenericDialogBuilder.build()
                 .setContent(vbox)
                 .makeScrollable(true)
@@ -505,28 +504,30 @@ public class LoggedController extends Application {
     private MFXTextField createStyledTextField(String promptText) {
         MFXTextField textField = new MFXTextField();
         textField.setPromptText(promptText);
-        textField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        textField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-pref-width: 200; -fx-background-radius: 20; -fx-background-color: transparent;");
         return textField;
     }
 
     private MFXPasswordField createStyledPasswordField(String promptText) {
         MFXPasswordField passwordField = new MFXPasswordField();
         passwordField.setPromptText(promptText);
-        passwordField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        passwordField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); -fx-pref-width: 200; -fx-background-radius: 20; -fx-background-color: transparent;");
         return passwordField;
     }
 
     private void showFieldError(MFXTextField field, String errorMessage) {
         Tooltip errorTooltip = new Tooltip(errorMessage);
         Tooltip.install(field, errorTooltip);
-        field.setStyle("-fx-border-color: red;"); // Cambia el color del borde a rojo
+        field.setStyle("-fx-border-color: red; -fx-pref-width: 200; -fx-background-radius: 20; -fx-background-color: transparent;");
     }
 
     private Node createLabeledField(String labelText, Node field) {
         Label label = new Label(labelText);
-        label.setLabelFor(field); // Asocia la etiqueta con el campo
+        label.setLabelFor(field);
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 20;");
         VBox vbox = new VBox(label, field);
-        vbox.setAlignment(Pos.CENTER); // Centra los elementos en el VBox
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setStyle("-fx-background-color: transparent;");
         return vbox;
     }
 
