@@ -42,6 +42,7 @@ import org.example.api.*;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Color;
+
 import java.awt.*;
 
 import java.awt.event.MouseEvent;
@@ -113,18 +114,10 @@ public class LoggedController extends Application {
     public void initialize() {
         loadChats();
 
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            public void run() {
-                try {
-                    showConversation();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 0, 20000);
+
 
         userName.setText("");
+        MFXNotificationCenterSystem.instance().initOwner(stage);
         observeNotifications();
     }
 
@@ -392,16 +385,21 @@ public class LoggedController extends Application {
 
             @Override
             public void onSuccess(Object response) throws IOException {
-                System.out.println("There was an update!");
+                List<Chat> newChats = (List<Chat>) response;
 
-                Platform.runLater(() -> {
-                    MFXNotificationCenterSystem.instance()
-                            .setPosition(NotificationPos.TOP_RIGHT)
-                            .publish(createCustomNotification((List<Chat>) response));
-                });
 
-                chats = new ArrayList<>((List<Chat>) response);
-                loadChats();
+                if (!newChats.isEmpty()) {
+                    System.out.println("There was an update!");
+
+                    Platform.runLater(() -> {
+                        MFXNotificationCenterSystem.instance()
+                                .setPosition(NotificationPos.TOP_RIGHT)
+                                .publish(createCustomNotification(newChats));
+                    });
+
+                    chats = new ArrayList<>(newChats);
+                    loadChats();
+                }
             }
 
             @Override
@@ -525,7 +523,6 @@ public class LoggedController extends Application {
         return vbox;
     }
 
-    
 
     private boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";

@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.SecondaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="600.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.SecondaryController">
     <children>
-        <Label alignment="CENTER" layoutX="62.0" layoutY="50.0" prefHeight="38.0" prefWidth="309.0" style="-fx-font-weight: bold;" text="CREATE NEW ACCOUNT" textAlignment="CENTER">
+        <Label alignment="CENTER" layoutX="22.0" layoutY="20.0" prefHeight="38.0" prefWidth="252.0" style="-fx-font-weight: bold;" text="CREATE NEW ACCOUNT" textAlignment="CENTER">
             <font>
-                <Font size="24.0" />
+                <Font size="18.0" />
             </font>
         </Label>
-        <MFXTextField borderGap="0.0" cacheShape="false" floatMode="BORDER" layoutX="69.0" layoutY="131.0" measureUnitGap="0.0" prefHeight="50.0" prefWidth="200.0" promptText="Email" style="-fx-background-color: white; -fx-background-radius: 20;" textLimit="30">
+        <MFXTextField borderGap="0.0" cacheShape="false" floatMode="BORDER" layoutX="73.0" layoutY="87.0" measureUnitGap="0.0" prefHeight="50.0" prefWidth="200.0" promptText="Email" style="-fx-background-color: white; -fx-background-radius: 20;" textLimit="30">
             <textFill>
                 <Color red="1.0" green="1.0" blue="1.0" opacity="0.8700000047683716" />
             </textFill>
@@ -24,17 +30,17 @@
             </effect>
             
         </MFXTextField>
-        <MFXTextField borderGap="20.0" floatMode="BORDER" layoutX="69.0" layoutY="202.0" prefHeight="50.0" prefWidth="200.0" promptText="Password" style="-fx-background-color: white; -fx-background-radius: 20;">
+        <MFXTextField borderGap="20.0" floatMode="BORDER" layoutX="73.0" layoutY="158.0" prefHeight="50.0" prefWidth="200.0" promptText="Password" style="-fx-background-color: white; -fx-background-radius: 20;">
             <textFill>
                 <Color red="0.42105263471603394" green="0.3957115113735199" blue="0.3957115113735199" opacity="0.8700000047683716" />
             </textFill>
         </MFXTextField>
-        <MFXPasswordField floatMode="BORDER" layoutX="69.0" layoutY="273.0" prefHeight="50.0" prefWidth="200.0" promptText="Password" style="-fx-background-color: white; -fx-background-radius: 20;">
+        <MFXPasswordField floatMode="BORDER" layoutX="73.0" layoutY="229.0" prefHeight="50.0" prefWidth="200.0" promptText="Password" style="-fx-background-color: white; -fx-background-radius: 20;">
             <textFill>
                 <Color red="1.0" green="1.0" blue="1.0" opacity="0.8700000047683716" />
             </textFill>
         </MFXPasswordField>
-        <MFXButton id="registerButton" buttonType="RAISED" depthLevel="LEVEL3" layoutX="69.0" layoutY="356.0" prefHeight="49.0" prefWidth="295.0" style="-fx-background-radius: 20; -fx-background-color: linear-gradient(to right, #8a2ae3, #8126e2, #3c01f3);" text="REGISTER" textFill="WHITE">
+        <MFXButton id="registerButton" buttonType="RAISED" depthLevel="LEVEL3" layoutX="73.0" layoutY="312.0" prefHeight="35.0" prefWidth="194.0" style="-fx-background-radius: 20; -fx-background-color: linear-gradient(to right, #8a2ae3, #8126e2, #3c01f3); -fx-text-fill: white;" text="Register" textFill="WHITE">
             <effect>
                 <Blend />
             </effect>
@@ -55,30 +61,30 @@
                 </RadialGradient>
             </rippleColor>
         </MFXButton>
-        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="14.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="18.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/pinkuser.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="14.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="18.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../pinkmail.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="14.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="18.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../pinkpassword.png" />
          </image></ImageView>
-        <AnchorPane layoutX="375.0" prefHeight="480.0" prefWidth="370.0" style="-fx-background-color: linear-gradient(to bottom, #8a2ae3, #8126e2, #3c01f3);">
-            <children>
-                <Label layoutX="77.0" layoutY="216.0" prefHeight="107.0" prefWidth="295.0" style="-fx-font-weight: bold;" text="Glad to see you!" textFill="#f2f2f2">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-            </children>
+        <AnchorPane layoutX="291.0" prefHeight="460.0" prefWidth="313.0" style="-fx-background-color: linear-gradient(to bottom, #8a2ae3, #8126e2, #3c01f3);">
+         <children>
+            <ImageView fitHeight="314.0" fitWidth="387.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../tellmedamnobackground.png" />
+               </image>
+            </ImageView>
+         </children>
         </AnchorPane>
-        <Label layoutX="104.0" layoutY="424.0" prefHeight="17.0" prefWidth="170.0" text="Already have an account? " />
-        <Hyperlink layoutX="265.0" layoutY="421.0" onAction="#switchToPrimary" text="Sign in" textFill="#8126e2" />
+        <Label layoutX="73.0" layoutY="372.0" prefHeight="17.0" prefWidth="170.0" text="Already have an account? " />
+        <Hyperlink layoutX="216.0" layoutY="369.0" onAction="#switchToPrimary" text="Sign in" textFill="#8126e2" />
     </children>
 </AnchorPane>
