@@ -68,16 +68,22 @@ public class ChatCell extends ListCell<Chat> {
             Label label1 = new Label(name);
 
 
-
-
-
         }
     }
 
 
     private void setData(Chat chat) {
+        int idSender;
+
+        if (chat.getUser2_id() == App.userLogged.getId()) {
+            idSender = chat.getUser1_id();
+        } else {
+            idSender = chat.getUser2_id();
+        }
         for (User u : App.allUsers) {
-            if (u.getId() == chat.getUser1_id()) {
+
+            if (u.getId() == idSender) {
+                System.out.println("Found user: " + u.getUsername());
                 String imageUrl = u.getPhotourl();
                 if (imageUrl != null && !imageUrl.isEmpty()) {
                     image.setImage(new Image(imageUrl, 50, 50, true, true, true));

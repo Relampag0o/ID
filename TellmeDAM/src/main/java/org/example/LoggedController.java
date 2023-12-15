@@ -205,6 +205,9 @@ public class LoggedController extends Application {
                                     System.out.println("Chat deleted: " + selectedChat.getId());
                                     chats.remove(selectedChat);
                                     chatsView.getItems().remove(selectedChat);
+                                    chatsView.refresh();
+                                    userImage.setImage(null);
+                                    userName.setText("");
 
                                 }
 
@@ -272,7 +275,6 @@ public class LoggedController extends Application {
             if (currentChat == null) {
                 return;
             }
-
             int chatId = currentChat.getUser1_id();
             User user = null;
             if (chatId == App.userLogged.getId()) {
