@@ -57,7 +57,7 @@
       </AnchorPane>
       <AnchorPane layoutX="373.0" prefHeight="86.0" prefWidth="692.0" style="-fx-background-color: white;">
          <children>
-            <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" layoutX="272.0" layoutY="47.0" prefHeight="27.0" prefWidth="149.0" text="Label">
+            <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" layoutX="272.0" layoutY="47.0" prefHeight="27.0" prefWidth="149.0" style="-fx-font-weight: bold;" text="Label">
                <font>
                   <Font size="18.0" />
                </font></Label>
