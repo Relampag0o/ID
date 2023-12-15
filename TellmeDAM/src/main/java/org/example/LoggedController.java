@@ -22,10 +22,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import com.jfoenix.controls.JFXListView;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,8 +38,11 @@ import org.example.api.APICallback;
 import org.example.api.ChatAPIClient;
 import org.example.api.MessageAPIClient;
 import org.example.api.UserAPIClient;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 
 import java.awt.*;
+
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.*;
@@ -64,7 +66,7 @@ public class LoggedController extends Application {
     private Chat currentChat;
 
     @FXML
-    private JFXListView<Chat> chatsView;
+    public JFXListView<Chat> chatsView;
 
     private JFXListView<User> userListView;
 
@@ -94,13 +96,23 @@ public class LoggedController extends Application {
     public void start(Stage primaryStage) {
 
         chatsButton.setPadding(Insets.EMPTY);
-
+        chatsView = new JFXListView<>();
         initialize();
     }
 
     public void initialize() {
         loadChats();
 
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                try {
+                    showConversation();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 0, 20000);
 
     }
 
@@ -130,7 +142,7 @@ public class LoggedController extends Application {
 
         dialogContent.addActions(
                 Map.entry(new MFXButton("Confirm"), event -> {
-
+                    createChat(userListView.getSelectionModel().getSelectedItem());
 
                     dialog.close();
 
@@ -152,45 +164,77 @@ public class LoggedController extends Application {
     }
 
 
-    private void loadChats() {
+    public void loadChats() {
         System.out.println("Loading chats...");
         ChatAPIClient chatAPIClient = new ChatAPIClient();
         chatAPIClient.getAllChatsFromUser(App.userLogged.getId(), new APICallback() {
             @Override
             public void onSuccess(Object response) {
                 chats = new ArrayList<>((List<Chat>) response);
-
-                System.out.println("Chats loaded: " + chats.size());
-
-                for (Chat chat : chats) {
-                    System.out.println("Chat id: " + chat.getId());
-                    System.out.println("User 1: " + chat.getUser1_username());
-                    System.out.println("User 2: " + chat.getUser2_username());
-                    System.out.println("------------------------");
-                }
-
-
-                chatsView.setCellFactory(param -> new ChatCell());
-
                 ObservableList<Chat> observableUserList = FXCollections.observableArrayList(chats);
-                chatsView.setItems(observableUserList);
 
+                chatsView.setCellFactory(param -> {
+                    ChatCell cell = new ChatCell(LoggedController.this);
+
+                    ContextMenu contextMenu = new ContextMenu();
+                    MenuItem deleteMenuItem = new MenuItem("Delete chat");
+                    contextMenu.getItems().add(deleteMenuItem);
+
+                    deleteMenuItem.setOnAction(event -> {
+                        Chat selectedChat = cell.getItem();
+                        if (selectedChat != null) {
+                            chatAPIClient.cleanChat(selectedChat.getId(), new APICallback() {
+                                @Override
+                                public void onSuccess(Object response) throws IOException {
+                                    System.out.println("Chat cleaned: " + selectedChat.getId());
+                                }
+
+                                @Override
+                                public void onError(Object error) {
+                                }
+                            });
+
+                            chatAPIClient.deleteChat(selectedChat.getId(), new APICallback() {
+                                @Override
+                                public void onSuccess(Object response) throws IOException {
+                                    System.out.println("Chat deleted: " + selectedChat.getId());
+                                    chats.remove(selectedChat);
+                                    chatsView.getItems().remove(selectedChat);
+                                }
+
+                                @Override
+                                public void onError(Object error) {
+                                }
+                            });
+                        }
+                    });
+
+                    cell.setOnContextMenuRequested(event -> {
+                        contextMenu.show(cell, event.getScreenX(), event.getScreenY());
+                    });
+
+                    return cell;
+                });
+
+                chatsView.setItems(observableUserList);
 
                 chatsView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
                     if (newSelection != null) {
-                        currentChat = (Chat) newSelection;
+                        currentChat = newSelection;
                         showConversation();
-                        System.out.println(" Chat selected: " + currentChat.getId() + " with users: " + currentChat.getUser1_username() + " and " + currentChat.getUser2_username());
+                        System.out.println(" Chat selected: " + currentChat.getId() +
+                                " with users: " + currentChat.getUser1_username() + " and " +
+                                currentChat.getUser2_username());
                     }
                 });
             }
 
             @Override
             public void onError(Object error) {
-
             }
         });
     }
+
 
 
     private void createChat(User user) {
@@ -219,6 +263,9 @@ public class LoggedController extends Application {
     private void showConversation() {
         MessageAPIClient messageAPIClient = new MessageAPIClient();
         try {
+            if (currentChat == null) {
+                return;
+            }
             messageAPIClient.getMessagesFromChat(currentChat.getId(), new APICallback() {
 
                 @Override

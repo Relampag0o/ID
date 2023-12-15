@@ -1,20 +1,24 @@
 package org.example;
 
+import com.jfoenix.controls.JFXListView;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.geometry.Insets;
+import org.example.api.APICallback;
+import org.example.api.ChatAPIClient;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class ChatCell extends ListCell<Chat> {
     HBox hbox = new HBox();
@@ -22,8 +26,10 @@ public class ChatCell extends ListCell<Chat> {
     Label label = new Label("");
     Pane pane = new Pane();
     ImageView image = new ImageView();
+    LoggedController loggedController;
 
-    public ChatCell() {
+
+    public ChatCell(LoggedController loggedController) {
         super();
 
 
@@ -43,6 +49,8 @@ public class ChatCell extends ListCell<Chat> {
         hbox.getChildren().addAll(image, label, pane);
 
 
+        this.loggedController = loggedController;
+
     }
 
     @Override
@@ -60,28 +68,16 @@ public class ChatCell extends ListCell<Chat> {
             Label label1 = new Label(name);
 
 
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem deleteMenuItem = new MenuItem("Delete chat");
-            contextMenu.getItems().add(deleteMenuItem);
 
-            setOnContextMenuRequested(event -> {
-                contextMenu.show(this, event.getScreenX(), event.getScreenY());
-            });
 
-            deleteMenuItem.setOnAction(event -> {
-                System.out.println("Delete Chat: " + getItem().getId()
 
-                );
-            });
         }
     }
 
+
     private void setData(Chat chat) {
-        System.out.println("Setting data for chat: " + chat.getId());
         for (User u : App.allUsers) {
             if (u.getId() == chat.getUser1_id()) {
-                System.out.println("Setting image for user: " + u.getUsername());
-
                 String imageUrl = u.getPhotourl();
                 if (imageUrl != null && !imageUrl.isEmpty()) {
                     image.setImage(new Image(imageUrl, 50, 50, true, true, true));
@@ -90,10 +86,10 @@ public class ChatCell extends ListCell<Chat> {
                 }
             }
         }
-        String name="";
+        String name = "";
         if (chat.getUser2_id() == App.userLogged.getId()) {
-            System.out.println( chat.getUser2_username());
-            System.out.println( chat.getUser1_username());
+            System.out.println(chat.getUser2_username());
+            System.out.println(chat.getUser1_username());
 
             name = chat.getUser1_username();
         } else {
@@ -103,5 +99,7 @@ public class ChatCell extends ListCell<Chat> {
         label.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 18; -fx-text-fill: white; ");
 
     }
+
+
 }
 
