@@ -8,7 +8,9 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialogBuilder;
 import io.github.palexdev.materialfx.dialogs.MFXStageDialog;
+import io.github.palexdev.materialfx.enums.NotificationPos;
 import io.github.palexdev.materialfx.enums.ScrimPriority;
+import io.github.palexdev.materialfx.notifications.MFXNotificationCenterSystem;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -391,10 +393,15 @@ public class LoggedController extends Application {
             @Override
             public void onSuccess(Object response) throws IOException {
                 System.out.println("There was an update!");
+
+                Platform.runLater(() -> {
+                    MFXNotificationCenterSystem.instance()
+                            .setPosition(NotificationPos.TOP_RIGHT)
+                            .publish(createCustomNotification((List<Chat>) response));
+                });
+
                 chats = new ArrayList<>((List<Chat>) response);
                 loadChats();
-
-
             }
 
             @Override
@@ -402,35 +409,22 @@ public class LoggedController extends Application {
 
             }
         });
-
     }
 
-    /*
-    public void openNotifications() {
-        notificationListView = new JFXListView<Chat>();
-        notificationListView.setItems(FXCollections.observableList(App.allNotifications));
-        notificationListView.setCellFactory(param -> new NotificationCellController());
+    private CustomNotification createCustomNotification(List<Chat> chats) {
+        CustomNotification notification = new CustomNotification();
 
-        this.dialogContent = MFXGenericDialogBuilder.build()
-                .setContent(notificationListView)
-                .makeScrollable(true)
-                .get();
-        this.dialog = MFXGenericDialogBuilder.build(dialogContent)
-                .toStageDialogBuilder()
-                .initOwner(stage)
-                .initModality(Modality.APPLICATION_MODAL)
-                .setDraggable(true)
-                .setTitle("Notifications Preview")
-                .setScrimPriority(ScrimPriority.WINDOW)
-                .setScrimOwner(true)
-                .get();
+        StringBuilder contentBuilder = new StringBuilder();
+        for (Chat chat : chats) {
+            contentBuilder.append(chat.getUser2_username() + " has wroten a message!.");
+            contentBuilder.append("\n");
+        }
 
-        dialogContent.addActions(
-                Map.entry(new MFXButton("Close"), event -> dialog.close())
-        );
+        notification.setContentText(contentBuilder.toString());
+        notification.setHeaderText("New notifications");
+
+        return notification;
     }
-
-     */
 
     public void openUserSettings() {
         MFXTextField usernameField = createStyledTextField("Username:");
