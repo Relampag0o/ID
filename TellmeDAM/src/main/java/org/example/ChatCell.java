@@ -88,9 +88,6 @@ public class ChatCell extends ListCell<Chat> {
         }
         String name = "";
         if (chat.getUser2_id() == App.userLogged.getId()) {
-            System.out.println(chat.getUser2_username());
-            System.out.println(chat.getUser1_username());
-
             name = chat.getUser1_username();
         } else {
             name = chat.getUser2_username();

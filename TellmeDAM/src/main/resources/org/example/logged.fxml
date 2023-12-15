@@ -57,8 +57,8 @@
       </AnchorPane>
       <AnchorPane layoutX="373.0" prefHeight="86.0" prefWidth="692.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="286.0" layoutY="54.0" prefHeight="18.0" prefWidth="104.0" text="Label" />
-            <ImageView fitHeight="36.0" fitWidth="45.0" layoutX="278.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="userName" layoutX="286.0" layoutY="54.0" prefHeight="18.0" prefWidth="104.0" text="Label" />
+            <ImageView fx:id="userImage" fitHeight="36.0" fitWidth="45.0" layoutX="278.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
 
          </children>
       </AnchorPane>

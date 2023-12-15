@@ -45,6 +45,8 @@ import java.awt.*;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 import java.util.List;
 
@@ -61,6 +63,8 @@ public class LoggedController extends Application {
     public Button chatsButton;
     public MFXButton settingsButton;
     public MFXButton leaveButton;
+    public ImageView userImage;
+    public Label userName;
 
 
     private Chat currentChat;
@@ -114,6 +118,7 @@ public class LoggedController extends Application {
             }
         }, 0, 20000);
 
+        userName.setText("");
     }
 
 
@@ -223,6 +228,7 @@ public class LoggedController extends Application {
                     if (newSelection != null) {
                         currentChat = newSelection;
                         showConversation();
+
                         System.out.println(" Chat selected: " + currentChat.getId() +
                                 " with users: " + currentChat.getUser1_username() + " and " +
                                 currentChat.getUser2_username());
@@ -235,7 +241,6 @@ public class LoggedController extends Application {
             }
         });
     }
-
 
 
     private void createChat(User user) {
@@ -267,6 +272,24 @@ public class LoggedController extends Application {
             if (currentChat == null) {
                 return;
             }
+
+            int chatId = currentChat.getUser1_id();
+            User user = null;
+            if (chatId == App.userLogged.getId()) {
+                user = findUser(currentChat.getUser2_id());
+            } else
+                user = findUser(currentChat.getUser1_id());
+
+            try {
+                String photoUrl = user.getPhotourl();
+                userImage.setImage(new Image(new URL(photoUrl).toExternalForm()));
+            } catch (MalformedURLException e) {
+
+                userImage.setImage(null);
+            }
+            userName.setText(user.getUsername());
+
+
             messageAPIClient.getMessagesFromChat(currentChat.getId(), new APICallback() {
 
                 @Override
@@ -292,6 +315,15 @@ public class LoggedController extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public User findUser(int id) {
+        for (User user : App.allUsers) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
     }
 
     public void sendMessage() {
