@@ -2,6 +2,7 @@ package org.example;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
@@ -49,6 +50,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static org.example.App.stage;
 
@@ -432,20 +434,27 @@ public class LoggedController extends Application {
      */
 
     public void openUserSettings() {
-        TextField usernameField = new TextField();
-        usernameField.setPromptText("Nombre de usuario");
-        usernameField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        MFXTextField usernameField = new MFXTextField();
+        usernameField.setPromptText("Username:");
 
-        PasswordField passwordField = new PasswordField();
-        passwordField.setPromptText("Contraseña");
-        passwordField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
 
-        TextField emailField = new TextField();
-        emailField.setPromptText("Correo electrónico");
-        emailField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        MFXPasswordField passwordField = new MFXPasswordField();
+        passwordField.setPromptText("password:");
+
+
+        MFXPasswordField repeatPasswordField = new MFXPasswordField();
+        repeatPasswordField.setPromptText("repeat your password");
+
+
+        MFXTextField emailField = new MFXTextField();
+        emailField.setPromptText("email:");
+
+
+        MFXTextField repeatEmailField = new MFXTextField();
+        repeatEmailField.setPromptText("repeat your email:");
 
         FileChooser fileChooser = new FileChooser();
-        Button uploadButton = new Button("Subir foto de perfil");
+        Button uploadButton = new Button("Upload profile picture");
         uploadButton.setOnAction(e -> {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
@@ -453,8 +462,7 @@ public class LoggedController extends Application {
             }
         });
 
-
-        VBox vbox = new VBox(usernameField, passwordField, emailField, uploadButton);
+        VBox vbox = new VBox(usernameField, passwordField, repeatPasswordField, emailField, repeatEmailField, uploadButton);
         vbox.setSpacing(10);
 
         this.dialogContent = MFXGenericDialogBuilder.build()
@@ -466,25 +474,46 @@ public class LoggedController extends Application {
                 .initOwner(stage)
                 .initModality(Modality.APPLICATION_MODAL)
                 .setDraggable(true)
-                .setTitle("User Settings")
+                .setTitle("Configuración de usuario")
                 .setScrimPriority(ScrimPriority.WINDOW)
                 .setScrimOwner(true)
                 .get();
 
         dialogContent.addActions(
-                Map.entry(new MFXButton("Save"), event -> {
-
+                Map.entry(new MFXButton("Guardar"), event -> {
                     String username = usernameField.getText();
                     String password = passwordField.getText();
+                    String repeatPassword = repeatPasswordField.getText();
                     String email = emailField.getText();
+                    String repeatEmail = repeatEmailField.getText();
 
                     String photoUrl = "";
 
-                    saveUserSettings(username, password, email, photoUrl);
-                    dialog.close();
+                    if (isValidEmail(email) && email.equals(repeatEmail) && isValidPassword(password) && password.equals(repeatPassword)) {
+                        saveUserSettings(username, password, email, photoUrl);
+                        dialog.close();
+                    } else {
+
+                    }
                 }),
-                Map.entry(new MFXButton("Cancel"), event -> dialog.close())
+                Map.entry(new MFXButton("Cancelar"), event -> dialog.close())
         );
+
+        Scene scene = new Scene(vbox, 800, 600);
+        this.dialogContent.setContent(vbox);
+        dialog.show();
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pat = Pattern.compile(emailRegex);
+        return pat.matcher(email).matches();
+    }
+
+    private boolean isValidPassword(String password) {
+        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$";
+        Pattern pat = Pattern.compile(passwordRegex);
+        return pat.matcher(password).matches();
     }
 
     public void saveUserSettings(String username, String password, String email, String photoUrl) {
