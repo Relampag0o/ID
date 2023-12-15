@@ -45,7 +45,7 @@
                         <Image url="@../../menobackground.png" />
                      </image>
                   </ImageView>
-                   <MFXButton fx:id="settingsButton" buttonType="RAISED" layoutX="19.0" layoutY="131.0" onAction="#showUsers" prefHeight="26.0" prefWidth="26.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/settings.png'); -fx-background-color: transparent; -fx-background-size: 26.0;" text="" />
+                   <MFXButton fx:id="settingsButton" buttonType="RAISED" layoutX="19.0" layoutY="131.0" onAction="#openUserSettings" prefHeight="26.0" prefWidth="26.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/settings.png'); -fx-background-color: transparent; -fx-background-size: 26.0;" text="" />
 
                    <MFXButton fx:id="leaveButton" buttonType="RAISED" layoutX="22.0" layoutY="697.0" onAction="#logout" prefHeight="20.0" prefWidth="20.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/leave.png'); -fx-background-color: transparent; -fx-background-size: 20.0;" text="" />
                     <MFXButton fx:id="chatsButton" buttonType="RAISED" layoutX="19.0" layoutY="183.0" onAction="#showUsers" prefHeight="27.0" prefWidth="27.0" rippleColor="WHITE" style="-fx-background-image: url('file:src/main/resources/chatpink.png'); -fx-background-color: transparent; -fx-background-size: 27;" text="" />

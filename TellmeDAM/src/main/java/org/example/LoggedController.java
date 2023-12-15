@@ -26,24 +26,24 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-import org.example.api.APICallback;
-import org.example.api.ChatAPIClient;
-import org.example.api.MessageAPIClient;
-import org.example.api.UserAPIClient;
+import org.example.api.*;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 
 import java.awt.*;
 
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -89,6 +89,8 @@ public class LoggedController extends Application {
     private FilteredList<Chat> filteredChats;
 
 
+    private JFXListView<Chat> notificationListView;
+
     private MFXGenericDialog dialogContent;
     private MFXStageDialog dialog;
 
@@ -120,6 +122,7 @@ public class LoggedController extends Application {
         }, 0, 20000);
 
         userName.setText("");
+        observeNotifications();
     }
 
 
@@ -380,9 +383,134 @@ public class LoggedController extends Application {
         }
     }
 
-    public void createNotifications() {
+    public void observeNotifications() {
+        NotificationAPIClient notificationAPIClient = new NotificationAPIClient();
+        notificationAPIClient.observeNewMessages(App.userLogged.getId(), new APICallback() {
+
+            @Override
+            public void onSuccess(Object response) throws IOException {
+                System.out.println("There was an update!");
+                chats = new ArrayList<>((List<Chat>) response);
+                loadChats();
+
+
+            }
+
+            @Override
+            public void onError(Object error) {
+
+            }
+        });
 
     }
 
+    /*
+    public void openNotifications() {
+        notificationListView = new JFXListView<Chat>();
+        notificationListView.setItems(FXCollections.observableList(App.allNotifications));
+        notificationListView.setCellFactory(param -> new NotificationCellController());
+
+        this.dialogContent = MFXGenericDialogBuilder.build()
+                .setContent(notificationListView)
+                .makeScrollable(true)
+                .get();
+        this.dialog = MFXGenericDialogBuilder.build(dialogContent)
+                .toStageDialogBuilder()
+                .initOwner(stage)
+                .initModality(Modality.APPLICATION_MODAL)
+                .setDraggable(true)
+                .setTitle("Notifications Preview")
+                .setScrimPriority(ScrimPriority.WINDOW)
+                .setScrimOwner(true)
+                .get();
+
+        dialogContent.addActions(
+                Map.entry(new MFXButton("Close"), event -> dialog.close())
+        );
+    }
+
+     */
+
+    public void openUserSettings() {
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Nombre de usuario");
+        usernameField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+
+        PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Contraseña");
+        passwordField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+
+        TextField emailField = new TextField();
+        emailField.setPromptText("Correo electrónico");
+        emailField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+
+        FileChooser fileChooser = new FileChooser();
+        Button uploadButton = new Button("Subir foto de perfil");
+        uploadButton.setOnAction(e -> {
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+
+            }
+        });
+
+
+        VBox vbox = new VBox(usernameField, passwordField, emailField, uploadButton);
+        vbox.setSpacing(10);
+
+        this.dialogContent = MFXGenericDialogBuilder.build()
+                .setContent(vbox)
+                .makeScrollable(true)
+                .get();
+        this.dialog = MFXGenericDialogBuilder.build(dialogContent)
+                .toStageDialogBuilder()
+                .initOwner(stage)
+                .initModality(Modality.APPLICATION_MODAL)
+                .setDraggable(true)
+                .setTitle("User Settings")
+                .setScrimPriority(ScrimPriority.WINDOW)
+                .setScrimOwner(true)
+                .get();
+
+        dialogContent.addActions(
+                Map.entry(new MFXButton("Save"), event -> {
+
+                    String username = usernameField.getText();
+                    String password = passwordField.getText();
+                    String email = emailField.getText();
+
+                    String photoUrl = "";
+
+                    saveUserSettings(username, password, email, photoUrl);
+                    dialog.close();
+                }),
+                Map.entry(new MFXButton("Cancel"), event -> dialog.close())
+        );
+    }
+
+    public void saveUserSettings(String username, String password, String email, String photoUrl) {
+        try {
+            UserAPIClient userAPIClient = new UserAPIClient();
+
+            userAPIClient.updateUser(App.userLogged.getId(), username, password, email, photoUrl, new APICallback() {
+                @Override
+                public void onSuccess(Object response) {
+
+                    User user = (User) response;
+
+                    App.userLogged = user;
+                }
+
+                @Override
+                public void onError(Object error) {
+
+                }
+            });
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
+
+
+
