@@ -65,6 +65,7 @@ public class LoggedController extends Application {
     public MFXButton leaveButton;
     public ImageView userImage;
     public Label userName;
+    public MFXButton notificationsButton;
 
 
     private Chat currentChat;
@@ -377,6 +378,10 @@ public class LoggedController extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void createNotifications() {
+
     }
 
 
