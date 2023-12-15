@@ -434,53 +434,47 @@ public class LoggedController extends Application {
      */
 
     public void openUserSettings() {
-        MFXTextField usernameField = new MFXTextField();
-        usernameField.setPromptText("Username:");
-
-
-        MFXPasswordField passwordField = new MFXPasswordField();
-        passwordField.setPromptText("password:");
-
-
-        MFXPasswordField repeatPasswordField = new MFXPasswordField();
-        repeatPasswordField.setPromptText("repeat your password");
-
-
-        MFXTextField emailField = new MFXTextField();
-        emailField.setPromptText("email:");
-
-
-        MFXTextField repeatEmailField = new MFXTextField();
-        repeatEmailField.setPromptText("repeat your email:");
+        MFXTextField usernameField = createStyledTextField("Username:");
+        MFXPasswordField passwordField = createStyledPasswordField("Password:");
+        MFXPasswordField repeatPasswordField = createStyledPasswordField("Repeat Password:");
+        MFXTextField emailField = createStyledTextField("Email:");
+        MFXTextField repeatEmailField = createStyledTextField("Repeat Email:");
 
         FileChooser fileChooser = new FileChooser();
         Button uploadButton = new Button("Upload profile picture");
         uploadButton.setOnAction(e -> {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
-
+                // handle file selection
             }
         });
 
-        VBox vbox = new VBox(usernameField, passwordField, repeatPasswordField, emailField, repeatEmailField, uploadButton);
+        VBox vbox = new VBox(
+                createLabeledField("Username:", usernameField),
+                createLabeledField("Password:", passwordField),
+                createLabeledField("Repeat Password:", repeatPasswordField),
+                createLabeledField("Email:", emailField),
+                createLabeledField("Repeat Email:", repeatEmailField),
+                uploadButton
+        );
         vbox.setSpacing(10);
 
-        this.dialogContent = MFXGenericDialogBuilder.build()
+        dialogContent = MFXGenericDialogBuilder.build()
                 .setContent(vbox)
                 .makeScrollable(true)
                 .get();
-        this.dialog = MFXGenericDialogBuilder.build(dialogContent)
+        dialog = MFXGenericDialogBuilder.build(dialogContent)
                 .toStageDialogBuilder()
                 .initOwner(stage)
                 .initModality(Modality.APPLICATION_MODAL)
                 .setDraggable(true)
-                .setTitle("Configuración de usuario")
+                .setTitle("User Settings")
                 .setScrimPriority(ScrimPriority.WINDOW)
                 .setScrimOwner(true)
                 .get();
 
         dialogContent.addActions(
-                Map.entry(new MFXButton("Guardar"), event -> {
+                Map.entry(new MFXButton("Save"), event -> {
                     String username = usernameField.getText();
                     String password = passwordField.getText();
                     String repeatPassword = repeatPasswordField.getText();
@@ -493,16 +487,50 @@ public class LoggedController extends Application {
                         saveUserSettings(username, password, email, photoUrl);
                         dialog.close();
                     } else {
-
+                        showFieldError(usernameField, "Username is required.");
+                        showFieldError(passwordField, "Invalid password.");
+                        showFieldError(repeatPasswordField, "Passwords do not match.");
+                        showFieldError(emailField, "Invalid email address.");
+                        showFieldError(repeatEmailField, "Emails do not match.");
                     }
                 }),
-                Map.entry(new MFXButton("Cancelar"), event -> dialog.close())
+                Map.entry(new MFXButton("Cancel"), event -> dialog.close())
         );
 
         Scene scene = new Scene(vbox, 800, 600);
         this.dialogContent.setContent(vbox);
         dialog.show();
     }
+
+    private MFXTextField createStyledTextField(String promptText) {
+        MFXTextField textField = new MFXTextField();
+        textField.setPromptText(promptText);
+        textField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        return textField;
+    }
+
+    private MFXPasswordField createStyledPasswordField(String promptText) {
+        MFXPasswordField passwordField = new MFXPasswordField();
+        passwordField.setPromptText(promptText);
+        passwordField.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        return passwordField;
+    }
+
+    private void showFieldError(MFXTextField field, String errorMessage) {
+        Tooltip errorTooltip = new Tooltip(errorMessage);
+        Tooltip.install(field, errorTooltip);
+        field.setStyle("-fx-border-color: red;"); // Cambia el color del borde a rojo
+    }
+
+    private Node createLabeledField(String labelText, Node field) {
+        Label label = new Label(labelText);
+        label.setLabelFor(field); // Asocia la etiqueta con el campo
+        VBox vbox = new VBox(label, field);
+        vbox.setAlignment(Pos.CENTER); // Centra los elementos en el VBox
+        return vbox;
+    }
+
+    
 
     private boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
