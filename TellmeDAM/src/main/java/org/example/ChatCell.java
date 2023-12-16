@@ -80,27 +80,28 @@ public class ChatCell extends ListCell<Chat> {
         } else {
             idSender = chat.getUser2_id();
         }
-        for (User u : App.allUsers) {
 
+        for (User u : App.allUsers) {
             if (u.getId() == idSender) {
                 System.out.println("Found user: " + u.getUsername());
                 String imageUrl = u.getPhotourl();
-                if (imageUrl != null && !imageUrl.isEmpty()) {
-                    image.setImage(new Image(imageUrl, 50, 50, true, true, true));
-                } else {
-                    image.setImage(new Image("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", 50, 50, true, true, true));
+
+                try {
+                    if (imageUrl != null && !imageUrl.isEmpty()) {
+                        image.setImage(new Image(imageUrl, 50, 50, true, true, true));
+                    } else {
+                        image.setImage(new Image("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", 50, 50, true, true, true));
+                    }
+                } catch (IllegalArgumentException e) {
+                    // Handle the exception (e.g., print an error message or provide a default image)
+                    e.printStackTrace();
                 }
             }
         }
-        String name = "";
-        if (chat.getUser2_id() == App.userLogged.getId()) {
-            name = chat.getUser1_username();
-        } else {
-            name = chat.getUser2_username();
-        }
+
+        String name = (chat.getUser2_id() == App.userLogged.getId()) ? chat.getUser1_username() : chat.getUser2_username();
         label.setText(name);
         label.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 18; -fx-text-fill: white; ");
-
     }
 
 
