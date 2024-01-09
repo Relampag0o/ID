@@ -11,5 +11,8 @@ public class PrimaryController {
         App.setRoot("secondary");
     }
 
-
+    public void initialize() {
+        BookRepository br = new BookRepository();
+        br.getBooks();
+    }
 }
