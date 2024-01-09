@@ -1,8 +1,10 @@
+package org.example;
+
 import java.util.Date;
 
 public class Product {
     private String name;
-    private int Price;
+    private double Price;
     private int stock;
     private double weight;
 
@@ -10,9 +12,9 @@ public class Product {
 
     private String color;
     private String material;
-    private int modelNumber;
+    private String modelId;
 
-    public Product(String name, int price, int stock, double weight, Date expirationDate, String color, String material, int modelNumber) {
+    public Product(String name, double price, int stock, double weight, Date expirationDate, String color, String material, String modelId) {
         this.name = name;
         Price = price;
         this.stock = stock;
@@ -20,7 +22,7 @@ public class Product {
         this.expirationDate = expirationDate;
         this.color = color;
         this.material = material;
-        this.modelNumber = modelNumber;
+        this.modelId = modelId;
     }
 
     public String getName() {
@@ -31,11 +33,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         Price = price;
     }
 
@@ -79,17 +81,17 @@ public class Product {
         this.material = material;
     }
 
-    public int getModelNumber() {
-        return modelNumber;
+    public String getModelId() {
+        return modelId;
     }
 
-    public void setModelNumber(int modelNumber) {
-        this.modelNumber = modelNumber;
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "org.example.Product{" +
                 "name='" + name + '\'' +
                 ", Price=" + Price +
                 ", stock=" + stock +
@@ -97,7 +99,7 @@ public class Product {
                 ", expirationDate=" + expirationDate +
                 ", color='" + color + '\'' +
                 ", material='" + material + '\'' +
-                ", modelNumber=" + modelNumber +
+                ", modelId=" + modelId +
                 '}';
     }
 }

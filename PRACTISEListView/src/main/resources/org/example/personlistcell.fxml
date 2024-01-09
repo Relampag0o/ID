@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<HBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.CustomPersonCell">
+   <children>
+      <Label fx:id="nameField" prefHeight="17.0" prefWidth="105.0" text="Label" />
+      <Label fx:id="addressField" prefHeight="17.0" prefWidth="105.0" text="Label" />
+      <Label fx:id="ageField" prefHeight="17.0" prefWidth="105.0" text="Label" />
+      <TextField fx:id="infoField" maxWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" />
+   </children>
+</HBox>
