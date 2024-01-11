@@ -58,25 +58,25 @@ public class BookRepository {
         }
     }
 
-    public LinkedList<Book> getBooks() {
-        LinkedList<Book> books = new LinkedList<>();
-        PreparedStatement pst = null;
-        try {
-            pst = c.prepareStatement("SELECT * FROM libros");
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                books.add(new Book(rs.getInt("id"), rs.getString("titulo"), rs.getString("autor"), rs.getString("genero"), rs.getBoolean("prestado")));
+        public LinkedList<Book> getBooks() {
+            LinkedList<Book> books = new LinkedList<>();
+            PreparedStatement pst = null;
+            try {
+                pst = c.prepareStatement("SELECT * FROM libros");
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    books.add(new Book(rs.getInt("id"), rs.getString("titulo"), rs.getString("autor"), rs.getString("genero"), rs.getBoolean("prestado")));
+                }
+                System.out.println(books.size());
+            } catch (SQLException e) {
+                showSQLError(e);
+            } finally {
+                closeStatement(pst);
+
             }
-            System.out.println(books.size());
-        } catch (SQLException e) {
-            showSQLError(e);
-        } finally {
-            closeStatement(pst);
 
+            return books;
         }
-
-        return books;
-    }
 
     public void createBook(String title, String author, String genre, Boolean borrowed) {
         PreparedStatement pst = null;

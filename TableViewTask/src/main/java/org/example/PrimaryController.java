@@ -1,9 +1,7 @@
 package org.example;
 
 import java.io.IOException;
-<<<<<<< HEAD
 
-=======
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
->>>>>>> 5ffd43ce9202f25d51768c44326a1b76ea5ce031
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
