@@ -109,14 +109,14 @@ public class BookRepository {
 
     }
 
-    public void updateBook(int id, String title, String author, String genre, Boolean borrowed) {
+    public void updateBook(int id, String title, String author, String genre) {
         PreparedStatement pst = null;
         try {
             pst = c.prepareStatement("UPDATE libros SET titulo = ?, autor = ?, genero = ?, prestado = ? WHERE id = ?");
             pst.setString(1, title);
             pst.setString(2, author);
             pst.setString(3, genre);
-            pst.setBoolean(4, borrowed);
+            pst.setBoolean(4, false);
             pst.setInt(5, id);
             pst.executeUpdate();
         } catch (SQLException e) {

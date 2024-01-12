@@ -38,7 +38,7 @@ public class PrimaryController {
     }
 
     public void addColumns() {
-       tableView.setEditable(true);
+        tableView.setEditable(true);
         TableColumn<Book, String> titleColumn = new TableColumn<>("Title");
         TableColumn<Book, String> authorColumn = new TableColumn<>("Author");
         TableColumn<Book, String> genreColumn = new TableColumn<>("Genre");
@@ -55,13 +55,40 @@ public class PrimaryController {
         authorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         genreColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        addData();
+        importData();
     }
 
-    public void addData(){
+    public void importData() {
         BookRepository br = new BookRepository();
         observableBooksList = FXCollections.observableArrayList(br.getBooks());
         tableView.setItems(observableBooksList);
+    }
+
+    public void addBook() {
+        if (titleField != null && authorField != null && genreField != null) {
+            BookRepository br = new BookRepository();
+            br.createBook(titleField.getText(), authorField.getText(), genreField.getText(), false);
+            importData();
+        }
+    }
+
+    public void updateBook() {
+        BookRepository br = new BookRepository();
+        if (titleField != null && authorField != null && genreField != null && tableView.getSelectionModel().getSelectedItem() != null) {
+            Book selectedBook = (Book) tableView.getSelectionModel().getSelectedItem();
+            br.updateBook(selectedBook.getId(), titleField.getText(), authorField.getText(), genreField.getText());
+            importData();
+            titleField.clear(); authorField.clear(); genreField.clear();
+
+        }
+    }
+
+    public void deleteBook() {
+        BookRepository br = new BookRepository();
+        if (tableView.getSelectionModel().getSelectedItem() != null) {
+            br.deleteBook(((Book) tableView.getSelectionModel().getSelectedItem()).getId());
+            importData();
+        }
     }
 
 }
