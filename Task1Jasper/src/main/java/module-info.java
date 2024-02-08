@@ -4,6 +4,7 @@ module org.example {
 
     requires jasperreports;
     requires java.sql;
+    requires org.slf4j;
     opens org.example to javafx.fxml;
     exports org.example;
 }
