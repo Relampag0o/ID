@@ -73,7 +73,6 @@
             <MFXButton buttonType="RAISED" layoutX="60.0" layoutY="273.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-image: url('file:src/main/resources/mesa.png'); -fx-background-color: transparent;" text=" " />
             <MFXButton buttonType="RAISED" layoutX="176.0" layoutY="273.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-image: url('file:src/main/resources/mesa.png'); -fx-background-color: transparent;" text=" " />
             <MFXButton buttonType="RAISED" layoutX="175.0" layoutY="487.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-image: url('file:src/main/resources/mesa.png'); -fx-background-color: transparent;" text=" " />
-            <MFXButton buttonType="RAISED" layoutX="66.0" layoutY="579.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-image: url('file:src/main/resources/mesa.png'); -fx-background-color: transparent;" text=" " />
             <MFXButton buttonType="RAISED" layoutX="181.0" layoutY="579.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-image: url('file:src/main/resources/mesa.png'); -fx-background-color: transparent;" text=" " />
          </children>
       </AnchorPane>
