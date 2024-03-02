@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="906.0" prefWidth="1454.0" style="-fx-background-color: #44484b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.PrimaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1454.0" style="-fx-background-color: #44484b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.PrimaryController">
    <children>
-      <AnchorPane layoutX="50.0" layoutY="90.0" prefHeight="640.0" prefWidth="300.0" style="-fx-background-color: d9d9d9;">
+      <AnchorPane layoutX="32.0" layoutY="25.0" prefHeight="590.0" prefWidth="301.0" style="-fx-background-color: d9d9d9;">
          <children>
-            <AnchorPane layoutY="585.0" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: #09d60c; -fx-border-color: ;">
+            <AnchorPane layoutY="531.0" prefHeight="63.0" prefWidth="301.0" style="-fx-background-color: #09d60c; -fx-border-color: ;">
                <children>
                   <Label layoutX="66.0" layoutY="23.0" prefHeight="17.0" prefWidth="117.0" text="TOTAL: ">
                      <font>
@@ -35,10 +35,10 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ListView fx:id="tableView" layoutY="47.0" prefHeight="535.0" prefWidth="300.0" />
+            <ListView fx:id="tableView" layoutY="47.0" prefHeight="475.0" prefWidth="301.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="50.0" layoutY="767.0" prefHeight="61.0" prefWidth="300.0" style="-fx-background-color: #7db346;">
+      <AnchorPane layoutX="32.0" layoutY="625.0" prefHeight="28.0" prefWidth="301.0" style="-fx-background-color: #7db346;">
          <children>
             <Label layoutX="64.0" layoutY="10.0" prefHeight="35.0" prefWidth="205.0" text="Generar factura">
                <font>
@@ -49,316 +49,331 @@
       </AnchorPane>
       <AnchorPane layoutY="851.0" prefHeight="53.0" prefWidth="1454.0">
          <children>
-            <Label fx:id="selectTableMsg" alignment="CENTER" layoutX="-1.0" layoutY="1.0" prefHeight="53.0" prefWidth="1454.0" style="-fx-background-color: #f62205;" text="Por favor, seleccione una mesa para comenzar" textFill="#f5f5f5">
+            <Label fx:id="selectedTable" layoutX="1071.0" layoutY="19.0" prefHeight="17.0" prefWidth="96.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1093.0" layoutY="68.0" prefHeight="563.0" prefWidth="353.0" style="-fx-background-color: #3c4143;">
+         <children>
+            <Label layoutX="79.0" layoutY="51.0" prefHeight="17.0" prefWidth="36.0" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="table1" fitHeight="75.0" fitWidth="95.0" layoutX="57.0" layoutY="15.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="92.0" layoutY="53.0" prefHeight="27.0" prefWidth="46.0" text="1" textFill="#09d60c">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="selectedTable" layoutX="1071.0" layoutY="19.0" prefHeight="17.0" prefWidth="96.0" />
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="155.0" layoutY="14.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="202.0" layoutY="52.0" prefHeight="27.0" prefWidth="46.0" text="2" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="92.0" layoutY="129.0" prefHeight="27.0" prefWidth="46.0" text="4" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="56.0" layoutY="104.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="191.0" layoutY="146.0" prefHeight="27.0" prefWidth="46.0" text="5" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="154.0" layoutY="107.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="302.0" layoutY="70.0" prefHeight="27.0" prefWidth="46.0" text="3" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="250.0" layoutY="31.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="table12" fitHeight="75.0" fitWidth="95.0" layoutX="57.0" layoutY="188.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="92.0" layoutY="226.0" prefHeight="27.0" prefWidth="46.0" text="7" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="155.0" layoutY="187.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="192.0" layoutY="226.0" prefHeight="27.0" prefWidth="46.0" text="8" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="table112" fitHeight="75.0" fitWidth="95.0" layoutX="57.0" layoutY="260.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="table1112" fitHeight="75.0" fitWidth="95.0" layoutX="155.0" layoutY="263.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="91.0" layoutY="302.0" prefHeight="27.0" prefWidth="46.0" text="10" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="250.0" layoutY="106.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="288.0" layoutY="146.0" prefHeight="27.0" prefWidth="46.0" text="6" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="292.0" layoutY="226.0" prefHeight="27.0" prefWidth="46.0" text="9" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="250.0" layoutY="185.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="250.0" layoutY="260.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="288.0" layoutY="300.0" prefHeight="27.0" prefWidth="46.0" text="13" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="195.0" layoutY="300.0" prefHeight="27.0" prefWidth="46.0" text="12" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="95.0" layoutY="367.0" prefHeight="27.0" prefWidth="46.0" text="14" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="56.0" layoutY="327.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="195.0" layoutY="367.0" prefHeight="27.0" prefWidth="46.0" text="15" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="154.0" layoutY="327.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="250.0" layoutY="327.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../mesa.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="292.0" layoutY="367.0" prefHeight="27.0" prefWidth="46.0" text="16" textFill="#09d60c">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="470.0" prefHeight="53.0" prefWidth="675.0" text="Bienvenido al restaurante de Relampago!" textFill="#f5f5f5">
+      <Label alignment="CENTER" layoutX="645.0" layoutY="27.0" prefHeight="17.0" prefWidth="164.0" text="Bebidas" textFill="#f2f2f2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="645.0" layoutY="349.0" prefHeight="17.0" prefWidth="164.0" text="Comidas" textFill="#f2f2f2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="509.0" layoutY="160.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="540.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="392.0" layoutY="160.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fx:id="sanMiguel1" fitHeight="90.0" fitWidth="68.0" layoutX="423.0" layoutY="70.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="761.0" layoutY="160.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="792.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="644.0" layoutY="160.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="675.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="987.0" layoutY="160.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="1018.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="870.0" layoutY="160.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="901.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="509.0" layoutY="270.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="540.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="392.0" layoutY="270.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="423.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="761.0" layoutY="270.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="792.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="644.0" layoutY="270.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="675.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="989.0" layoutY="269.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="1018.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="872.0" layoutY="269.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="901.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="422.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="761.0" layoutY="479.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="791.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="644.0" layoutY="479.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="674.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="987.0" layoutY="479.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="1017.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="870.0" layoutY="479.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="900.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="509.0" layoutY="632.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="539.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="392.0" layoutY="632.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="422.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="761.0" layoutY="632.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="791.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="644.0" layoutY="632.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="674.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="987.0" layoutY="632.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="1017.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="870.0" layoutY="632.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="900.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="509.0" layoutY="479.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
+      <ImageView fitHeight="90.0" fitWidth="68.0" layoutX="539.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sanmiguel.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="392.0" layoutY="479.0" prefHeight="20.0" prefWidth="117.0" text="Hamburguesa" textFill="#f2f2f2" />
+      <Label fx:id="selectTableMsg" alignment="CENTER" layoutX="-110.0" layoutY="682.0" prefHeight="53.0" prefWidth="1564.0" style="-fx-background-color: #f62205;" text="Por favor, seleccione una mesa para comenzar" textFill="#f5f5f5">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="1131.0" layoutY="90.0" prefHeight="730.0" prefWidth="313.0" style="-fx-background-color: #3c4143;">
-         <children>
-            <Label alignment="CENTER" layoutX="118.0" layoutY="25.0" prefHeight="27.0" prefWidth="81.0" text="Terraza" textFill="#f8f8f8">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="116.0" layoutY="376.0" prefHeight="27.0" prefWidth="81.0" text="Bar" textFill="#f8f8f8">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="72.0" layoutY="98.0" prefHeight="17.0" prefWidth="36.0" text="1">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="table1" fitHeight="100.0" fitWidth="95.0" layoutX="50.0" layoutY="62.0" onMouseClicked="#selectTable" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="72.0" layoutY="90.0" prefHeight="27.0" prefWidth="46.0" text="1" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="199.0" layoutY="58.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="221.0" layoutY="86.0" prefHeight="27.0" prefWidth="46.0" text="2" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="50.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="72.0" layoutY="188.0" prefHeight="27.0" prefWidth="46.0" text="3" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="199.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="221.0" layoutY="188.0" prefHeight="27.0" prefWidth="46.0" text="4" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="50.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="72.0" layoutY="289.0" prefHeight="27.0" prefWidth="46.0" text="5" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="199.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="221.0" layoutY="289.0" prefHeight="27.0" prefWidth="46.0" text="6" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="72.0" layoutY="455.0" prefHeight="17.0" prefWidth="36.0" text="1">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="50.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="72.0" layoutY="447.0" prefHeight="27.0" prefWidth="46.0" text="7" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="199.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="221.0" layoutY="443.0" prefHeight="27.0" prefWidth="46.0" text="8" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="50.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="72.0" layoutY="545.0" prefHeight="27.0" prefWidth="46.0" text="9" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="199.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="221.0" layoutY="545.0" prefHeight="27.0" prefWidth="46.0" text="10" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="50.0" layoutY="618.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="72.0" layoutY="646.0" prefHeight="27.0" prefWidth="46.0" text="11" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="100.0" fitWidth="95.0" layoutX="199.0" layoutY="618.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../mesa.png" />
-               </image>
-            </ImageView>
-            <Label alignment="CENTER" layoutX="221.0" layoutY="646.0" prefHeight="27.0" prefWidth="46.0" text="12" textFill="#09d60c">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <Label alignment="CENTER" layoutX="645.0" layoutY="90.0" prefHeight="17.0" prefWidth="164.0" text="Bebidas" textFill="#f2f2f2">
+      <Label alignment="CENTER" layoutX="1173.0" layoutY="27.0" prefHeight="17.0" prefWidth="164.0" text="Mesas" textFill="#f2f2f2">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="645.0" layoutY="477.0" prefHeight="17.0" prefWidth="164.0" text="Comidas" textFill="#f2f2f2">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="510.0" layoutY="263.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="540.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="393.0" layoutY="263.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fx:id="sanMiguel1" fitHeight="126.0" fitWidth="68.0" layoutX="423.0" layoutY="137.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="762.0" layoutY="263.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="792.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="645.0" layoutY="263.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="675.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="988.0" layoutY="263.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="1018.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="871.0" layoutY="263.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="901.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="510.0" layoutY="435.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="540.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="393.0" layoutY="435.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="423.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="762.0" layoutY="435.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="792.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="645.0" layoutY="435.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="675.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="988.0" layoutY="435.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="1018.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="871.0" layoutY="435.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="901.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="423.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="762.0" layoutY="647.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="792.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="645.0" layoutY="647.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="675.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="988.0" layoutY="647.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="1018.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="871.0" layoutY="647.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="901.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="510.0" layoutY="819.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="540.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="393.0" layoutY="819.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="423.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="762.0" layoutY="819.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="792.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="645.0" layoutY="819.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="675.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="988.0" layoutY="819.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="1018.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="871.0" layoutY="819.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="901.0" layoutY="693.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="510.0" layoutY="647.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="126.0" fitWidth="68.0" layoutX="540.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@sanmiguel.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="393.0" layoutY="647.0" prefHeight="20.0" prefWidth="117.0" text="Hamburguesa" textFill="#f2f2f2" />
    </children>
 </AnchorPane>
