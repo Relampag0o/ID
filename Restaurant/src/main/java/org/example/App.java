@@ -19,6 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        /*
         Screen screen = Screen.getPrimary();
 
         double width = screen.getBounds().getWidth();
@@ -27,7 +28,9 @@ public class App extends Application {
         stage.setWidth(width);
         stage.setHeight(height * 0.93);
 
-        scene = new Scene(loadFXML("primary"));
+         */
+
+        scene = new Scene(loadFXML("mainDisplay"));
         stage.setScene(scene);
         stage.show();
     }
