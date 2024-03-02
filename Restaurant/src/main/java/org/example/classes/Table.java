@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Table {
-    private int id;
+    private String id;
     private String name;
     private double total;
 
     public List<Product> products;
 
 
-    public Table(int id, String name) {
+    public Table(String id, String name) {
         this.id = id;
         this.name = name;
         this.total = 0;
         this.products = new ArrayList<Product>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
