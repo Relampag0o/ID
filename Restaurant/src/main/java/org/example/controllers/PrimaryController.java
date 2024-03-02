@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.palexdev.mfxcore.controls.Label;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +25,7 @@ public class PrimaryController {
 
     @FXML
     public ImageView table1;
+    public Label selectTableMsg;
 
 
     private List<Table> tables;
@@ -42,6 +44,7 @@ public class PrimaryController {
         App.setRoot("secondary");
     }
 
+
     @FXML
     public void selectProduct(MouseEvent event) {
         ImageView clickedImageView = (ImageView) event.getSource();
@@ -58,15 +61,18 @@ public class PrimaryController {
 
     @FXML
     public void selectTable(MouseEvent event) {
-        System.out.println("selectTable event");
         ImageView clickedImageView = (ImageView) event.getSource();
         String id = clickedImageView.getId();
         Table table = connector.findTable(id);
         if (table != null) {
             System.out.println("Table selected: " + table.getName());
             selectedTablee = table;
+            selectTableMsg.setText("Table selected: " + table.getName());
+            selectTableMsg.setStyle("-fx-background-color: #yourColor;"); // replace 'yourColor' with your desired color
         } else {
             System.out.println("No table found with id: " + id);
+            selectTableMsg.setText("No table found with id: " + id);
+            selectTableMsg.setStyle("-fx-background-color: #yourColor;"); // replace 'yourColor' with your desired color
         }
     }
 
