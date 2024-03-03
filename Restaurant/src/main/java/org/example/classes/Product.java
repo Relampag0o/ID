@@ -23,11 +23,11 @@ public class Product {
         return id;
     }
 
-    public int getQuantity() { // Add this method
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) { // Add this method
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

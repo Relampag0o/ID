@@ -22,6 +22,8 @@ public class PrimaryController {
 
     @FXML
     public ImageView sanMiguel1;
+    @FXML
+    public ImageView alhambra1;
 
 
     // TABLES
