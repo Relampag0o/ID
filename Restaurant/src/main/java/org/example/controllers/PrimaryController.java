@@ -68,6 +68,7 @@ public class PrimaryController {
             System.out.println("Product selected: " + product.getName() + " - " + product.getPrice());
             selectedProduct = product;
             addProductToTable();
+            updateProductList();
         } else {
             System.out.println("No product found with id: " + id);
         }
@@ -112,6 +113,13 @@ public class PrimaryController {
             System.out.println("Product added to table: " + selectedTablee.getName());
         } else {
             System.out.println("No table or product selected");
+        }
+    }
+
+    public void updateProductList() {
+        if (selectedTablee != null) {
+            List<Product> products = connector.getProducts(selectedTablee.getId());
+            productsListView.setItems(FXCollections.observableArrayList(products));
         }
     }
 
