@@ -46,7 +46,7 @@ public class Connector {
             if (resultSet.next()) {
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
-                product = new Product(id, name, price);
+                product = new Product(id, name, price,1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,9 +86,9 @@ public class Connector {
         }
     }
 
-    public List<Product> getProducts( String tableId) {
+    public List<Product> getProducts(String tableId) {
         List<Product> products = new ArrayList<Product>();
-        String query = "SELECT * FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ?";
+        String query = "SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ? GROUP BY product.id";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -96,10 +96,11 @@ public class Connector {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                String id = resultSet.getString("id");
-                String name = resultSet.getString("name");
-                double price = resultSet.getDouble("price");
-                Product product = new Product(id, name, price);
+                Product product = new Product();
+                product.setId(resultSet.getString("id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setQuantity(resultSet.getInt("quantity")); // Add this line
                 products.add(product);
             }
         } catch (SQLException e) {

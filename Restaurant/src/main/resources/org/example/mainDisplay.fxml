@@ -186,10 +186,10 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="587.0" layoutY="181.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />
-      <ImageView fitHeight="110.0" fitWidth="75.0" layoutX="615.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+      <Label alignment="CENTER" layoutX="587.0" layoutY="181.0" prefHeight="20.0" prefWidth="117.0" text="Alhambra" textFill="#f2f2f2" />
+      <ImageView fitHeight="110.0" fitWidth="47.0" layoutX="633.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@sanmiguel.png" />
+            <Image url="@alhambra-removebg-preview.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="470.0" layoutY="181.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2" />

@@ -48,7 +48,15 @@ public class Table {
     }
 
     public void addProduct(Product product){
-        this.products.put(product,1);
+        if (this.products.containsKey(product)) {
+            // If the product is already in the list, increment the quantity by 1
+            this.products.put(product, this.products.get(product) + 1);
+        } else {
+            // If the product is not in the list, add it with a quantity of 1
+            this.products.put(product, 1);
+        }
+
+        // Update the total price
         this.total += product.getPrice();
         connector.insertTableProduct(this, product);
     }

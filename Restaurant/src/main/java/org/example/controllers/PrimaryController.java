@@ -34,14 +34,14 @@ public class PrimaryController {
 
     private List<Table> tables;
 
-    private Table selectedTablee;
+    public Table selectedTablee;
     private Product selectedProduct;
     private Connector connector;
 
     public void initialize() {
         this.tables = new ArrayList<Table>();
         this.connector = new Connector();
-        productsListView.setCellFactory(param -> new CustomProductCell());
+        productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
 
     }
 
@@ -76,6 +76,7 @@ public class PrimaryController {
             selectTableMsg.setText("Table selected: " + table.getName());
             selectTableMsg.setStyle("-fx-background-color: #00000;");
             List<Product> products = connector.getProducts(selectedTablee.getId());
+            productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
             productsListView.setItems(FXCollections.observableArrayList(products));
 
         } else {
