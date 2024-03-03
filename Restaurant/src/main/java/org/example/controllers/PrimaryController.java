@@ -8,6 +8,7 @@ import io.github.palexdev.mfxcore.controls.Label;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import org.example.App;
@@ -28,8 +29,13 @@ public class PrimaryController {
 
     // TABLES
 
+    private ImageView previouslySelectedTable;
+
     @FXML
     public ImageView table1;
+
+    @FXML
+    public ImageView table2;
     public Label selectTableMsg;
     public ListView productsListView;
 
@@ -76,15 +82,27 @@ public class PrimaryController {
             System.out.println("Table selected: " + table.getName());
             selectedTablee = table;
             selectTableMsg.setText("Table selected: " + table.getName());
-            selectTableMsg.setStyle("-fx-background-color: #00000;");
+            selectTableMsg.setStyle("-fx-background-color: #F08080; -fx-border-color: #000000;");
             List<Product> products = connector.getProducts(selectedTablee.getId());
             productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
             productsListView.setItems(FXCollections.observableArrayList(products));
 
+            if (previouslySelectedTable != null) {
+                previouslySelectedTable.setEffect(null);
+            }
+
+            ColorAdjust colorAdjust = new ColorAdjust();
+            colorAdjust.setBrightness(0.5);
+            clickedImageView.setEffect(colorAdjust);
+
+            previouslySelectedTable = clickedImageView;
+
+
+
         } else {
             System.out.println("No table found with id: " + id);
             selectTableMsg.setText("No table found with id: " + id);
-            selectTableMsg.setStyle("-fx-background-color: #00000;");
+            selectTableMsg.setStyle("-fx-background-color: #FFFFE0; -fx-border-color: #000000;");
         }
     }
 

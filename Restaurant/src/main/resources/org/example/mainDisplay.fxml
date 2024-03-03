@@ -11,7 +11,7 @@
    <children>
       <AnchorPane layoutX="32.0" layoutY="25.0" prefHeight="590.0" prefWidth="301.0" style="-fx-background-color: d9d9d9;">
          <children>
-            <AnchorPane layoutY="524.0" prefHeight="70.0" prefWidth="367.0" style="-fx-background-color: #09d60c; -fx-border-color: ;">
+            <AnchorPane layoutY="524.0" prefHeight="70.0" prefWidth="367.0" style="-fx-background-color: #09d60c;">
                <children>
                   <Label layoutX="131.0" layoutY="12.0" prefHeight="53.0" prefWidth="153.0" text="TOTAL: ">
                      <font>
@@ -69,7 +69,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <ImageView fitHeight="100.0" fitWidth="110.0" layoutX="135.0" layoutY="51.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="table2" fitHeight="100.0" fitWidth="110.0" layoutX="135.0" layoutY="51.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../mesa.png" />
                </image>
