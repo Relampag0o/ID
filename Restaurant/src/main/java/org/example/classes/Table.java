@@ -1,6 +1,7 @@
 package org.example.classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Table {
@@ -8,14 +9,14 @@ public class Table {
     private String name;
     private double total;
 
-    public List<Product> products;
+    public HashMap<Product,Integer> products;
 
 
     public Table(String id, String name) {
         this.id = id;
         this.name = name;
         this.total = 0;
-        this.products = new ArrayList<Product>();
+        this.products = new HashMap<Product,Integer>();
     }
 
     public String getId() {
@@ -43,7 +44,7 @@ public class Table {
     }
 
     public void addProduct(Product product){
-        this.products.add(product);
+        this.products.put(product,1);
         this.total += product.getPrice();
     }
 

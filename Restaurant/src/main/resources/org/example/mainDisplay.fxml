@@ -35,7 +35,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ListView fx:id="tableView" layoutY="47.0" prefHeight="475.0" prefWidth="301.0" />
+            <ListView fx:id="productsListView" layoutY="47.0" prefHeight="475.0" prefWidth="301.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="32.0" layoutY="625.0" prefHeight="28.0" prefWidth="301.0" style="-fx-background-color: #7db346;">
