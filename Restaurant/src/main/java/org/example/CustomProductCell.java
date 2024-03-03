@@ -8,11 +8,11 @@ import org.example.controllers.ProductCellController;
 
 import java.util.Map;
 
-public class CustomProductCell extends ListCell<Map.Entry<Product, Integer>> {
+public class CustomProductCell extends ListCell<Product> {
     @Override
-    protected void updateItem(Map.Entry<Product, Integer> item, boolean empty) {
-        super.updateItem(item, empty);
-        if (empty || item == null) {
+    protected void updateItem(Product product, boolean empty) {
+        super.updateItem(product, empty);
+        if (empty || product == null) {
             setText(null);
             setGraphic(null);
         } else {
@@ -20,14 +20,11 @@ public class CustomProductCell extends ListCell<Map.Entry<Product, Integer>> {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/productCell.fxml"));
                 Parent root = loader.load();
                 ProductCellController controller = loader.getController();
-                Product product = item.getKey();
-                Integer quantity = item.getValue();
-                controller.setProductDetails(product.getName(), quantity.toString(), String.valueOf(product.getPrice() * quantity));
+                controller.setProductDetails(product.getName(), "1", String.valueOf(product.getPrice()));
                 setGraphic(root);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-
 }
