@@ -1,5 +1,7 @@
 package org.example.classes;
 
+import org.example.database.Connector;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +11,7 @@ public class Table {
     private String name;
     private double total;
 
+    private Connector connector;
     public HashMap<Product,Integer> products;
 
 
@@ -17,6 +20,7 @@ public class Table {
         this.name = name;
         this.total = 0;
         this.products = new HashMap<Product,Integer>();
+        this.connector = new Connector();
     }
 
     public String getId() {
@@ -46,6 +50,7 @@ public class Table {
     public void addProduct(Product product){
         this.products.put(product,1);
         this.total += product.getPrice();
+        connector.insertTableProduct(this, product);
     }
 
     public void removeProduct(Product product){

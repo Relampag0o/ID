@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.palexdev.mfxcore.controls.Label;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import org.example.App;
@@ -26,6 +28,7 @@ public class PrimaryController {
     @FXML
     public ImageView table1;
     public Label selectTableMsg;
+    public ListView productsListView;
 
 
     private List<Table> tables;
@@ -68,11 +71,14 @@ public class PrimaryController {
             System.out.println("Table selected: " + table.getName());
             selectedTablee = table;
             selectTableMsg.setText("Table selected: " + table.getName());
-            selectTableMsg.setStyle("-fx-background-color: #yourColor;"); // replace 'yourColor' with your desired color
+            selectTableMsg.setStyle("-fx-background-color: #00000;");
+            List<Product> products = connector.getProducts(selectedTablee.getId());
+            productsListView.setItems(FXCollections.observableArrayList(products));
+
         } else {
             System.out.println("No table found with id: " + id);
             selectTableMsg.setText("No table found with id: " + id);
-            selectTableMsg.setStyle("-fx-background-color: #yourColor;"); // replace 'yourColor' with your desired color
+            selectTableMsg.setStyle("-fx-background-color: #00000;");
         }
     }
 

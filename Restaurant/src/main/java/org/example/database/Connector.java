@@ -4,6 +4,8 @@ import org.example.classes.Product;
 import org.example.classes.Table;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Connector {
 
@@ -70,6 +72,40 @@ public class Connector {
             e.printStackTrace();
         }
         return table;
+    }
+
+    public void insertTableProduct(Table table, Product product) {
+        String query = "INSERT INTO table_product (tablee_id, product_id) VALUES (?, ?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, table.getId());
+            preparedStatement.setString(2, product.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Product> getProducts( String tableId) {
+        List<Product> products = new ArrayList<Product>();
+        String query = "SELECT * FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, tableId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String name = resultSet.getString("name");
+                double price = resultSet.getDouble("price");
+                Product product = new Product(id, name, price);
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
     }
 
     public void closeConnection() {
