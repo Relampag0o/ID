@@ -31,8 +31,16 @@ CREATE TABLE table_product (
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
-
+# Insert data into the product table
 INSERT INTO product (id, name, price) VALUES ('sanMiguel1', 'San Miguel', 2.80);
+INSERT INTO product (id, name, price) VALUES ('alhambra1', 'Alhambra', 3.50);
+
+# Insert data into the tablee table
+
 INSERT INTO tablee (id, name) VALUES ('table1', 'Table 1');
+INSERT INTO tablee (id, name) VALUES ('table2', 'Table 2');
+
+
+
 
 select * from tablee;
