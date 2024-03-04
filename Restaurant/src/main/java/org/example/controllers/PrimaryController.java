@@ -36,7 +36,15 @@ public class PrimaryController {
 
     @FXML
     public ImageView table2;
+
+
+    // LABELS:
+    @FXML
     public Label selectTableMsg;
+
+    @FXML
+    public Label totalLabel;
+
     public ListView productsListView;
 
 
@@ -97,7 +105,6 @@ public class PrimaryController {
             clickedImageView.setEffect(colorAdjust);
 
             previouslySelectedTable = clickedImageView;
-
 
 
         } else {
