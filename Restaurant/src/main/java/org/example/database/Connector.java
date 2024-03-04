@@ -123,6 +123,17 @@ public class Connector {
         }
     }
 
+    public void clearTableProducts(Table table) {
+        String query = "DELETE FROM table_product WHERE tablee_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, table.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void closeConnection() {
         try {
             this.connection.close();

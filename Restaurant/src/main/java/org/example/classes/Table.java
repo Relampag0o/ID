@@ -13,15 +13,14 @@ public class Table {
     private double total;
 
     private Connector connector;
-    public HashMap<Product,Integer> products;
-
+    public HashMap<Product, Integer> products;
 
 
     public Table(String id, String name) {
         this.id = id;
         this.name = name;
         this.total = 0;
-        this.products = new HashMap<Product,Integer>();
+        this.products = new HashMap<Product, Integer>();
         this.connector = new Connector();
     }
 
@@ -49,7 +48,7 @@ public class Table {
         this.total = total;
     }
 
-    public void addProduct(Product product){
+    public void addProduct(Product product) {
         if (this.products.containsKey(product)) {
             // If the product is already in the list, increment the quantity by 1
             this.products.put(product, this.products.get(product) + 1);
@@ -64,7 +63,7 @@ public class Table {
         connector.updateTableTotal(this);
     }
 
-    public void removeProduct(Product product){
+    public void removeProduct(Product product) {
         this.total -= product.getPrice();
         connector.updateTableTotal(this);
     }
@@ -76,6 +75,14 @@ public class Table {
         }
         return total;
     }
+
+    public void clearTable() {
+        this.products.clear();
+        this.total = 0;
+        connector.clearTableProducts(this);
+        connector.updateTableTotal(this);
+    }
+
 
     @Override
     public String toString() {

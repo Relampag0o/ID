@@ -7,6 +7,7 @@ import java.util.List;
 import io.github.palexdev.mfxcore.controls.Label;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,7 @@ public class PrimaryController {
     public ImageView sanMiguel1;
     @FXML
     public ImageView alhambra1;
+    public Button clearButton;
 
 
     // TABLES
@@ -58,6 +60,7 @@ public class PrimaryController {
         this.tables = new ArrayList<Table>();
         this.connector = new Connector();
         productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
+        clearButton.setVisible(false);
 
     }
 
@@ -93,6 +96,7 @@ public class PrimaryController {
             selectedTablee = table;
             selectTableMsg.setText("Table selected: " + table.getName());
             selectTableMsg.setStyle("-fx-background-color: #F08080; -fx-border-color: #000000;");
+            clearButton.setVisible(true);
             List<Product> products = connector.getProducts(selectedTablee.getId());
             productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
             productsListView.setItems(FXCollections.observableArrayList(products));
@@ -134,12 +138,20 @@ public class PrimaryController {
 
     public void updateTotalLabel() {
         if (selectedTablee != null) {
-            double total = selectedTablee.getTotal(); // Use the getTotal method here
+            double total = selectedTablee.getTotal();
             totalLabel.setText(total + "€");
         } else {
             totalLabel.setText("No table selected");
         }
     }
 
+    @FXML
+    public void clearTable() {
+        if (selectedTablee != null) {
+            selectedTablee.clearTable();
+            updateProductList();
+            updateTotalLabel();
+        }
+    }
 
 }
