@@ -31,6 +31,17 @@ CREATE TABLE table_product (
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
+CREATE TABLE Report (
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    tableId VARCHAR(255) NOT NULL,
+    productId VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    totalPrice DECIMAL(10, 2) NOT NULL,
+    transactionTime TIMESTAMP NOT NULL,
+    FOREIGN KEY (tableId) REFERENCES tablee(id),
+    FOREIGN KEY (productId) REFERENCES product(id)
+);
+
 
 INSERT INTO product (id, name, price) VALUES ('sanMiguel1', 'San Miguel', 2.80);
 INSERT INTO product (id, name, price) VALUES ('alhambra1', 'Alhambra', 3.50);

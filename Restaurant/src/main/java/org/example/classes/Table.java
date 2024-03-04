@@ -2,10 +2,8 @@ package org.example.classes;
 
 import org.example.database.Connector;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class Table {
     private String id;
@@ -61,11 +59,21 @@ public class Table {
         this.total += product.getPrice();
         connector.insertTableProduct(this, product);
         connector.updateTableTotal(this);
+
+        Report report = new Report(UUID.randomUUID().toString(), this.id, product.getId(), this.products.get(product), product.getPrice() * this.products.get(product), LocalDateTime.now());
+        connector.insertReport(report);
+
+
+
+
     }
 
     public void removeProduct(Product product) {
         this.total -= product.getPrice();
         connector.updateTableTotal(this);
+
+        Report report = new Report(UUID.randomUUID().toString(), this.id, product.getId(), -1, -product.getPrice(), LocalDateTime.now());
+        connector.insertReport(report);
     }
 
     public double calculateTotal() {

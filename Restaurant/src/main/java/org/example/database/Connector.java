@@ -1,6 +1,7 @@
 package org.example.database;
 
 import org.example.classes.Product;
+import org.example.classes.Report;
 import org.example.classes.Table;
 
 import java.sql.*;
@@ -128,6 +129,22 @@ public class Connector {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, table.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insertReport(Report report) {
+        String query = "INSERT INTO Report (id, tableId, productId, quantity, totalPrice, transactionTime) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, report.getId());
+            preparedStatement.setString(2, report.getTableId());
+            preparedStatement.setString(3, report.getProductId());
+            preparedStatement.setInt(4, report.getQuantity());
+            preparedStatement.setDouble(5, report.getPrice());
+            preparedStatement.setTimestamp(6, Timestamp.valueOf(report.getTransactionTime()));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
