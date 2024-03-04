@@ -77,6 +77,7 @@ public class PrimaryController {
             selectedProduct = product;
             addProductToTable();
             updateProductList();
+            updateTotalLabel();
         } else {
             System.out.println("No product found with id: " + id);
         }
@@ -105,7 +106,7 @@ public class PrimaryController {
             clickedImageView.setEffect(colorAdjust);
 
             previouslySelectedTable = clickedImageView;
-
+            updateTotalLabel();
 
         } else {
             System.out.println("No table found with id: " + id);
@@ -120,6 +121,7 @@ public class PrimaryController {
             System.out.println("Product added to table: " + selectedTablee.getName());
         } else {
             System.out.println("No table or product selected");
+            updateTotalLabel();
         }
     }
 
@@ -127,6 +129,15 @@ public class PrimaryController {
         if (selectedTablee != null) {
             List<Product> products = connector.getProducts(selectedTablee.getId());
             productsListView.setItems(FXCollections.observableArrayList(products));
+        }
+    }
+
+    public void updateTotalLabel() {
+        if (selectedTablee != null) {
+            double total = selectedTablee.getTotal(); // Use the getTotal method here
+            totalLabel.setText(total + "€");
+        } else {
+            totalLabel.setText("No table selected");
         }
     }
 

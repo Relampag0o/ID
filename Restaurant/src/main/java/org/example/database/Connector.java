@@ -66,7 +66,9 @@ public class Connector {
 
             if (resultSet.next()) {
                 String name = resultSet.getString("name");
+                double total = resultSet.getDouble("total"); // Retrieve the total from the database
                 table = new Table(id, name);
+                table.setTotal(total); // Set the total
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,6 +109,18 @@ public class Connector {
             e.printStackTrace();
         }
         return products;
+    }
+
+    public void updateTableTotal(Table table) {
+        String query = "UPDATE tablee SET total = ? WHERE id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setDouble(1, table.getTotal());
+            preparedStatement.setString(2, table.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void closeConnection() {

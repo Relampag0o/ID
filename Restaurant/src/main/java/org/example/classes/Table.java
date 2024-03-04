@@ -5,6 +5,7 @@ import org.example.database.Connector;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Table {
     private String id;
@@ -13,6 +14,7 @@ public class Table {
 
     private Connector connector;
     public HashMap<Product,Integer> products;
+
 
 
     public Table(String id, String name) {
@@ -59,11 +61,20 @@ public class Table {
         // Update the total price
         this.total += product.getPrice();
         connector.insertTableProduct(this, product);
+        connector.updateTableTotal(this);
     }
 
     public void removeProduct(Product product){
-        this.products.remove(product);
         this.total -= product.getPrice();
+        connector.updateTableTotal(this);
+    }
+
+    public double calculateTotal() {
+        double total = 0.0;
+        for (Map.Entry<Product, Integer> entry : this.products.entrySet()) {
+            total += entry.getKey().getPrice() * entry.getValue();
+        }
+        return total;
     }
 
     @Override
