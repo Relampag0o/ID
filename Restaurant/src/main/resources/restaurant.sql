@@ -50,5 +50,6 @@ INSERT INTO tablee (id, name) VALUES ('table1', 'Table 1');
 INSERT INTO tablee (id, name) VALUES ('table2', 'Table 2');
 
 ALTER TABLE tablee ADD total DECIMAL(10, 2) NOT NULL DEFAULT 0.0;
-
+ALTER TABLE Report DROP COLUMN total;
 select * from tablee;
+select * from report;
