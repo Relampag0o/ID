@@ -14,14 +14,14 @@
          <children>
             <AnchorPane layoutY="524.0" prefHeight="70.0" prefWidth="367.0" style="-fx-background-color: #09d60c;">
                <children>
-                  <Label layoutX="131.0" layoutY="12.0" prefHeight="53.0" prefWidth="153.0" text="TOTAL: ">
+                  <Label layoutX="220.0" layoutY="8.0" prefHeight="53.0" prefWidth="108.0" text="TOTAL: ">
                      <font>
-                        <Font size="36.0" />
+                        <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="totalLabel" layoutX="295.0" layoutY="26.0" prefHeight="18.0" prefWidth="63.0">
+                  <Label fx:id="totalLabel" layoutX="304.0" layoutY="17.0" prefHeight="35.0" prefWidth="48.0">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="24.0" />
                      </font>
                   </Label>
                </children>
@@ -327,6 +327,6 @@
             <Image url="@sanmiguel.png" />
          </image>
       </ImageView>
-      <Button fx:id="clearButton"  onAction="#clearTable" layoutX="976.0" layoutY="704.0" mnemonicParsing="false" text="Limpiar mesa" />
+      <Button fx:id="clearButton" layoutX="976.0" layoutY="704.0" mnemonicParsing="false" onAction="#clearTable" text="Limpiar mesa" />
    </children>
 </AnchorPane>
