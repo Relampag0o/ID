@@ -17,6 +17,8 @@ import org.example.CustomProductCell;
 import org.example.classes.Product;
 import org.example.classes.Table;
 import org.example.database.Connector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PrimaryController {
 
@@ -142,6 +144,14 @@ public class PrimaryController {
             totalLabel.setText(total + "€");
         } else {
             totalLabel.setText("No table selected");
+        }
+    }
+
+    public void generateReport() {
+        if (selectedTablee != null) {
+            connector.generateReport(selectedTablee);
+        } else {
+            System.out.println("No table selected");
         }
     }
 

@@ -44,7 +44,7 @@
             <ListView fx:id="productsListView" layoutY="47.0" prefHeight="475.0" prefWidth="367.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="32.0" layoutY="625.0" prefHeight="45.0" prefWidth="367.0" style="-fx-background-color: #7db346;">
+      <AnchorPane layoutX="32.0" layoutY="625.0" onMouseClicked="#generateReport" prefHeight="45.0" prefWidth="367.0" style="-fx-background-color: #7db346;">
          <children>
             <Label layoutX="81.0" layoutY="5.0" prefHeight="35.0" prefWidth="205.0" text="Generar factura">
                <font>

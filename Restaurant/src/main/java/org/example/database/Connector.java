@@ -1,12 +1,18 @@
 package org.example.database;
 
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.example.classes.Product;
 import org.example.classes.Report;
 import org.example.classes.Table;
 
+import java.io.InputStream;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Connector {
 
@@ -150,6 +156,54 @@ public class Connector {
             e.printStackTrace();
         }
     }
+
+    public void generateReport(Table table) {
+        try {
+            // Load the JasperReport template from the resources folder
+            InputStream reportStream = getClass().getResourceAsStream("/report_template.jrxml");
+            JasperReport report = JasperCompileManager.compileReport(reportStream);
+
+            // Fetch the data from the Report table in the database for the selected table
+            List<Report> reports = fetchReports(table);
+
+            // Fill the report with data
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("tableId", table.getId());
+            JasperPrint print = JasperFillManager.fillReport(report, parameters, new JRBeanCollectionDataSource(reports));
+
+            // Export the report to a PDF file
+            JasperExportManager.exportReportToPdfFile(print, "report_" + table.getId() + ".pdf");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
+    public List<Report> fetchReports(Table table) {
+        List<Report> reports = new ArrayList<>();
+        String query = "SELECT * FROM Report WHERE tableId = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, table.getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String tableId = resultSet.getString("tableId");
+                String productId = resultSet.getString("productId");
+                int quantity = resultSet.getInt("quantity");
+                double price = resultSet.getDouble("totalPrice");
+                LocalDateTime transactionTime = resultSet.getTimestamp("transactionTime").toLocalDateTime();
+
+                Report report = new Report(id, tableId, productId, quantity, price, transactionTime);
+                reports.add(report);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return reports;
+    }
+
 
     public void closeConnection() {
         try {
