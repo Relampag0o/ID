@@ -2,6 +2,7 @@ package org.example.database;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 import org.example.classes.Product;
 import org.example.classes.Report;
 import org.example.classes.Table;
@@ -83,12 +84,13 @@ public class Connector {
         return table;
     }
 
-    public void insertTableProduct(Table table, Product product) {
-        String query = "INSERT INTO table_product (tablee_id, product_id) VALUES (?, ?)";
+    public void insertTableProduct(Table table, Product product, int quantity) {
+        String query = "INSERT INTO table_product (tablee_id, product_id, quantity) VALUES (?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, table.getId());
             preparedStatement.setString(2, product.getId());
+            preparedStatement.setInt(3, quantity);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,7 +111,7 @@ public class Connector {
                 product.setId(resultSet.getString("id"));
                 product.setName(resultSet.getString("name"));
                 product.setPrice(resultSet.getDouble("price"));
-                product.setQuantity(resultSet.getInt("quantity")); // Add this line
+                product.setQuantity(resultSet.getInt("quantity"));
                 products.add(product);
             }
         } catch (SQLException e) {
@@ -160,16 +162,20 @@ public class Connector {
     public void generateReport(Table table) {
         try {
             // Load the JasperReport template from the resources folder
-            InputStream reportStream = getClass().getResourceAsStream("/report_template.jrxml");
+            InputStream reportStream = getClass().getResourceAsStream("/tableReport.jrxml");
             JasperReport report = JasperCompileManager.compileReport(reportStream);
 
             // Fetch the data from the Report table in the database for the selected table
-            List<Report> reports = fetchReports(table);
+
+
 
             // Fill the report with data
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("tableId", table.getId());
-            JasperPrint print = JasperFillManager.fillReport(report, parameters, new JRBeanCollectionDataSource(reports));
+            parameters.put("id_table", table.getId());
+
+
+            JasperPrint print = JasperFillManager.fillReport(report, parameters, this.connection);
+            JasperViewer.viewReport(print, false);
 
             // Export the report to a PDF file
             JasperExportManager.exportReportToPdfFile(print, "report_" + table.getId() + ".pdf");
@@ -177,32 +183,7 @@ public class Connector {
             e.printStackTrace();
         }
     }
-    public List<Report> fetchReports(Table table) {
-        List<Report> reports = new ArrayList<>();
-        String query = "SELECT * FROM Report WHERE tableId = ?";
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, table.getId());
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String id = resultSet.getString("id");
-                String tableId = resultSet.getString("tableId");
-                String productId = resultSet.getString("productId");
-                int quantity = resultSet.getInt("quantity");
-                double price = resultSet.getDouble("totalPrice");
-                LocalDateTime transactionTime = resultSet.getTimestamp("transactionTime").toLocalDateTime();
-
-                Report report = new Report(id, tableId, productId, quantity, price, transactionTime);
-                reports.add(report);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return reports;
-    }
 
 
     public void closeConnection() {

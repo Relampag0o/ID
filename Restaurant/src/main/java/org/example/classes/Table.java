@@ -47,25 +47,24 @@ public class Table {
     }
 
     public void addProduct(Product product) {
+        int quantity;
         if (this.products.containsKey(product)) {
             // If the product is already in the list, increment the quantity by 1
-            this.products.put(product, this.products.get(product) + 1);
+            quantity = this.products.get(product) + 1;
+            this.products.put(product, quantity);
         } else {
             // If the product is not in the list, add it with a quantity of 1
-            this.products.put(product, 1);
+            quantity = 1;
+            this.products.put(product, quantity);
         }
 
         // Update the total price
         this.total += product.getPrice();
-        connector.insertTableProduct(this, product);
+        connector.insertTableProduct(this, product, quantity);
         connector.updateTableTotal(this);
 
-        Report report = new Report(UUID.randomUUID().toString(), this.id, product.getId(), this.products.get(product), product.getPrice() * this.products.get(product), LocalDateTime.now());
+        Report report = new Report(UUID.randomUUID().toString(), this.id, product.getId(), quantity, product.getPrice() * quantity, LocalDateTime.now());
         connector.insertReport(report);
-
-
-
-
     }
 
     public void removeProduct(Product product) {
