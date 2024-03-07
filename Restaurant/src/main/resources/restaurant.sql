@@ -75,8 +75,7 @@ INSERT INTO tablee (id, name) VALUES ('table10', 'Table 10');
 INSERT INTO tablee (id, name) VALUES ('table11', 'Table 11');
 INSERT INTO tablee (id, name) VALUES ('table12', 'Table 12');
 
-INSERT INTO tablee (id, name) VALUES ('table1', 'Table 1');
-INSERT INTO tablee (id, name) VALUES ('table2', 'Table 2');
+
 
 ALTER TABLE tablee ADD total DECIMAL(10, 2) NOT NULL DEFAULT 0.0;
 ALTER TABLE Report DROP COLUMN total;

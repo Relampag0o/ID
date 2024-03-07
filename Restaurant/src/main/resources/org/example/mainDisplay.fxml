@@ -193,7 +193,7 @@
       </AnchorPane>
       <ImageView fx:id="sanMiguel1" fitHeight="100.0" fitWidth="47.0" layoutX="500.0" layoutY="91.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@drinks/sanmiguel.png" />
+            <Image url="@images/sanmiguel.png" />
          </image>
       </ImageView>
       <Label fx:id="selectTableMsg" alignment="CENTER" layoutY="689.0" prefHeight="63.0" prefWidth="1454.0" style="-fx-background-color: #a88a58;" text="Por favor, seleccione una mesa para comenzar" textFill="#f5f5f5">
@@ -207,7 +207,7 @@
          </font></Label>
       <ImageView fx:id="paella1" fitHeight="80.0" fitWidth="143.0" layoutX="451.0" layoutY="399.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/58-trajes-tipicos-espana.png" />
+            <Image url="@images/58-trajes-tipicos-espana.png" />
          </image>
       </ImageView>
       <Button fx:id="clearButton" layoutX="1221.0" layoutY="704.0" mnemonicParsing="false" onAction="#clearTable" text="Limpiar mesa" />
@@ -219,7 +219,7 @@
       </Label>
       <ImageView fx:id="fabada1" fitHeight="120.0" fitWidth="164.0" layoutX="589.0" layoutY="382.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/fabada_portada-removebg-preview.png" />
+            <Image url="@images/fabada_portada-removebg-preview.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="750.0" layoutY="488.0" prefHeight="27.0" prefWidth="150.0" text="Bacalao dorado" textFill="#f2f2f2">
@@ -229,7 +229,7 @@
       </Label>
       <ImageView fx:id="bacalao1" fitHeight="70.0" fitWidth="120.0" layoutX="772.0" layoutY="404.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/bacalao-dorado-cuajar-los-huevos-removebg-preview.png" />
+            <Image url="@images/bacalao-dorado-cuajar-los-huevos-removebg-preview.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="930.0" layoutY="488.0" prefHeight="20.0" prefWidth="117.0" text="Tortilla" textFill="#f2f2f2">
@@ -239,7 +239,7 @@
       </Label>
       <ImageView fx:id="tortilla1" fitHeight="100.0" fitWidth="123.0" layoutX="939.0" layoutY="389.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/Tortilla-de-Patata.png" />
+            <Image url="@images/Tortilla-de-Patata.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="463.0" layoutY="614.0" prefHeight="20.0" prefWidth="117.0" text="Salmorejo" textFill="#f2f2f2">
@@ -249,7 +249,7 @@
       </Label>
       <ImageView fx:id="salmorejo1" fitHeight="80.0" fitWidth="143.0" layoutX="465.0" layoutY="525.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/f.elconfidencial.com_original_50e_aab_417_50eaab417dfbb3219087123e67adab27-removebg-preview.png" />
+            <Image url="@images/f.elconfidencial.com_original_50e_aab_417_50eaab417dfbb3219087123e67adab27-removebg-preview.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="602.0" layoutY="614.0" prefHeight="20.0" prefWidth="117.0" text="Almejas" textFill="#f2f2f2">
@@ -259,7 +259,7 @@
       </Label>
       <ImageView fx:id="almejas1" fitHeight="63.0" fitWidth="117.0" layoutX="605.0" layoutY="538.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/16708417441098-removebg-preview.png" />
+            <Image url="@images/16708417441098-removebg-preview.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="749.0" layoutY="614.0" prefHeight="27.0" prefWidth="150.0" text="Pulpo" textFill="#f2f2f2">
@@ -269,7 +269,7 @@
       </Label>
       <ImageView fx:id="pulpo1" fitHeight="80.0" fitWidth="117.0" layoutX="771.0" layoutY="530.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/pulpo-a-feira-3-removebg-preview.png" />
+            <Image url="@images/pulpo-a-feira-3-removebg-preview.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="929.0" layoutY="614.0" prefHeight="20.0" prefWidth="117.0" text="Albóndigas" textFill="#f2f2f2">
@@ -279,7 +279,7 @@
       </Label>
       <ImageView fx:id="albondigas1" fitHeight="80.0" fitWidth="132.0" layoutX="926.0" layoutY="530.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/5e997a42b5463-removebg-preview.png" />
+            <Image url="@images/5e997a42b5463-removebg-preview.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="464.0" layoutY="198.0" prefHeight="20.0" prefWidth="117.0" text="San Miguel" textFill="#f2f2f2">
@@ -304,12 +304,12 @@
       </Label>
       <ImageView fx:id="cheristoff1" fitHeight="100.0" fitWidth="47.0" layoutX="644.0" layoutY="88.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/pngwing.com.png" />
+            <Image url="@images/pngwing.com.png" />
          </image>
       </ImageView>
       <ImageView fx:id="cocacola1" fitHeight="100.0" fitWidth="100.0" layoutX="476.0" layoutY="232.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/pngwing.com%20(6).png" />
+            <Image url="@images/pngwing.com%20(6).png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="464.0" layoutY="339.0" prefHeight="20.0" prefWidth="117.0" text="Coca Cola" textFill="#f2f2f2">
@@ -334,22 +334,22 @@
       </Label>
       <ImageView fx:id="fantaNaranja1" fitHeight="100.0" fitWidth="100.0" layoutX="616.0" layoutY="240.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/pngwing.com%20(7).png" />
+            <Image url="@images/pngwing.com%20(7).png" />
          </image>
       </ImageView>
       <ImageView fx:id="fantaLimon1" fitHeight="100.0" fitWidth="100.0" layoutX="780.0" layoutY="238.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/pngwing.com%20(8).png" />
+            <Image url="@images/pngwing.com%20(8).png" />
          </image>
       </ImageView>
       <ImageView fx:id="pepsi1" fitHeight="100.0" fitWidth="100.0" layoutX="939.0" layoutY="234.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/pngwing.com%20(9).png" />
+            <Image url="@images/pngwing.com%20(9).png" />
          </image>
       </ImageView>
       <ImageView fx:id="coronita1" fitHeight="100.0" fitWidth="32.0" layoutX="968.0" layoutY="87.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/pngwing.com%20(1).png" />
+            <Image url="@images/pngwing.com%20(1).png" />
          </image>
       </ImageView>
       <Label fx:id="selectTableMsg1" alignment="CENTER" layoutX="-4.0" prefHeight="63.0" prefWidth="1461.0" style="-fx-background-color: #474e4e;" text="¡Bienvenido!" textFill="#f5f5f5">
@@ -359,7 +359,7 @@
       </Label>
       <ImageView fx:id="alhambra1" fitHeight="100.0" fitWidth="47.0" layoutX="807.0" layoutY="91.0" onMouseClicked="#selectProduct" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@dishes/pngwing.com%20(3).png" />
+            <Image url="@images/pngwing.com%20(3).png" />
          </image>
       </ImageView>
    </children>
