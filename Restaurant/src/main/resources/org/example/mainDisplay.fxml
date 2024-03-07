@@ -327,6 +327,7 @@
             <Image url="@sanmiguel.png" />
          </image>
       </ImageView>
-      <Button fx:id="clearButton" layoutX="976.0" layoutY="704.0" mnemonicParsing="false" onAction="#clearTable" text="Limpiar mesa" />
+      <Button fx:id="clearButton" layoutX="1221.0" layoutY="704.0" mnemonicParsing="false" onAction="#clearTable" text="Limpiar mesa" />
+      <Button layoutX="1328.0" layoutY="704.0" mnemonicParsing="false" text="Generar historico" />
    </children>
 </AnchorPane>

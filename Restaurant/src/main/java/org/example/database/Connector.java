@@ -54,7 +54,7 @@ public class Connector {
             if (resultSet.next()) {
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
-                product = new Product(id, name, price,1);
+                product = new Product(id, name, price, 1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -167,8 +167,6 @@ public class Connector {
 
             // Fetch the data from the Report table in the database for the selected table
 
-
-
             // Fill the report with data
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("id_table", table.getId());
@@ -184,6 +182,26 @@ public class Connector {
         }
     }
 
+    public void generateHistoricOfAllTables() {
+        try {
+            // Load the JasperReport template from the resources folder
+            InputStream reportStream = getClass().getResourceAsStream("/historicReport.jrxml");
+            JasperReport report = JasperCompileManager.compileReport(reportStream);
+
+            // Fetch the data from the Report table in the database for the selected table
+
+            // Fill the report with data
+            Map<String, Object> parameters = new HashMap<>();
+
+            JasperPrint print = JasperFillManager.fillReport(report, parameters, this.connection);
+            JasperViewer.viewReport(print, false);
+
+            // Export the report to a PDF file
+            JasperExportManager.exportReportToPdfFile(print, "report_all_tables.pdf");
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void closeConnection() {
