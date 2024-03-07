@@ -29,6 +29,37 @@ public class PrimaryController {
     @FXML
     public ImageView alhambra1;
     public Button clearButton;
+    public Label number1;
+    public Label number2;
+    public ImageView table3;
+    public Label number3;
+    public ImageView table4;
+    public Label number4;
+    public ImageView table5;
+    public Label number5;
+    public ImageView table6;
+    public Label number6;
+    public ImageView table7;
+    public Label number7;
+    public ImageView table8;
+    public Label number8;
+    public ImageView table9;
+    public Label number9;
+    public ImageView table10;
+    public Label number10;
+    public ImageView table11;
+    public Label number11;
+    public ImageView table12;
+    public Label number12;
+    public ImageView paella1;
+    public ImageView fabada1;
+    public ImageView bacalao1;
+    public ImageView tortilla1;
+    public ImageView salmorejo1;
+    public ImageView almejas1;
+    public ImageView pulpo1;
+    public ImageView albondigas1;
+    public ImageView cheristoff1;
 
 
     // TABLES
