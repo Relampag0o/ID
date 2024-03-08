@@ -48,27 +48,30 @@ public class ProductCellController {
     @FXML
     public void addProduct() {
         System.out.println("Adding product" + product.getName() + " to table " + table.getName());
-        product.setQuantity(product.getQuantity() + 1); // Update the quantity of the product
         table.addProduct(product);
+        product.setQuantity(product.getQuantity() + 1); // Update the quantity of the product
         connector.updateTableTotal(table);
-        //connector.insertTableProduct(table, product, product.getQuantity());
         setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
         primaryController.updateTotalLabel();
         primaryController.updateTableNumbersColor();
-
     }
 
 
     @FXML
     public void removeProduct() {
         System.out.println("Removing product" + product.getName() + " from table " + table.getName());
-        if (product.getQuantity() > 0) {
+        if (product.getQuantity() > 1) {
             product.setQuantity(product.getQuantity() - 1);
             table.removeProduct(product);
             setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
             primaryController.updateTotalLabel();
             primaryController.updateTableNumbersColor();
-
+        } else if (product.getQuantity() == 1) {
+            table.removeProduct(product);
+            connector.removeTableProduct(table, product); // Remove the product from the database
+            primaryController.updateProductList();
+            primaryController.updateTotalLabel();
+            primaryController.updateTableNumbersColor();
         } else {
             System.out.println("No more units of product " + product.getName() + " to remove from table " + table.getName());
         }
