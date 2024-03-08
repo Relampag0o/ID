@@ -22,6 +22,23 @@ public class Table {
         this.connector = new Connector();
     }
 
+
+    public Connector getConnector() {
+        return connector;
+    }
+
+    public void setConnector(Connector connector) {
+        this.connector = connector;
+    }
+
+    public HashMap<Product, Integer> getProducts() {
+        return products;
+    }
+
+    public void setProducts(HashMap<Product, Integer> products) {
+        this.products = products;
+    }
+
     public String getId() {
         return id;
     }

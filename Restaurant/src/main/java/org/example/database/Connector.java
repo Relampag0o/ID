@@ -98,8 +98,7 @@ public class Connector {
     }
     public List<Product> getProducts(String tableId) {
         List<Product> products = new ArrayList<Product>();
-        String query = "SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ? GROUP BY product.id";
-
+        String query = "SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ? GROUP BY product.id, table_product.tablee_id";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);

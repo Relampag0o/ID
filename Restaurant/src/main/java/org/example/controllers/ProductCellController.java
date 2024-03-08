@@ -54,6 +54,8 @@ public class ProductCellController {
         //connector.insertTableProduct(table, product, product.getQuantity());
         setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
         primaryController.updateTotalLabel();
+        primaryController.updateTableNumbersColor();
+
     }
 
 
@@ -61,10 +63,12 @@ public class ProductCellController {
     public void removeProduct() {
         System.out.println("Removing product" + product.getName() + " from table " + table.getName());
         if (product.getQuantity() > 0) {
-            product.setQuantity(product.getQuantity() - 1); // Decrement the quantity of the product
+            product.setQuantity(product.getQuantity() - 1);
             table.removeProduct(product);
             setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
             primaryController.updateTotalLabel();
+            primaryController.updateTableNumbersColor();
+
         } else {
             System.out.println("No more units of product " + product.getName() + " to remove from table " + table.getName());
         }

@@ -92,8 +92,9 @@ public class PrimaryController {
     public void initialize() {
         this.tables = new ArrayList<Table>();
         this.connector = new Connector();
+        loadTables();
         productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee, this));
-
+        updateTableNumbersColor();
 
     }
 
@@ -114,6 +115,7 @@ public class PrimaryController {
             addProductToTable();
             updateProductList();
             updateTotalLabel();
+            updateTableNumbersColor();
         } else {
             System.out.println("No product found with id: " + id);
         }
@@ -127,7 +129,7 @@ public class PrimaryController {
         if (table != null) {
             System.out.println("Table selected: " + table.getName());
             selectedTablee = table;
-            selectTableMsg.setText("Table selected: " + table.getName());
+            selectTableMsg.setText("Mesa seleccionada: " + table.getName());
             selectTableMsg.setStyle("-fx-background-color: #F08080; -fx-border-color: #000000;");
             List<Product> products = connector.getProducts(selectedTablee.getId());
             productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee, this));
@@ -196,6 +198,64 @@ public class PrimaryController {
             selectedTablee.clearTable();
             updateProductList();
             updateTotalLabel();
+            updateTableNumbersColor();
+        }
+    }
+
+    public void loadTables() {
+        List<String> tableIds = List.of("table1", "table2", "table3", "table4", "table5", "table6", "table7", "table8", "table9", "table10", "table11", "table12");
+        this.tables.clear();
+
+        for (String tableId : tableIds) {
+            Table table = connector.findTable(tableId);
+
+            if (table != null) {
+                this.tables.add(table);
+            }
+        }
+    }
+
+    private Label getTableNumberLabel(String tableId) {
+        switch (tableId) {
+            case "table1":
+                return number1;
+            case "table2":
+                return number2;
+            case "table3":
+                return number3;
+            case "table4":
+                return number4;
+            case "table5":
+                return number5;
+            case "table6":
+                return number6;
+            case "table7":
+                return number7;
+            case "table8":
+                return number8;
+            case "table9":
+                return number9;
+            case "table10":
+                return number10;
+            case "table11":
+                return number11;
+            case "table12":
+                return number12;
+            default:
+                return null;
+        }
+    }
+
+    public void updateTableNumbersColor() {
+        for (Table table : tables) {
+            String tableId = table.getId();
+            Label tableNumberLabel = getTableNumberLabel(tableId);
+            List<Product> products = connector.getProducts(tableId);
+            if (!products.isEmpty()) {
+                tableNumberLabel.setStyle("-fx-text-fill: red;");
+            } else {
+                tableNumberLabel.setStyle("-fx-text-fill: green;");
+            }
         }
     }
 
