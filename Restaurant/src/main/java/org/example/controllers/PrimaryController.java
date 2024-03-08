@@ -95,6 +95,7 @@ public class PrimaryController {
         productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
         clearButton.setVisible(false);
 
+
     }
 
     @FXML
@@ -155,6 +156,7 @@ public class PrimaryController {
     public void addProductToTable() {
         if (selectedTablee != null && selectedProduct != null) {
             selectedTablee.addProduct(selectedProduct);
+            selectedProduct.setQuantity(selectedProduct.getQuantity() + 1);
             System.out.println("Product added to table: " + selectedTablee.getName());
         } else {
             System.out.println("No table or product selected");

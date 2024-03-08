@@ -60,7 +60,7 @@ public class Table {
 
         // Update the total price
         this.total += product.getPrice();
-        connector.insertTableProduct(this, product, quantity);
+        connector.insertTableProduct(this, product);
         connector.updateTableTotal(this);
 
         System.out.println("List after adding product: " );
@@ -71,13 +71,16 @@ public class Table {
 
     public void removeProduct(Product product) {
         System.out.println("List before removing product: ");
-        showProducts();
-
+        for (Map.Entry<Product, Integer> entry : this.products.entrySet()) {
+            System.out.println(entry.getKey().getName() + " " + entry.getValue());
+        }
         if (this.products.containsKey(product)) {
             int quantity = this.products.get(product);
             if (quantity > 1) {
                 // If the quantity is more than 1, decrement it by 1
                 this.products.put(product, quantity - 1);
+                // Update the quantity of the product in the table_product table in the database
+                connector.updateTableProduct(this, product);
             } else {
                 // If the quantity is 1, remove the product from the list
                 this.products.remove(product);
@@ -87,12 +90,12 @@ public class Table {
         }
         this.total -= product.getPrice();
         connector.updateTableTotal(this);
-        System.out.println("List after removing product: ");
-        showProducts();
 
         Report report = new Report(UUID.randomUUID().toString(), this.id, product.getId(), -1, -product.getPrice(), LocalDateTime.now());
         connector.insertReport(report);
     }
+
+
 
     public double calculateTotal() {
         double total = 0.0;

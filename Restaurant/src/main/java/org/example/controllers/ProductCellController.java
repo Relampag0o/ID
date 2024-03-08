@@ -44,6 +44,7 @@ public class ProductCellController {
     @FXML
     public void addProduct() {
         System.out.println("Adding product" + product.getName() + " to table " + table.getName());
+        product.setQuantity(product.getQuantity() + 1); // Update the quantity of the product
         table.addProduct(product);
         connector.updateTableTotal(table);
         //connector.insertTableProduct(table, product, product.getQuantity());
@@ -53,7 +54,12 @@ public class ProductCellController {
     @FXML
     public void removeProduct() {
         System.out.println("Removing product" + product.getName() + " from table " + table.getName());
-        table.removeProduct(product);
-        setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
+        if (product.getQuantity() > 0) {
+            product.setQuantity(product.getQuantity() - 1); // Decrement the quantity of the product
+            table.removeProduct(product);
+            setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
+        } else {
+            System.out.println("No more units of product " + product.getName() + " to remove from table " + table.getName());
+        }
     }
 }

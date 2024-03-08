@@ -84,13 +84,13 @@ public class Connector {
         return table;
     }
 
-    public void insertTableProduct(Table table, Product product, int quantity) {
+    public void insertTableProduct(Table table, Product product) {
         String query = "INSERT INTO table_product (tablee_id, product_id, quantity) VALUES (?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, table.getId());
             preparedStatement.setString(2, product.getId());
-            preparedStatement.setInt(3, quantity);
+            preparedStatement.setInt(3, 1);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,6 +100,7 @@ public class Connector {
     public List<Product> getProducts(String tableId) {
         List<Product> products = new ArrayList<Product>();
         String query = "SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ? GROUP BY product.id";
+
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -212,7 +213,18 @@ public class Connector {
     }
 
     public void removeTableProduct(Table table, Product product) {
-        String query = "DELETE FROM table_product WHERE tablee_id = ? AND product_id = ?";
+        String query = "DELETE FROM table_product WHERE tablee_id = ? AND product_id = ? LIMIT 1";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, table.getId());
+            preparedStatement.setString(2, product.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateTableProduct(Table table, Product product) {
+        String query = "DELETE FROM table_product WHERE tablee_id = ? AND product_id = ? LIMIT 1";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, table.getId());
