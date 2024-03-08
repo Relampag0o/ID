@@ -63,6 +63,7 @@ public class ProductCellController {
         if (product.getQuantity() > 1) {
             product.setQuantity(product.getQuantity() - 1);
             table.removeProduct(product);
+            connector.updateTableProduct(table, product); // Update the quantity of the product in the database
             setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
             primaryController.updateTotalLabel();
             primaryController.updateTableNumbersColor();
