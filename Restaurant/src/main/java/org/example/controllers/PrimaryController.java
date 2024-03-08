@@ -93,7 +93,6 @@ public class PrimaryController {
         this.tables = new ArrayList<Table>();
         this.connector = new Connector();
         productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
-        clearButton.setVisible(false);
 
 
     }
@@ -130,7 +129,6 @@ public class PrimaryController {
             selectedTablee = table;
             selectTableMsg.setText("Table selected: " + table.getName());
             selectTableMsg.setStyle("-fx-background-color: #F08080; -fx-border-color: #000000;");
-            clearButton.setVisible(true);
             List<Product> products = connector.getProducts(selectedTablee.getId());
             productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
             productsListView.setItems(FXCollections.observableArrayList(products));

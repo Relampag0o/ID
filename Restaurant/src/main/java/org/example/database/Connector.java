@@ -90,13 +90,12 @@ public class Connector {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, table.getId());
             preparedStatement.setString(2, product.getId());
-            preparedStatement.setInt(3, 1);
+            preparedStatement.setInt(3, product.getQuantity()); // Set the quantity to the actual quantity of the product
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
     public List<Product> getProducts(String tableId) {
         List<Product> products = new ArrayList<Product>();
         String query = "SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ? GROUP BY product.id";
