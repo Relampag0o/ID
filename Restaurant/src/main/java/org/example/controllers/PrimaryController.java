@@ -96,6 +96,8 @@ public class PrimaryController {
         productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee, this));
         updateTableNumbersColor();
 
+        // testing: 
+
     }
 
     @FXML
