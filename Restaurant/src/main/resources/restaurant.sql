@@ -1,29 +1,19 @@
 use restaurant;
 
 
--- Drop the table_product table
-DROP TABLE IF EXISTS table_product;
 
--- Drop the tablee table
-DROP TABLE IF EXISTS tablee;
-
--- Drop the product table
-DROP TABLE IF EXISTS product;
-
--- Recreate the product table
 CREATE TABLE product (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     price DECIMAL(10, 2) NOT NULL
 );
 
--- Recreate the tablee table with the id column as VARCHAR(255)
 CREATE TABLE tablee (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
--- Recreate the table_product table
+
 CREATE TABLE table_product (
     tablee_id VARCHAR(255),
     product_id VARCHAR(255),
@@ -41,7 +31,6 @@ CREATE TABLE Report (
     FOREIGN KEY (tableId) REFERENCES tablee(id),
     FOREIGN KEY (productId) REFERENCES product(id)
 );
-
 
 -- Insertar productos
 INSERT INTO product (id, name, price) VALUES ('sanMiguel1', 'San Miguel', 2.80);
@@ -75,10 +64,9 @@ INSERT INTO tablee (id, name) VALUES ('table10', 'Table 10');
 INSERT INTO tablee (id, name) VALUES ('table11', 'Table 11');
 INSERT INTO tablee (id, name) VALUES ('table12', 'Table 12');
 
-
-
 ALTER TABLE tablee ADD total DECIMAL(10, 2) NOT NULL DEFAULT 0.0;
 ALTER TABLE Report DROP COLUMN total;
+
 select * from tablee;
 select * from product;
 select * from report;
@@ -88,8 +76,8 @@ show columns from tablee;
 
 select * from table_product;
 
-ALTER TABLE table_product
-ADD quantity INT DEFAULT 1;
+
+	 # QUERY TO GENERATE TABLE HISTORIC
 
 SELECT
     product.*,
@@ -105,7 +93,7 @@ GROUP BY
     product.id;
     use restaurant;
 
-    # QUERY TO GENERATE HISTORIC
+    # QUERY TO GENERATE HISTORIC OF ALL TABLES
 
 SELECT
     t.id AS table_id,
@@ -123,3 +111,13 @@ INNER JOIN
 GROUP BY
     t.id,
     p.id;
+
+    ALTER TABLE table_product DROP INDEX tablee_id;
+ALTER TABLE table_product ADD COLUMN quantity INT;
+
+SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = 'table1' GROUP BY product.id;
+
+    select * from table_product;
+
+
+SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = 'table1' GROUP BY product.id, table_product.tablee_id;

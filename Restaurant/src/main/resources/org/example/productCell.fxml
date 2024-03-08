@@ -9,24 +9,24 @@
 
 <AnchorPane prefHeight="52.0" prefWidth="400.0" style="-fx-background-color: #f5dfc7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="nameLabel" layoutY="16.0" prefHeight="20.0" prefWidth="77.0" style="-fx-font-size: 14px;" textAlignment="CENTER">
+      <Label fx:id="nameLabel" layoutX="7.0" layoutY="17.0" prefHeight="20.0" prefWidth="77.0" style="-fx-font-size: 14px;" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
          <effect>
             <Blend />
          </effect></Label>
-      <Label fx:id="quantityLabel" layoutX="87.0" layoutY="16.0" prefHeight="15.0" prefWidth="50.0" style="-fx-font-size: 14px;">
+      <Label fx:id="quantityLabel" layoutX="101.0" layoutY="16.0" prefHeight="15.0" prefWidth="50.0" style="-fx-font-size: 14px;">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="totalLabel" layoutX="169.0" layoutY="16.0" prefHeight="15.0" prefWidth="61.0" style="-fx-font-size: 14px;" />
-      <ImageView fx:id="addButton" fitHeight="35.0" fitWidth="39.0" layoutX="266.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="totalLabel" layoutX="183.0" layoutY="16.0" prefHeight="15.0" prefWidth="61.0" style="-fx-font-size: 14px;" />
+      <ImageView fx:id="addButton" fitHeight="35.0" fitWidth="39.0" layoutX="280.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/icons8-add-48.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="removeButton" fitHeight="29.0" fitWidth="29.0" layoutX="308.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="removeButton" fitHeight="29.0" fitWidth="29.0" layoutX="322.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/minus.png" />
          </image>
