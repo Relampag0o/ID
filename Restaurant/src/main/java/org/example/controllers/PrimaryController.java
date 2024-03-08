@@ -13,12 +13,9 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import org.example.App;
-import org.example.CustomProductCell;
 import org.example.classes.Product;
 import org.example.classes.Table;
 import org.example.database.Connector;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PrimaryController {
 
