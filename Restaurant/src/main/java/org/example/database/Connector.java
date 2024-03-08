@@ -121,13 +121,21 @@ public class Connector {
     }
 
     public void updateTableTotal(Table table) {
+        System.out.println("Updating table total for table id: " + table.getId() + " with total: " + table.getTotal());
         String query = "UPDATE tablee SET total = ? WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setDouble(1, table.getTotal());
             preparedStatement.setString(2, table.getId());
-            preparedStatement.executeUpdate();
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Table total updated successfully.");
+                System.out.println("Total: " + table.getTotal() + " for table: " + table.getName() + " with id: " + table.getId());
+            } else {
+                System.out.println("No table found with id: " + table.getId());
+            }
         } catch (SQLException e) {
+            System.out.println("SQLException occurred while updating table total.");
             e.printStackTrace();
         }
     }
@@ -203,6 +211,17 @@ public class Connector {
         }
     }
 
+    public void removeTableProduct(Table table, Product product) {
+        String query = "DELETE FROM table_product WHERE tablee_id = ? AND product_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, table.getId());
+            preparedStatement.setString(2, product.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void closeConnection() {
         try {

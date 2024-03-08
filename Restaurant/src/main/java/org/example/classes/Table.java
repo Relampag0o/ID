@@ -47,15 +47,15 @@ public class Table {
     }
 
     public void addProduct(Product product) {
-        int quantity;
+        System.out.println("List before adding product: ");
+
+
+        int quantity=0;
         if (this.products.containsKey(product)) {
-            // If the product is already in the list, increment the quantity by 1
-            quantity = this.products.get(product) + 1;
+             quantity = this.products.get(product) + 1;
             this.products.put(product, quantity);
         } else {
-            // If the product is not in the list, add it with a quantity of 1
-            quantity = 1;
-            this.products.put(product, quantity);
+            this.products.put(product, 1);
         }
 
         // Update the total price
@@ -63,13 +63,32 @@ public class Table {
         connector.insertTableProduct(this, product, quantity);
         connector.updateTableTotal(this);
 
+        System.out.println("List after adding product: " );
+        showProducts();
         Report report = new Report(UUID.randomUUID().toString(), this.id, product.getId(), quantity, product.getPrice() * quantity, LocalDateTime.now());
         connector.insertReport(report);
     }
 
     public void removeProduct(Product product) {
+        System.out.println("List before removing product: ");
+        showProducts();
+
+        if (this.products.containsKey(product)) {
+            int quantity = this.products.get(product);
+            if (quantity > 1) {
+                // If the quantity is more than 1, decrement it by 1
+                this.products.put(product, quantity - 1);
+            } else {
+                // If the quantity is 1, remove the product from the list
+                this.products.remove(product);
+                // Remove the product from the table_product table in the database
+                connector.removeTableProduct(this, product);
+            }
+        }
         this.total -= product.getPrice();
         connector.updateTableTotal(this);
+        System.out.println("List after removing product: ");
+        showProducts();
 
         Report report = new Report(UUID.randomUUID().toString(), this.id, product.getId(), -1, -product.getPrice(), LocalDateTime.now());
         connector.insertReport(report);
@@ -90,15 +109,21 @@ public class Table {
         connector.updateTableTotal(this);
     }
 
-
+    public void showProducts() {
+        for (Map.Entry<Product, Integer> entry : this.products.entrySet()) {
+            System.out.println(entry.getKey().getName() + " " + entry.getValue() + " " + entry.getKey().getPrice() * entry.getValue() + "€");
+        }
+    }
 
 
     @Override
     public String toString() {
         return "Table{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", total=" + total +
+                ", connector=" + connector +
+                ", products=" + products +
                 '}';
     }
 }
