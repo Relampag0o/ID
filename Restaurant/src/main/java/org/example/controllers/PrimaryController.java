@@ -92,7 +92,7 @@ public class PrimaryController {
     public void initialize() {
         this.tables = new ArrayList<Table>();
         this.connector = new Connector();
-        productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
+        productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee, this));
 
 
     }
@@ -130,7 +130,7 @@ public class PrimaryController {
             selectTableMsg.setText("Table selected: " + table.getName());
             selectTableMsg.setStyle("-fx-background-color: #F08080; -fx-border-color: #000000;");
             List<Product> products = connector.getProducts(selectedTablee.getId());
-            productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee));
+            productsListView.setCellFactory(param -> new CustomProductCell(selectedTablee, this));
             productsListView.setItems(FXCollections.observableArrayList(products));
 
             if (previouslySelectedTable != null) {
@@ -186,6 +186,10 @@ public class PrimaryController {
         }
     }
 
+    public void generateHistoric() {
+        connector.generateHistoricOfAllTables();
+    }
+
     @FXML
     public void clearTable() {
         if (selectedTablee != null) {
@@ -194,7 +198,6 @@ public class PrimaryController {
             updateTotalLabel();
         }
     }
-
 
 
 }

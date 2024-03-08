@@ -19,6 +19,9 @@ public class ProductCellController {
     private Table table;
     private Product product;
 
+    private PrimaryController primaryController;
+
+
     public ProductCellController(){
 
     }
@@ -29,10 +32,11 @@ public class ProductCellController {
         removeButton.setOnMouseClicked(event -> removeProduct());
     }
 
-    public ProductCellController(Connector connector, Table table, Product product) {
+    public ProductCellController(Connector connector, Table table, Product product, PrimaryController primaryController) {
         this.connector = connector;
         this.table = table;
         this.product = product;
+        this.primaryController = primaryController;
     }
 
     public void setProductDetails(String name, String quantity, String total) {
@@ -49,7 +53,9 @@ public class ProductCellController {
         connector.updateTableTotal(table);
         //connector.insertTableProduct(table, product, product.getQuantity());
         setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
+        primaryController.updateTotalLabel();
     }
+
 
     @FXML
     public void removeProduct() {
@@ -58,6 +64,7 @@ public class ProductCellController {
             product.setQuantity(product.getQuantity() - 1); // Decrement the quantity of the product
             table.removeProduct(product);
             setProductDetails(product.getName(), String.valueOf(product.getQuantity()), String.valueOf(product.getPrice() * product.getQuantity()));
+            primaryController.updateTotalLabel();
         } else {
             System.out.println("No more units of product " + product.getName() + " to remove from table " + table.getName());
         }
