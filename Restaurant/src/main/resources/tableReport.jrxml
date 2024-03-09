@@ -134,7 +134,7 @@ GROUP BY
 		</band>
 	</title>
 	<pageHeader>
-		<band height="264" splitType="Stretch">
+		<band height="177" splitType="Stretch">
 			<componentElement>
 				<reportElement x="-3" y="6" width="556" height="154" uuid="81a4b40e-3427-43d6-a57f-202b4772c193">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
@@ -256,17 +256,17 @@ GROUP BY
 			</componentElement>
 		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="141" splitType="Stretch">
+	<summary>
+		<band height="145" splitType="Stretch">
 			<staticText>
-				<reportElement x="80" y="6" width="150" height="40" uuid="4a885f24-1d8d-4a92-a141-da6ba5386b50"/>
+				<reportElement x="85" y="11" width="150" height="40" uuid="11862e00-474e-483e-a4b3-f69ce00ad742"/>
 				<textElement>
 					<font size="26" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL : ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="330" y="5" width="143" height="50" uuid="d176500a-5240-456c-8cb9-ed87c0e78c5a"/>
+				<reportElement x="335" y="10" width="143" height="50" uuid="58eb23c4-70bc-4607-82e6-aa3ddb47ac47"/>
 				<textElement textAlignment="Center">
 					<font size="26" isBold="true"/>
 				</textElement>
@@ -274,21 +274,14 @@ GROUP BY
 				<patternExpression><![CDATA[$P{total}]]></patternExpression>
 			</textField>
 			<staticText>
-				<reportElement x="444" y="8" width="100" height="45" uuid="8e0ea1ea-2bd3-4d69-b730-21a392d15668"/>
-				<textElement>
-					<font size="24" isBold="true"/>
-				</textElement>
-				<text><![CDATA[€]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="185" y="110" width="210" height="30" uuid="901ba913-01cf-4b57-8d1e-230ea464e280"/>
+				<reportElement x="190" y="115" width="210" height="30" uuid="183e656e-e3b4-4f16-8161-539fdbf44991"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Gracias por su visita]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="120" y="76" width="340" height="30" uuid="1968f23f-8217-4252-99ad-9ed1156cf50f"/>
+				<reportElement x="125" y="81" width="340" height="30" uuid="b959b98b-aa5c-470d-bff7-6d8a3f2a8737"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16" isItalic="false"/>
 				</textElement>
@@ -296,17 +289,5 @@ GROUP BY
 				<patternExpression><![CDATA[$P{REPORT_DATE}]]></patternExpression>
 			</textField>
 		</band>
-	</columnHeader>
-	<detail>
-		<band height="258" splitType="Stretch"/>
-	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
 	</summary>
 </jasperReport>

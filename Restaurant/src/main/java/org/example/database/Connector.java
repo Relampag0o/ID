@@ -177,7 +177,7 @@ public class Connector {
 
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("id_table", table.getId());
-            parameters.put("total", table.getTotal()+" ");
+            parameters.put("total", table.getTotal()+"€");
             parameters.put("REPORT_DATE", formattedNow);
 
 
