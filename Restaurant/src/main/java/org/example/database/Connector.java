@@ -10,10 +10,8 @@ import org.example.classes.Table;
 import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Connector {
 
@@ -168,15 +166,20 @@ public class Connector {
 
     public void generateReport(Table table) {
         try {
-            // Load the JasperReport template from the resources folder
+
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", new Locale("es", "ES"));
+            String formattedNow = now.format(formatter);
+
             InputStream reportStream = getClass().getResourceAsStream("/tableReport.jrxml");
             JasperReport report = JasperCompileManager.compileReport(reportStream);
 
-            // Fetch the data from the Report table in the database for the selected table
 
-            // Fill the report with data
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("id_table", table.getId());
+            parameters.put("total", table.getTotal()+" ");
+            parameters.put("REPORT_DATE", formattedNow);
+
 
 
             JasperPrint print = JasperFillManager.fillReport(report, parameters, this.connection);

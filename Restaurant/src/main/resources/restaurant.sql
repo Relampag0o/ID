@@ -14,11 +14,12 @@ CREATE TABLE tablee (
 CREATE TABLE table_product (
     tablee_id VARCHAR(255),
     product_id VARCHAR(255),
+    quantity int,
     FOREIGN KEY (tablee_id) REFERENCES tablee(id),
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
-CREATE TABLE Report (
+CREATE TABLE report (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
     tableId VARCHAR(255) NOT NULL,
     productId VARCHAR(255) NOT NULL,
