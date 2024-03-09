@@ -195,13 +195,15 @@ public class Connector {
     public void generateHistoricOfAllTables() {
         try {
             // Load the JasperReport template from the resources folder
-            InputStream reportStream = getClass().getResourceAsStream("/historicReport.jrxml");
+            InputStream reportStream = getClass().getResourceAsStream("/historicTables.jrxml");
             JasperReport report = JasperCompileManager.compileReport(reportStream);
 
             // Fetch the data from the Report table in the database for the selected table
 
             // Fill the report with data
             Map<String, Object> parameters = new HashMap<>();
+            parameters.put("REPORT_DATE", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", new Locale("es", "ES"))));
+            
 
             JasperPrint print = JasperFillManager.fillReport(report, parameters, this.connection);
             JasperViewer.viewReport(print, false);

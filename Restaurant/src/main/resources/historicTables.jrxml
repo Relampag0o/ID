@@ -72,9 +72,9 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="183" splitType="Stretch">
+		<band height="162" splitType="Stretch">
 			<componentElement>
-				<reportElement x="180" y="13" width="200" height="170" uuid="955f489c-59ff-4b80-9f80-4f3b9e8c4558">
+				<reportElement x="180" y="13" width="200" height="117" uuid="955f489c-59ff-4b80-9f80-4f3b9e8c4558">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -134,50 +134,31 @@
 			</componentElement>
 		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="108" splitType="Stretch">
-			<staticText>
-				<reportElement x="180" y="14" width="100" height="30" uuid="76884aae-dc00-4b2b-ba59-bf3deefadffb"/>
-				<textElement>
-					<font size="22" isBold="true"/>
-				</textElement>
-				<text><![CDATA[TOTAL:]]></text>
-			</staticText>
+	<summary>
+		<band height="57" splitType="Stretch">
 			<textField>
-				<reportElement x="350" y="14" width="110" height="30" uuid="d5e61262-d072-4786-b7c6-1a00bc5468db"/>
-				<textElement>
-					<font size="20" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
-				<patternExpression><![CDATA[$P{total}]]></patternExpression>
-			</textField>
-			<textField>
-				<reportElement x="160" y="50" width="280" height="30" uuid="6647198f-45a6-41be-934d-ae94d19d0535"/>
+				<reportElement x="150" y="27" width="280" height="30" uuid="6647198f-45a6-41be-934d-ae94d19d0535"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{REPORT_DATE}]]></textFieldExpression>
 				<patternExpression><![CDATA[$P{REPORT_DATE}]]></patternExpression>
 			</textField>
-			<staticText>
-				<reportElement x="390" y="14" width="100" height="30" uuid="757a14be-a7c8-4100-9693-676e133957da"/>
+			<textField>
+				<reportElement x="340" y="-9" width="110" height="30" uuid="d5e61262-d072-4786-b7c6-1a00bc5468db"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
-				<text><![CDATA[€]]></text>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+				<patternExpression><![CDATA[$P{total}]]></patternExpression>
+			</textField>
+			<staticText>
+				<reportElement x="170" y="-9" width="100" height="30" uuid="76884aae-dc00-4b2b-ba59-bf3deefadffb"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
 			</staticText>
 		</band>
-	</columnHeader>
-	<detail>
-		<band height="232" splitType="Stretch"/>
-	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
 	</summary>
 </jasperReport>
