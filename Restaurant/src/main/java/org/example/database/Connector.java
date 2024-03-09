@@ -6,6 +6,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.example.classes.Product;
 import org.example.classes.Report;
 import org.example.classes.Table;
+import org.example.controllers.PrimaryController;
 
 import java.io.InputStream;
 import java.sql.*;
@@ -16,6 +17,8 @@ import java.util.*;
 public class Connector {
 
     private Connection connection;
+
+
 
     public Connector() {
         openConnection();
@@ -94,6 +97,7 @@ public class Connector {
             e.printStackTrace();
         }
     }
+
     public List<Product> getProducts(String tableId) {
         List<Product> products = new ArrayList<Product>();
         String query = "SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ? GROUP BY product.id, table_product.tablee_id";
@@ -167,19 +171,14 @@ public class Connector {
     public void generateReport(Table table) {
         try {
 
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", new Locale("es", "ES"));
-            String formattedNow = now.format(formatter);
-
             InputStream reportStream = getClass().getResourceAsStream("/tableReport.jrxml");
             JasperReport report = JasperCompileManager.compileReport(reportStream);
 
 
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("id_table", table.getId());
-            parameters.put("total", table.getTotal()+"€");
-            parameters.put("REPORT_DATE", formattedNow);
-
+            parameters.put("total", table.getTotal() + "€");
+            parameters.put("REPORT_DATE", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", new Locale("es", "ES"))));
 
 
             JasperPrint print = JasperFillManager.fillReport(report, parameters, this.connection);
@@ -194,21 +193,16 @@ public class Connector {
 
     public void generateHistoricOfAllTables() {
         try {
-            // Load the JasperReport template from the resources folder
             InputStream reportStream = getClass().getResourceAsStream("/historicTables.jrxml");
             JasperReport report = JasperCompileManager.compileReport(reportStream);
 
-            // Fetch the data from the Report table in the database for the selected table
-
-            // Fill the report with data
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("REPORT_DATE", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", new Locale("es", "ES"))));
-            
+            parameters.put("total", getTotal());
 
             JasperPrint print = JasperFillManager.fillReport(report, parameters, this.connection);
             JasperViewer.viewReport(print, false);
 
-            // Export the report to a PDF file
             JasperExportManager.exportReportToPdfFile(print, "report_all_tables.pdf");
         } catch (JRException e) {
             e.printStackTrace();
@@ -226,6 +220,7 @@ public class Connector {
             e.printStackTrace();
         }
     }
+
     public void updateTableProduct(Table table, Product product) {
         String query = "DELETE FROM table_product WHERE tablee_id = ? AND product_id = ? LIMIT 1";
         try {
@@ -236,6 +231,23 @@ public class Connector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getTotal() {
+        String query = "SELECT SUM(total) FROM tablee";
+        double total=0 ;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                 total = resultSet.getDouble(1);
+                System.out.println("Total: " + total);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return total+"€";
     }
 
     public void closeConnection() {

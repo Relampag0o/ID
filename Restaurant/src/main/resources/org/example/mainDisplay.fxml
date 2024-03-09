@@ -14,7 +14,7 @@
          <children>
             <AnchorPane layoutY="477.0" prefHeight="70.0" prefWidth="364.0" style="-fx-background-color: #4c6072;">
                <children>
-                  <Label fx:id="totalLabel" layoutX="235.0" layoutY="18.0" prefHeight="35.0" prefWidth="112.0" textFill="#fcfcfc">
+                  <Label fx:id="totalLabel" layoutX="264.0" layoutY="18.0" prefHeight="35.0" prefWidth="86.0" textFill="#fcfcfc">
                      <font>
                         <Font size="24.0" />
                      </font>

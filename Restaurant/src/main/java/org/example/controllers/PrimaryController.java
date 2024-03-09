@@ -173,7 +173,7 @@ public class PrimaryController {
     public void updateTotalLabel() {
         if (selectedTablee != null) {
             double total = selectedTablee.getTotal();
-            totalLabel.setText(total + "€");
+            totalLabel.setText(String.format("%.2f€", total));
         } else {
             totalLabel.setText("No table selected");
         }
@@ -257,6 +257,8 @@ public class PrimaryController {
             }
         }
     }
+
+
 
 
 }

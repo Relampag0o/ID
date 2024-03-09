@@ -60,7 +60,7 @@
 		<band height="160" splitType="Stretch">
 			<image>
 				<reportElement x="-10" y="-10" width="150" height="140" uuid="1655f157-7a14-4e0f-9d3b-b502375efb82"/>
-				<imageExpression><![CDATA["C:/Users/Jose/Desktop/repos/ID/Restaurant/src/main/resources/org/example/images/relamparestaurant.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:/Users/Josem/Desktop/repos/ID/Restaurant/src/main/resources/org/example/images/relamparestaurant.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="130" y="70" width="330" height="80" uuid="f44fe5f9-d783-4778-85c7-56f47df3b45c"/>
