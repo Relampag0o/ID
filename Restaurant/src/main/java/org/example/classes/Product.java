@@ -2,6 +2,7 @@ package org.example.classes;
 
 import java.util.Objects;
 
+// THE CLASS PRODUCT IS USED TO CREATE OBJECTS THAT REPRESENT PRODUCTS IN THE RESTAURANT
 public class Product {
 
     private String id;
@@ -10,10 +11,13 @@ public class Product {
 
     private int quantity;
 
-
-    public Product(){
+    //    THE CONSTRUCTOR IS USED TO CREATE A PRODUCT OBJECT
+    public Product() {
 
     }
+
+
+    //   THE CONSTRUCTOR IS USED TO CREATE A PRODUCT OBJECT
     public Product(String id, String name, double price, int quantity) {
         this.id = id;
         this.name = name;
@@ -61,6 +65,7 @@ public class Product {
                 '}';
     }
 
+    // THE EQUALS METHOD IS OVERRIDDEN TO COMPARE THE ID OF THE PRODUCTS
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,6 +74,7 @@ public class Product {
         return id.equals(product.id);
     }
 
+    // THE HASHCODE METHOD IS OVERRIDDEN TO RETURN THE HASHCODE OF THE ID
     @Override
     public int hashCode() {
         return Objects.hash(id);

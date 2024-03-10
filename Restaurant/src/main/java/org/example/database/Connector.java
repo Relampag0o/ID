@@ -20,10 +20,13 @@ public class Connector {
 
 
 
+    // THE CONSTRUCTOR IS USED TO CREATE A CONNECTOR OBJECT
     public Connector() {
         openConnection();
     }
 
+
+    // THE METHOD OPENCONNECTION IS USED TO OPEN A CONNECTION TO THE DATABASE
 
     public void openConnection() {
         String db = "restaurant";
@@ -43,6 +46,8 @@ public class Connector {
 
     }
 
+
+    // THE METHOD INSERTPRODUCT IS USED TO INSERT A PRODUCT INTO THE DATABASE
     public Product findProduct(String id) {
         Product product = null;
         String query = "SELECT * FROM product WHERE id = ?";
@@ -63,6 +68,7 @@ public class Connector {
 
         return product;
     }
+    // THE METHOD INSERTPRODUCT IS USED TO INSERT A PRODUCT INTO THE DATABASE
 
     public Table findTable(String id) {
         Table table = null;
@@ -85,6 +91,8 @@ public class Connector {
         return table;
     }
 
+    // THE METHOD INSERTPRODUCT IS USED TO INSERT A PRODUCT INTO THE DATABASE
+
     public void insertTableProduct(Table table, Product product) {
         String query = "INSERT INTO table_product (tablee_id, product_id, quantity) VALUES (?, ?, ?)";
         try {
@@ -98,6 +106,8 @@ public class Connector {
         }
     }
 
+
+    // THE METHOD GETPRODUCTS IS USED TO GET THE PRODUCTS FROM THE DATABASE
     public List<Product> getProducts(String tableId) {
         List<Product> products = new ArrayList<Product>();
         String query = "SELECT product.*, COUNT(product_id) as quantity FROM product INNER JOIN table_product ON product.id = table_product.product_id WHERE table_product.tablee_id = ? GROUP BY product.id, table_product.tablee_id";
@@ -121,6 +131,8 @@ public class Connector {
         return products;
     }
 
+    // THE METHOD UPDATETABLETOTAL IS USED TO UPDATE THE TABLE TOTAL
+
     public void updateTableTotal(Table table) {
         System.out.println("Updating table total for table id: " + table.getId() + " with total: " + table.getTotal());
         String query = "UPDATE tablee SET total = ? WHERE id = ?";
@@ -141,6 +153,8 @@ public class Connector {
         }
     }
 
+
+    // THE METHOD CLEARTABLEPRODUCTS IS USED TO CLEAR THE TABLE PRODUCTS
     public void clearTableProducts(Table table) {
         String query = "DELETE FROM table_product WHERE tablee_id = ?";
         try {
@@ -151,6 +165,8 @@ public class Connector {
             e.printStackTrace();
         }
     }
+
+    // THE METHOD INSERTREPORT IS USED TO INSERT A REPORT INTO THE DATABASE
 
     public void insertReport(Report report) {
         String query = "INSERT INTO Report (id, tableId, productId, quantity, totalPrice, transactionTime) VALUES (?, ?, ?, ?, ?, ?)";
@@ -168,6 +184,8 @@ public class Connector {
         }
     }
 
+
+    // THE METHOD GENERATEREPORT IS USED TO GENERATE A REPORT
     public void generateReport(Table table) {
         try {
 
@@ -191,6 +209,7 @@ public class Connector {
         }
     }
 
+    // THE METHOD GENERATEHISTORICOFTABLE IS USED TO GENERATE A HISTORIC OF A TABLE
     public void generateHistoricOfAllTables() {
         try {
             InputStream reportStream = getClass().getResourceAsStream("/historicTables.jrxml");
@@ -209,6 +228,7 @@ public class Connector {
         }
     }
 
+    // THE METHOD REMOVETABLEPRODUCT IS USED TO REMOVE A PRODUCT FROM THE TABLE
     public void removeTableProduct(Table table, Product product) {
         String query = "DELETE FROM table_product WHERE tablee_id = ? AND product_id = ? LIMIT 1";
         try {
@@ -220,6 +240,8 @@ public class Connector {
             e.printStackTrace();
         }
     }
+
+    // THE METHOD UPDATETABLEPRODUCT IS USED TO UPDATE THE TABLE PRODUCT
 
     public void updateTableProduct(Table table, Product product) {
         String query = "DELETE FROM table_product WHERE tablee_id = ? AND product_id = ? LIMIT 1";
@@ -233,6 +255,7 @@ public class Connector {
         }
     }
 
+    // THE METHOD GETTOTAL IS USED TO GET THE TOTAL
     public String getTotal() {
         String query = "SELECT SUM(total) FROM tablee";
         double total=0 ;
@@ -249,6 +272,8 @@ public class Connector {
         }
         return total+"€";
     }
+
+    // THE METHOD CLOSECONNECTION IS USED TO CLOSE THE CONNECTION
 
     public void closeConnection() {
         try {

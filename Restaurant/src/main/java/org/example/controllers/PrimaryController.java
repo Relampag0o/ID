@@ -17,9 +17,9 @@ import org.example.classes.Product;
 import org.example.classes.Table;
 import org.example.database.Connector;
 
+// THE CLASS PRIMARYCONTROLLER IS USED TO CREATE THE PRIMARY CONTROLLER
 public class PrimaryController {
 
-    // PRODUCTS:
 
     @FXML
     public ImageView sanMiguel1;
@@ -77,6 +77,7 @@ public class PrimaryController {
     @FXML
     public Label totalLabel;
 
+
     public ListView productsListView;
 
 
@@ -86,6 +87,7 @@ public class PrimaryController {
     private Product selectedProduct;
     private Connector connector;
 
+    // THE METHOD INITIALIZE IS USED TO INITIALIZE THE PRIMARY CONTROLLER
     public void initialize() {
         this.tables = new ArrayList<Table>();
         this.connector = new Connector();
@@ -103,6 +105,7 @@ public class PrimaryController {
     }
 
 
+    // THE METHOD SELECTPRODUCT IS USED TO SELECT A PRODUCT
     @FXML
     public void selectProduct(MouseEvent event) {
         ImageView clickedImageView = (ImageView) event.getSource();
@@ -120,6 +123,7 @@ public class PrimaryController {
         }
     }
 
+    // THE METHOD SELECTTABLE IS USED TO SELECT A TABLE
     @FXML
     public void selectTable(MouseEvent event) {
         ImageView clickedImageView = (ImageView) event.getSource();
@@ -152,6 +156,8 @@ public class PrimaryController {
         }
     }
 
+    // THE METHOD ADDPRODUCTTOTABLE IS USED TO ADD A PRODUCT TO THE TABLE
+
     public void addProductToTable() {
         if (selectedTablee != null && selectedProduct != null) {
             selectedTablee.addProduct(selectedProduct);
@@ -162,6 +168,7 @@ public class PrimaryController {
             updateTotalLabel();
         }
     }
+    // THE METHOD UPDATEPRODUCTLIST IS USED TO UPDATE THE PRODUCT LIST
 
     public void updateProductList() {
         if (selectedTablee != null) {
@@ -169,6 +176,8 @@ public class PrimaryController {
             productsListView.setItems(FXCollections.observableArrayList(products));
         }
     }
+
+    // THE METHOD UPDATETOTALLABEL IS USED TO UPDATE THE TOTAL LABEL
 
     public void updateTotalLabel() {
         if (selectedTablee != null) {
@@ -179,6 +188,8 @@ public class PrimaryController {
         }
     }
 
+    // THE METHOD GENERATEREPORT IS USED TO GENERATE A REPORT
+
     public void generateReport() {
         if (selectedTablee != null) {
             connector.generateReport(selectedTablee);
@@ -186,6 +197,9 @@ public class PrimaryController {
             System.out.println("No table selected");
         }
     }
+
+
+    // THE METHOD GENERATEHISTORIC IS USED TO GENERATE A HISTORIC
 
     public void generateHistoric() {
         connector.generateHistoricOfAllTables();
@@ -201,6 +215,8 @@ public class PrimaryController {
         }
     }
 
+
+    // THE METHOD LOADTABLES IS USED TO LOAD THE TABLES
     public void loadTables() {
         List<String> tableIds = List.of("table1", "table2", "table3", "table4", "table5", "table6", "table7", "table8", "table9", "table10", "table11", "table12");
         this.tables.clear();
@@ -213,6 +229,8 @@ public class PrimaryController {
             }
         }
     }
+
+    // THE METHOD GETTABLENUMBERLABEL IS USED TO GET THE TABLE NUMBER LABEL
 
     private Label getTableNumberLabel(String tableId) {
         switch (tableId) {
@@ -245,6 +263,7 @@ public class PrimaryController {
         }
     }
 
+    // THE METHOD UPDATETABLENUMBERSCOLOR IS USED TO UPDATE THE TABLE NUMBERS COLOR
     public void updateTableNumbersColor() {
         for (Table table : tables) {
             String tableId = table.getId();

@@ -10,13 +10,17 @@ import org.example.controllers.ProductCellController;
 import org.example.database.Connector;
 
 import java.util.Map;
+// THE CLASS CUSTOMPRODUCTCELL IS USED TO CREATE CUSTOM CELLS FOR THE PRODUCT LIST
 
 public class CustomProductCell extends ListCell<Product> {
 
+    // The table object is used to store the table that the product is in
     private Table table;
+    // The primaryController object is used to store the primary controller
     private PrimaryController primaryController;
 
 
+    // THE CONSTRUCTOR IS USED TO CREATE A CUSTOMPRODUCTCELL OBJECT
     public CustomProductCell() {
 
     }
@@ -25,6 +29,8 @@ public class CustomProductCell extends ListCell<Product> {
         this.table = table;
         this.primaryController = primaryController;
     }
+
+    // THE METHOD UPDATEITEM IS USED TO UPDATE THE ITEM IN THE CELL
     @Override
     protected void updateItem(Product product, boolean empty) {
         super.updateItem(product, empty);

@@ -4,16 +4,20 @@ import org.example.database.Connector;
 
 import java.time.LocalDateTime;
 import java.util.*;
+// THE CLASS TABLE IS USED TO CREATE OBJECTS THAT REPRESENT TABLES IN THE RESTAURANT
 
 public class Table {
     private String id;
     private String name;
     private double total;
 
+    // The connector object is used to connect to the database
     private Connector connector;
+    // The products object is used to store the products that are in the table
     public HashMap<Product, Integer> products;
 
 
+    //  THE CONSTRUCTOR IS USED TO CREATE A TABLE OBJECT
     public Table(String id, String name) {
         this.id = id;
         this.name = name;
@@ -63,6 +67,7 @@ public class Table {
         this.total = total;
     }
 
+    // THE METHOD ADDPRODUCT IS USED TO ADD A PRODUCT TO THE TABLE
     public void addProduct(Product product) {
         System.out.println("List before adding product: ");
 
@@ -75,7 +80,6 @@ public class Table {
             this.products.put(product, 1);
         }
 
-        // Update the total price
         this.total += product.getPrice();
         connector.insertTableProduct(this, product);
         connector.updateTableTotal(this);
@@ -86,6 +90,7 @@ public class Table {
         connector.insertReport(report);
     }
 
+    // THE METHOD REMOVEPRODUCT IS USED TO REMOVE A PRODUCT FROM THE TABLE
     public void removeProduct(Product product) {
         System.out.println("List before removing product: ");
         for (Map.Entry<Product, Integer> entry : this.products.entrySet()) {
@@ -114,6 +119,7 @@ public class Table {
 
 
 
+    // THE METHOD CALCULATETOTAL IS USED TO CALCULATE THE TOTAL PRICE OF THE PRODUCTS IN THE TABLE
     public double calculateTotal() {
         double total = 0.0;
         for (Map.Entry<Product, Integer> entry : this.products.entrySet()) {
@@ -122,6 +128,7 @@ public class Table {
         return total;
     }
 
+    // THE METHOD CLEARTABLE IS USED TO CLEAR THE TABLE
     public void clearTable() {
         this.products.clear();
         this.total = 0;
@@ -129,12 +136,14 @@ public class Table {
         connector.updateTableTotal(this);
     }
 
+    // THE METHOD SHOWPRODUCTS IS USED TO PRINT THE PRODUCTS IN THE TABLE
     public void showProducts() {
         for (Map.Entry<Product, Integer> entry : this.products.entrySet()) {
             System.out.println(entry.getKey().getName() + " " + entry.getValue() + " " + entry.getKey().getPrice() * entry.getValue() + "€");
         }
     }
 
+    // THE METHOD ISEQUAL IS OVERRIDDEN TO COMPARE THE ID OF THE TABLES
 
     @Override
     public String toString() {

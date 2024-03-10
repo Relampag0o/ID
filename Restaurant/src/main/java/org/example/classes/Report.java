@@ -2,6 +2,7 @@ package org.example.classes;
 
 import java.time.LocalDateTime;
 
+// THE CLASS REPORT IS USED TO CREATE OBJECTS THAT REPRESENT REPORTS IN THE RESTAURANT
 public class Report {
     private String id;
     private String tableId;
@@ -13,6 +14,7 @@ public class Report {
 
 
 
+    //   THE CONSTRUCTOR IS USED TO CREATE A REPORT OBJECT
     public Report(String id, String tableId, String productId, int quantity, double price, LocalDateTime transactionTime) {
         this.id = id;
         this.tableId = tableId;
@@ -73,6 +75,7 @@ public class Report {
         this.transactionTime = transactionTime;
     }
 
+    //   THE METHOD IS USED TO RETURN A STRING REPRESENTATION OF THE REPORT OBJECT
     @Override
     public String toString() {
         return "Report{" +
