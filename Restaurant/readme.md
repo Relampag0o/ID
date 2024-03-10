@@ -1,6 +1,6 @@
 # Restaurant Management Application
 
-![Restaurant Management Application]([https://postimg.cc/wtc8zLN9](https://i.postimg.cc/5tDxwmNQ/relamparestaurant.png))
+[![relamparestaurant.png](https://i.postimg.cc/5tDxwmNQ/relamparestaurant.png)](https://postimg.cc/wtc8zLN9)
 
 ## Table of Contents
 
