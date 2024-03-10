@@ -1,6 +1,6 @@
 # Restaurant Management Application
 
-![Restaurant Management Application](https://ibb.co/1RsQN9s)
+![Restaurant Management Application]([https://ibb.co/1RsQN9s](https://postimg.cc/wtc8zLN9))
 
 ## Table of Contents
 
